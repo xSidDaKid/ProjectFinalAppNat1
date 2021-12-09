@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="334.0" prefWidth="508.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="334.0" prefWidth="508.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.appnatprojetsession.Controllers.LoginController">
    <children>
       <Label layoutX="14.0" layoutY="22.0" text="Guichet Bancaire">
          <font>
@@ -23,6 +22,6 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Button layoutX="217.0" layoutY="227.0" mnemonicParsing="false" text="Connexion" />
+      <Button layoutX="217.0" layoutY="227.0" mnemonicParsing="false" onAction="#Login" text="Connexion" />
    </children>
 </Pane>

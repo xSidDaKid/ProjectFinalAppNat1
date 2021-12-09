@@ -1,4 +1,4 @@
-package com.example.appnatprojetsession.Controllers;
+package com.example.appnatprojetsession.Models;
 
 import com.example.appnatprojetsession.Models.*;
 
