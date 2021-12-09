@@ -7,11 +7,19 @@ package com.example.appnatprojetsession.Models;
  * @author: A. Alperen, B. Shajaan et I. Gafran
  */
 public class Compte {
-    private int numeroNIP;
     private  int numeroCompte;
+    private int numeroNIP;
     private double soldeCompte;
     private int retraitMaximum;
     private int montantTransfertMaximum;
+
+    public Compte() {
+    }
+
+    public Compte(int numeroCompte, int numeroNIP) {
+        this.numeroCompte = numeroCompte;
+        this.numeroNIP = numeroNIP;
+    }
 
     public int getNumeroNIP() {
         return numeroNIP;
