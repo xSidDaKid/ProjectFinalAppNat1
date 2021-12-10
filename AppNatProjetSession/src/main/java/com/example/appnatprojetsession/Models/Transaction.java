@@ -13,11 +13,12 @@ public class Transaction {
     private double montant;
     private Compte compte;
     private Compte compteTransfert;
-    private static numeroTransactionCompteur=0;
+    public String type;
+    private static int numeroTransactionCompteur=0;
 
     public Transaction(double montant, Compte compte, Compte compteTransfert){
-        int num = this.numeroTransactionCompteur+=1;
-        this.numeroTransaction = num;
+        //int num = this.numeroTransactionCompteur+=1;
+        this.numeroTransaction = numeroTransaction;
         this.compte = compte;
         this.compteTransfert = compteTransfert;
     }
@@ -29,7 +30,7 @@ public class Transaction {
                 ", montant=" + montant +
                 ", compte=" + compte +
                 ", compteTransfert=" + compteTransfert +
-                ", Type='" + Type + '\'' +
+                ", Type='" + type + '\'' +
                 '}';
     }
 }

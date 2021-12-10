@@ -72,9 +72,9 @@ public class GestionnaireGuichet {
 
     public void creerCheque(int numeroNIP/*, double soldeCompte, int retraitMaximum, int montantTransfertMaximum*/){
         this.incrementNumeroCompte();
-        int numerCompte = this.numerCompte;
-        Compte c1 = new Cheque(numeroNIP, numeroCompte/*, soldeCompte, retraitMaximum, montantTransfertMaximum*/ );
-        this.comptesCheque.add(c1);
+   /*     int numerCompte = this.numerCompte;
+        Compte c1 = new Cheque(numeroNIP, numeroCompte*//*, soldeCompte, retraitMaximum, montantTransfertMaximum*//* );
+        this.comptesCheque.add(c1);*/
     }
 
     public void incrementNumeroClient(){
