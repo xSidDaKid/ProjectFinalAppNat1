@@ -21,6 +21,14 @@ public class Compte {
         this.numeroNIP = numeroNIP;
     }
 
+    public Compte(int numeroCompte, int numeroNIP, double soldeCompte, int retraitMaximum, int montantTransfertMaximum) {
+        this.numeroCompte = numeroCompte;
+        this.numeroNIP = numeroNIP;
+        this.soldeCompte = soldeCompte;
+        this.retraitMaximum = retraitMaximum;
+        this.montantTransfertMaximum = montantTransfertMaximum;
+    }
+
     public int getNumeroNIP() {
         return numeroNIP;
     }

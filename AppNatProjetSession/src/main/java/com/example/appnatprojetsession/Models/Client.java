@@ -15,6 +15,15 @@ public class Client {
     private String courriel;
     private int numeroNIP;
 
+    public Client(int codeClient, String nom, String prenom, String telephone, String courriel, int numeroNIP) {
+        this.codeClient = codeClient;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.telephone = telephone;
+        this.courriel = courriel;
+        this.numeroNIP = numeroNIP;
+    }
+
     public String getNom() {
         return nom;
     }

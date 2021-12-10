@@ -1,7 +1,5 @@
 package com.example.appnatprojetsession.Models;
 
-import com.example.appnatprojetsession.Models.*;
-
 import java.util.ArrayList;
 
 /**
@@ -19,6 +17,9 @@ public class GestionnaireGuichet {
     private ArrayList<Hypothécaire> comptesHypothecaire;
     private ArrayList<Transaction> transactions;
     private double soldeCompteCourant;
+
+    private static int numeroClient = 1000;
+    private static int numeroCompte = 0;
 
     public Compte ValiderUtilisateur(String nom, int nip) {
         Compte c1 = null;
@@ -59,10 +60,15 @@ public class GestionnaireGuichet {
     }
 
     public void creerClient(int codeClient, String nom, String prenom, String telephone, String courriel, int numeroNIP) {
-
+        Client client = new Client(codeClient, nom, prenom, telephone, courriel, numeroNIP);
+        this.clients.add(client);
     }
 
     public void creerCompte() {
+       Compte c1 = new Cheque();
+    }
 
+    public void creerCheque(int numeroNIP, double soldeCompte, int retraitMaximum, int montantTransfertMaximum){
+        Compte c1 = new Cheque();
     }
 }

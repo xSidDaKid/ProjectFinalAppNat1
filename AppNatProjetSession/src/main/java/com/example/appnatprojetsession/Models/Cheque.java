@@ -11,6 +11,18 @@ public class Cheque extends Compte{
     private final double fraisPaiementFacture = 0;
     private final double montantFactureMaximum = 0;
 
+    public Cheque() {
+        super();
+    }
+
+    public Cheque(int numeroCompte, int numeroNIP) {
+        super(numeroCompte, numeroNIP);
+    }
+
+    public Cheque(int numeroCompte, int numeroNIP, double soldeCompte, int retraitMaximum, int montantTransfertMaximum) {
+        super(numeroCompte, numeroNIP, soldeCompte, retraitMaximum, montantTransfertMaximum);
+    }
+
     public void paiementFacture (double montant) {
 
     }
