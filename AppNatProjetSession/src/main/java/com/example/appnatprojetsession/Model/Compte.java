@@ -16,14 +16,18 @@ public class Compte {
     public Compte() {
     }
 
-    public Compte(int numeroCompte, int numeroNIP) {
-        this.numeroCompte = numeroCompte;
+    public Compte(int numeroNIP, int numeroCompte) {
         this.numeroNIP = numeroNIP;
+        this.numeroCompte = numeroCompte;
+        this.soldeCompte=0;
+        //A changer les valeurs selon les notes
+        this.retraitMaximum = 1000;
+        this.montantTransfertMaximum 500;
     }
 
-    public Compte(int numeroCompte, int numeroNIP, double soldeCompte, int retraitMaximum, int montantTransfertMaximum) {
-        this.numeroCompte = numeroCompte;
+    public Compte(int numeroNIP, int numeroCompte, double soldeCompte, int retraitMaximum, int montantTransfertMaximum) {
         this.numeroNIP = numeroNIP;
+        this.numeroCompte = numeroCompte;
         this.soldeCompte = soldeCompte;
         this.retraitMaximum = retraitMaximum;
         this.montantTransfertMaximum = montantTransfertMaximum;

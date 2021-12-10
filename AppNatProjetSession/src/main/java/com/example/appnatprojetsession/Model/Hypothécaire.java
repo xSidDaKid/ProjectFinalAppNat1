@@ -8,18 +8,18 @@ import com.example.appnatprojetsession.Models.Compte;
  * @Date_de_remise: 16 decembre 2021
  * @author: A. Alperen, B. Shajaan et I. Gafran
  */
-public class Marge extends Compte {
+public class Hypothécaire extends Compte {
 
-    private final double tauxInteret = 1.01;
+    public Hypothécaire(int numeroNIP, int numeroCompte){
+        super(numeroNIP, numeroCompte);
+    }
 
-    public void augmenterSoldeMarge(){
+    public void preleverMontantHypotheque() {
 
     }
 
     @Override
     public String toString() {
-        return "Marge{" +
-                "tauxInteret=" + tauxInteret +
-                '}';
+        return "Hypothécaire{}";
     }
 }

@@ -13,7 +13,14 @@ public class Transaction {
     private double montant;
     private Compte compte;
     private Compte compteTransfert;
-    private String Type;
+    private static numeroTransactionCompteur=0;
+
+    public Transaction(double montant, Compte compte, Compte compteTransfert){
+        int num = this.numeroTransactionCompteur+=1;
+        this.numeroTransaction = num;
+        this.compte = compte;
+        this.compteTransfert = compteTransfert;
+    }
 
     @Override
     public String toString() {

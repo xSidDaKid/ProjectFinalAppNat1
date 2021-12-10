@@ -59,16 +59,29 @@ public class GestionnaireGuichet {
         return this.soldeCompteCourant;
     }
 
-    public void creerClient(int codeClient, String nom, String prenom, String telephone, String courriel, int numeroNIP) {
+    public void creerClient(int codeClient, String nom, String prenom, String telephone, String courriel) {
+        this.incrementNumeroClient();
+        int numeroNIP = this.numeroClient;
         Client client = new Client(codeClient, nom, prenom, telephone, courriel, numeroNIP);
         this.clients.add(client);
+        //creer une methode dans cheque ou l'on a pas besoin de specifier le soldeCompte =0, retraitMaximum=?, montantTransfertMaximum=?
+        this.creerCheque(numeroNIP);
     }
 
-    public void creerCompte() {
-       Compte c1 = new Cheque();
+    public void creerCompte() {}
+
+    public void creerCheque(int numeroNIP/*, double soldeCompte, int retraitMaximum, int montantTransfertMaximum*/){
+        this.incrementNumeroCompte();
+        int numerCompte = this.numerCompte;
+        Compte c1 = new Cheque(numeroNIP, numeroCompte/*, soldeCompte, retraitMaximum, montantTransfertMaximum*/ );
+        this.comptesCheque.add(c1);
     }
 
-    public void creerCheque(int numeroNIP, double soldeCompte, int retraitMaximum, int montantTransfertMaximum){
-        Compte c1 = new Cheque();
+    public void incrementNumeroClient(){
+        this.numeroClient+=1;
+    }
+
+    public void incrementNumeroCompte(){
+        this.numeroCompte+=1;
     }
 }
