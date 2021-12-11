@@ -45,9 +45,9 @@ public class LoginController extends GestionnaireGuichet {
             first.setRoot(root);
         }
         else {
-            int code = 0, nip = 0;
+            int codeCli = 0, nip = 0;
             try{
-                code = Integer.parseInt(codeUtilisateur);
+                codeCli = Integer.parseInt(codeUtilisateur);
                 nip = Integer.parseInt(nipUtilisateur);
             }catch(Exception e){
                 System.out.println(e);
@@ -55,19 +55,19 @@ public class LoginController extends GestionnaireGuichet {
                 alert.showAndWait();
                 return;
             }
-//            System.out.println(code);
+//            System.out.println(codeCli);
 //            System.out.println(nip);
-            Client client = new Client(code, nip);
+            Client client = new Client(codeCli, nip);
             GestionnaireGuichet gg = new GestionnaireGuichet();
 
             for (Client c: gg.getClients()
                  ) {
                 if(c.getNumeroNIP() == client.getNumeroNIP()){
                     if(c.getNumeroNIP() == client.getNumeroNIP()){
-//                        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/menuAdmin.fxml"));
-//                        Scene first = code.getScene();
-//                        ((Stage)first.getWindow()).setTitle("Admin");
-//                        first.setRoot(root);
+                        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/User/menuUser.fxml"));
+                        Scene first = code.getScene();
+                        ((Stage)first.getWindow()).setTitle("Admin");
+                        first.setRoot(root);
                     }
                     else{
                         Alert alert = new Alert(Alert.AlertType.WARNING, "Client non trouvable");
