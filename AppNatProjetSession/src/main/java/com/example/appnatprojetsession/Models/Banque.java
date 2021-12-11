@@ -7,23 +7,18 @@ package com.example.appnatprojetsession.Models;
  * @author: A. Alperen, B. Shajaan et I. Gafran
  */
 public class Banque extends Compte{
-    private final double montantMaximum = 0;
-    private final double montantRemplissage = 0;
+    private double montantMaximum = 0;
+    private double montantRemplissage = 0;
 
-/*
-    public Banque(public Marge(int numeroNIP, int numeroCompte){
+    public Banque(int numeroNIP, int numeroCompte){
         super(numeroNIP, numeroCompte);
-        this.montantMaximum = 0;
-        this.montantRemplissage =0 ;
-    })
+    }
 
-    public Banque(public Marge(int numeroNIP, int numeroCompte, double montantMaximum, double montantRemplissage){
+    public Banque(int numeroNIP, int numeroCompte, double montantMaximum, double montantRemplissage){
         super(numeroNIP, numeroCompte);
         this.montantMaximum = montantMaximum;
         this.montantRemplissage = montantRemplissage;
-    })
-*/
-
+    }
 
     public void RemplirGuichet(){
 

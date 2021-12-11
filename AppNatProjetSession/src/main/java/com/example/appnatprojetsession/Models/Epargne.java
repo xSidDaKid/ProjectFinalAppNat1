@@ -7,7 +7,12 @@ package com.example.appnatprojetsession.Models;
  * @author: A. Alperen, B. Shajaan et I. Gafran
  */
 public class Epargne extends Compte{
-    private final double tauxInteret = 1.01;
+    private double tauxInteret = 1.01;
+
+    public Epargne (int numeroNIP, int numeroCompte){
+        super(numeroNIP, numeroCompte);
+    }
+
 
 /*    public void paiementInteret(int numeroNIP, int numeroCompte){
         super(numeroNIP, numeroCompte);
