@@ -18,10 +18,10 @@
       <TextField fx:id="telephoneClient" layoutX="97.0" layoutY="137.0" />
       <TextField fx:id="courrielClient" layoutX="97.0" layoutY="177.0" />
       <TextField fx:id="nipClient" layoutX="97.0" layoutY="217.0" />
-      <Button layoutX="194.0" layoutY="14.0" mnemonicParsing="false" text="Déconnexion" />
+      <Button layoutX="194.0" layoutY="14.0" mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion" />
       <Button layoutX="223.0" layoutY="283.0" mnemonicParsing="false" onAction="#infoClient" text="Créer" />
       <Label layoutX="51.0" layoutY="250.0" prefHeight="80.0" prefWidth="189.0" text="Lorsque le client sera créer, &#10;un compte sera &#10;automatiquement &#10;créer pour lui.&#10;" />
-      <Label layoutX="31.0" layoutY="18.0" text="Admin - Créer Client">
+      <Label fx:id="creation" layoutX="31.0" layoutY="18.0" text="Admin - Créer Client">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

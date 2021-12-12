@@ -48,6 +48,8 @@ public class LoginController extends GestionnaireGuichet {
     TextField courrielClient;
     @FXML
     TextField nipClient;
+    @FXML
+    Label creation;
 
     /**
      * Login avec enter
@@ -79,8 +81,6 @@ public class LoginController extends GestionnaireGuichet {
         Scene first = menuAdmin.getScene();
         ((Stage) first.getWindow()).setTitle("Creation d'un client");
         first.setRoot(root);
-
-
     }
 
     public void infoClient() {
@@ -94,5 +94,20 @@ public class LoginController extends GestionnaireGuichet {
 
         gg.creerClient(this.compteur, nomC, prenomC, telephoneC, courrielC, nipC);
         this.compteur++;
+    }
+
+    public void deconnexion() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/LoginMenu.fxml"));
+        Scene first = null;
+
+        if ((menuAdmin) != null) {
+            first = menuAdmin.getScene();
+        }else if (creation.getScene() != null) {
+            first = creation.getScene();
+        }
+
+
+        ((Stage) first.getWindow()).setTitle("Login");
+        first.setRoot(root);
     }
 }
