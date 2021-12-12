@@ -40,4 +40,8 @@ public class LoginController extends GestionnaireGuichet {
             first.setRoot(root);
         }
     }
+
+    public void creerClient() {
+        System.out.println("allo");
+    }
 }
