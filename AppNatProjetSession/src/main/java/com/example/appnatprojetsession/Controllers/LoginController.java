@@ -1,12 +1,21 @@
 package com.example.appnatprojetsession.Controllers;
 
+<<<<<<< HEAD
 import com.example.appnatprojetsession.Models.GestionnaireGuichet;
 import javafx.event.ActionEvent;
+=======
+import com.example.appnatprojetsession.Models.Client;
+import com.example.appnatprojetsession.Models.GestionnaireGuichet;
+>>>>>>> devModel
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+<<<<<<< HEAD
 import javafx.scene.control.Label;
+=======
+import javafx.scene.control.Alert;
+>>>>>>> devModel
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -20,6 +29,7 @@ import java.io.IOException;
  */
 public class LoginController extends GestionnaireGuichet {
 
+<<<<<<< HEAD
     public static String codeUtilisateur = "";
     public static String nipUtilisateur = "";
     public static String nomC = "";
@@ -33,10 +43,13 @@ public class LoginController extends GestionnaireGuichet {
     @FXML
     Label menuAdmin;
     //Login
+=======
+>>>>>>> devModel
     @FXML
     TextField code;
     @FXML
     TextField nip;
+<<<<<<< HEAD
     //Creation d'un client
     @FXML
     TextField nomClient;
@@ -60,6 +73,11 @@ public class LoginController extends GestionnaireGuichet {
     public void onEnter(ActionEvent ae) throws IOException {
         Login();
     }
+=======
+
+    public static String codeUtilisateur = "";
+    public static String nipUtilisateur = "";
+>>>>>>> devModel
 
     public void Login() throws IOException {
 
@@ -67,6 +85,7 @@ public class LoginController extends GestionnaireGuichet {
         nipUtilisateur = nip.getText();
         System.out.println(codeUtilisateur + " " + nipUtilisateur);
 
+<<<<<<< HEAD
 
         if (codeUtilisateur.equalsIgnoreCase("admin") && nipUtilisateur.equalsIgnoreCase("admin")) {
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/menuAdmin.fxml"));
@@ -109,5 +128,49 @@ public class LoginController extends GestionnaireGuichet {
 
         ((Stage) first.getWindow()).setTitle("Login");
         first.setRoot(root);
+=======
+        if(codeUtilisateur.trim().equalsIgnoreCase("") || nipUtilisateur.equalsIgnoreCase("")){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Remplir tous les champs");
+            alert.showAndWait();
+        }
+        else if (codeUtilisateur.equalsIgnoreCase("admin") && nipUtilisateur.equalsIgnoreCase("0000")){
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/menuAdmin.fxml"));
+            Scene first = code.getScene();
+            ((Stage)first.getWindow()).setTitle("Admin");
+            first.setRoot(root);
+        }
+        else {
+            int codeCli = 0, nip = 0;
+            try{
+                codeCli = Integer.parseInt(codeUtilisateur);
+                nip = Integer.parseInt(nipUtilisateur);
+            }catch(Exception e){
+                System.out.println(e);
+                Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Entrez des numeros");
+                alert.showAndWait();
+                return;
+            }
+//            System.out.println(codeCli);
+//            System.out.println(nip);
+            Client client = new Client(codeCli, nip);
+            GestionnaireGuichet gg = new GestionnaireGuichet();
+
+            for (Client c: gg.getClients()
+                 ) {
+                if(c.getNumeroNIP() == client.getNumeroNIP()){
+                    if(c.getNumeroNIP() == client.getNumeroNIP()){
+                        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/User/menuUser.fxml"));
+                        Scene first = code.getScene();
+                        ((Stage)first.getWindow()).setTitle("Admin");
+                        first.setRoot(root);
+                    }
+                    else{
+                        Alert alert = new Alert(Alert.AlertType.WARNING, "Client non trouvable");
+                        alert.showAndWait();
+                    }
+                }
+            }
+        }
+>>>>>>> devModel
     }
 }

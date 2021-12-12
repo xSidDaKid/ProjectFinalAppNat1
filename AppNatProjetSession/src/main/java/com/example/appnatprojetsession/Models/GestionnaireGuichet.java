@@ -21,6 +21,89 @@ public class GestionnaireGuichet {
     private static int numeroClient = 1000;
     private static int numeroCompte = 0;
 
+    public GestionnaireGuichet(){
+    }
+
+    public Compte getBanque() {
+        return banque;
+    }
+
+    public void setBanque(Compte banque) {
+        this.banque = banque;
+    }
+
+    public ArrayList<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(ArrayList<Client> clients) {
+        this.clients = clients;
+    }
+
+    public ArrayList<Cheque> getComptesCheque() {
+        return comptesCheque;
+    }
+
+    public void setComptesCheque(ArrayList<Cheque> comptesCheque) {
+        this.comptesCheque = comptesCheque;
+    }
+
+    public ArrayList<Epargne> getComptesEpargne() {
+        return comptesEpargne;
+    }
+
+    public void setComptesEpargne(ArrayList<Epargne> comptesEpargne) {
+        this.comptesEpargne = comptesEpargne;
+    }
+
+    public ArrayList<Marge> getComptesMarge() {
+        return comptesMarge;
+    }
+
+    public void setComptesMarge(ArrayList<Marge> comptesMarge) {
+        this.comptesMarge = comptesMarge;
+    }
+
+    public ArrayList<Hypothécaire> getComptesHypothecaire() {
+        return comptesHypothecaire;
+    }
+
+    public void setComptesHypothecaire(ArrayList<Hypothécaire> comptesHypothecaire) {
+        this.comptesHypothecaire = comptesHypothecaire;
+    }
+
+    public ArrayList<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(ArrayList<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public double getSoldeCompteCourant() {
+        return soldeCompteCourant;
+    }
+
+    public void setSoldeCompteCourant(double soldeCompteCourant) {
+        this.soldeCompteCourant = soldeCompteCourant;
+    }
+
+    public static int getNumeroClient() {
+        return numeroClient;
+    }
+
+    public static void setNumeroClient(int numeroClient) {
+        GestionnaireGuichet.numeroClient = numeroClient;
+    }
+
+    public static int getNumeroCompte() {
+        return numeroCompte;
+    }
+
+    public static void setNumeroCompte(int numeroCompte) {
+        GestionnaireGuichet.numeroCompte = numeroCompte;
+    }
+
     public Compte ValiderUtilisateur(String nom, int nip) {
         Compte c1 = null;
         return c1;

@@ -10,16 +10,15 @@ import com.example.appnatprojetsession.Models.Compte;
  */
 public class Marge extends Compte {
 
-    private final double tauxInteret = 1.01;
+    private double tauxInteret = 1.01;
 
     public Marge(int numeroNIP, int numeroCompte){
         super(numeroNIP, numeroCompte);
-       // this.tauxInteret = 1.01;
     }
 
     public Marge(int numeroNIP, int numeroCompte, double tauxInteret){
         super(numeroNIP, numeroCompte);
-       // this.tauxInteret = tauxInteret;
+        this.tauxInteret = tauxInteret;
     }
 
     public void augmenterSoldeMarge(){

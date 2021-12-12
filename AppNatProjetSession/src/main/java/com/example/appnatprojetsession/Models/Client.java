@@ -24,6 +24,11 @@ public class Client {
         this.numeroNIP = numeroNIP;
     }
 
+    public Client(int codeClient, int numeroNIP){
+        this.codeClient = codeClient;
+        this.numeroNIP = numeroNIP;
+    }
+
     public String getNom() {
         return nom;
     }
