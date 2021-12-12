@@ -10,15 +10,15 @@ import java.util.ArrayList;
  */
 public class GestionnaireGuichet {
     private Compte banque;
-    private ArrayList<Client> clients = new ArrayList<>();
-    private ArrayList<Cheque> comptesCheque;
-    private ArrayList<Epargne> comptesEpargne;
-    private ArrayList<Marge> comptesMarge;
-    private ArrayList<Hypothécaire> comptesHypothecaire;
-    private ArrayList<Transaction> transactions;
+    private static ArrayList<Client> clients = new ArrayList<>();
+    private static ArrayList<Cheque> comptesCheque;
+    private static ArrayList<Epargne> comptesEpargne;
+    private static ArrayList<Marge> comptesMarge;
+    private static ArrayList<Hypothécaire> comptesHypothecaire;
+    private static ArrayList<Transaction> transactions;
     private double soldeCompteCourant;
 
-    private static int numeroClient = 1000;
+    private static int codeClient = 1000;
     private static int numeroCompte = 0;
 
     public GestionnaireGuichet(){
@@ -32,52 +32,28 @@ public class GestionnaireGuichet {
         this.banque = banque;
     }
 
-    public ArrayList<Client> getClients() {
+    public static ArrayList<Client> getClients() {
         return clients;
     }
 
-    public void setClients(ArrayList<Client> clients) {
-        this.clients = clients;
-    }
-
-    public ArrayList<Cheque> getComptesCheque() {
+    public static ArrayList<Cheque> getComptesCheque() {
         return comptesCheque;
     }
 
-    public void setComptesCheque(ArrayList<Cheque> comptesCheque) {
-        this.comptesCheque = comptesCheque;
-    }
-
-    public ArrayList<Epargne> getComptesEpargne() {
+    public static ArrayList<Epargne> getComptesEpargne() {
         return comptesEpargne;
     }
 
-    public void setComptesEpargne(ArrayList<Epargne> comptesEpargne) {
-        this.comptesEpargne = comptesEpargne;
-    }
-
-    public ArrayList<Marge> getComptesMarge() {
+    public static ArrayList<Marge> getComptesMarge() {
         return comptesMarge;
     }
 
-    public void setComptesMarge(ArrayList<Marge> comptesMarge) {
-        this.comptesMarge = comptesMarge;
-    }
-
-    public ArrayList<Hypothécaire> getComptesHypothecaire() {
+    public static ArrayList<Hypothécaire> getComptesHypothecaire() {
         return comptesHypothecaire;
     }
 
-    public void setComptesHypothecaire(ArrayList<Hypothécaire> comptesHypothecaire) {
-        this.comptesHypothecaire = comptesHypothecaire;
-    }
-
-    public ArrayList<Transaction> getTransactions() {
+    public static ArrayList<Transaction> getTransactions() {
         return transactions;
-    }
-
-    public void setTransactions(ArrayList<Transaction> transactions) {
-        this.transactions = transactions;
     }
 
     public double getSoldeCompteCourant() {
@@ -88,21 +64,6 @@ public class GestionnaireGuichet {
         this.soldeCompteCourant = soldeCompteCourant;
     }
 
-    public static int getNumeroClient() {
-        return numeroClient;
-    }
-
-    public static void setNumeroClient(int numeroClient) {
-        GestionnaireGuichet.numeroClient = numeroClient;
-    }
-
-    public static int getNumeroCompte() {
-        return numeroCompte;
-    }
-
-    public static void setNumeroCompte(int numeroCompte) {
-        GestionnaireGuichet.numeroCompte = numeroCompte;
-    }
 
     public Compte ValiderUtilisateur(String nom, int nip) {
         Compte c1 = null;
@@ -142,8 +103,8 @@ public class GestionnaireGuichet {
         return this.soldeCompteCourant;
     }
 
-    public void creerClient(int codeClient, String nom, String prenom, String telephone, String courriel, String numeroNIP) {
-        this.incrementNumeroClient();
+    public void creerClient( String nom, String prenom, String telephone, String courriel, int numeroNIP) {
+        this.incrementCodeClient();
         //int numeroNIP = this.numeroClient;
         Client client = new Client(codeClient, nom, prenom, telephone, courriel, numeroNIP);
         this.clients.add(client);
@@ -163,8 +124,8 @@ public class GestionnaireGuichet {
         this.comptesCheque.add(c1);*/
     }
 
-    public void incrementNumeroClient(){
-        this.numeroClient+=1;
+    public void incrementCodeClient(){
+        this.codeClient+=1;
     }
 
     public void incrementNumeroCompte(){

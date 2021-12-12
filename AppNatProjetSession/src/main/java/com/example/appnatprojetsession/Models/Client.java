@@ -13,9 +13,9 @@ public class Client {
     private String prenom;
     private String telephone;
     private String courriel;
-    private String numeroNIP;
+    private int numeroNIP;
 
-    public Client(int codeClient, String nom, String prenom, String telephone, String courriel, String numeroNIP) {
+    public Client(int codeClient, String nom, String prenom, String telephone, String courriel, int numeroNIP) {
         this.codeClient = codeClient;
         this.nom = nom;
         this.prenom = prenom;
@@ -27,6 +27,14 @@ public class Client {
     public Client(int codeClient, int numeroNIP){
         this.codeClient = codeClient;
         this.numeroNIP = numeroNIP;
+    }
+
+    public int getCodeClient() {
+        return codeClient;
+    }
+
+    public void setCodeClient(int codeClient) {
+        this.codeClient = codeClient;
     }
 
     public String getNom() {
@@ -45,11 +53,11 @@ public class Client {
         this.prenom = prenom;
     }
 
-    public String getNumeroNIP() {
+    public int getNumeroNIP() {
         return numeroNIP;
     }
 
-    public void setNumeroNIP(String numeroNIP) {
+    public void setNumeroNIP(int numeroNIP) {
         this.numeroNIP = numeroNIP;
     }
 
