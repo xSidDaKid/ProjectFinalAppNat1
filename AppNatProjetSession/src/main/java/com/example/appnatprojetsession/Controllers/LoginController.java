@@ -19,36 +19,69 @@ import java.io.IOException;
  */
 public class LoginController extends GestionnaireGuichet {
 
+    public static String codeUtilisateur = "";
+    public static String nipUtilisateur = "";
+    public static String nomC = "";
+    public static String prenomC = "";
+    public static String telephoneC = "";
+    public static String courrielC = "";
+    public static String nipC = "";
+    public int compteur = 1;
+    GestionnaireGuichet gg = new GestionnaireGuichet();
+    //Menu Admin pour pouvoir changer de fenetre
+    @FXML
+    Label menuAdmin;
+    //Login
     @FXML
     TextField code;
     @FXML
     TextField nip;
+    //Creation d'un client
     @FXML
-    Label menuAdmin;
-
-    public static String codeUtilisateur = "";
-    public static String nipUtilisateur = "";
+    TextField nomClient;
+    @FXML
+    TextField prenomClient;
+    @FXML
+    TextField telephoneClient;
+    @FXML
+    TextField courrielClient;
+    @FXML
+    TextField nipClient;
 
     public void Login() throws IOException {
 
         codeUtilisateur = code.getText();
-        nipUtilisateur = code.getText();
+        nipUtilisateur = nip.getText();
         System.out.println(codeUtilisateur + " " + nipUtilisateur);
 
 
-        if (codeUtilisateur.equalsIgnoreCase("admin") && codeUtilisateur.equalsIgnoreCase("admin")){
+        if (codeUtilisateur.equalsIgnoreCase("admin") && nipUtilisateur.equalsIgnoreCase("admin")) {
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/menuAdmin.fxml"));
             Scene first = code.getScene();
-            ((Stage)first.getWindow()).setTitle("Admin");
+            ((Stage) first.getWindow()).setTitle("Admin");
             first.setRoot(root);
         }
     }
 
     public void creerClient() throws IOException {
-        System.out.println("allo");
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/creerClient.fxml"));
         Scene first = menuAdmin.getScene();
-        ((Stage)first.getWindow()).setTitle("Creation d'un client");
+        ((Stage) first.getWindow()).setTitle("Creation d'un client");
         first.setRoot(root);
+
+
+    }
+
+    public void infoClient() {
+        nomC = nomClient.getText();
+        prenomC = prenomClient.getText();
+        telephoneC = telephoneClient.getText();
+        courrielC = courrielClient.getText();
+        nipC = nipClient.getText();
+
+        System.out.println("Nom: " + nomC + "\nPrenom: " + prenomC + "\nTelephone: " + telephoneC + "\nCourriel: " + courrielC + "\nNIP: " + nipC);
+
+        gg.creerClient(this.compteur, nomC, prenomC, telephoneC, courrielC, nipC);
+        this.compteur++;
     }
 }

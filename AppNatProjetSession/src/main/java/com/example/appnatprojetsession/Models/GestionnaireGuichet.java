@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class GestionnaireGuichet {
     private Compte banque;
-    private ArrayList<Client> clients;
+    private ArrayList<Client> clients = new ArrayList<>();
     private ArrayList<Cheque> comptesCheque;
     private ArrayList<Epargne> comptesEpargne;
     private ArrayList<Marge> comptesMarge;
@@ -59,13 +59,16 @@ public class GestionnaireGuichet {
         return this.soldeCompteCourant;
     }
 
-    public void creerClient(int codeClient, String nom, String prenom, String telephone, String courriel) {
+    public void creerClient(int codeClient, String nom, String prenom, String telephone, String courriel, String numeroNIP) {
         this.incrementNumeroClient();
-        int numeroNIP = this.numeroClient;
+        //int numeroNIP = this.numeroClient;
         Client client = new Client(codeClient, nom, prenom, telephone, courriel, numeroNIP);
         this.clients.add(client);
+        for (Client c:clients) {
+            System.out.println(c);
+        }
         //creer une methode dans cheque ou l'on a pas besoin de specifier le soldeCompte =0, retraitMaximum=?, montantTransfertMaximum=?
-        this.creerCheque(numeroNIP);
+        //this.creerCheque(numeroNIP);
     }
 
     public void creerCompte() {}
