@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -22,6 +23,8 @@ public class LoginController extends GestionnaireGuichet {
     TextField code;
     @FXML
     TextField nip;
+    @FXML
+    Label menuAdmin;
 
     public static String codeUtilisateur = "";
     public static String nipUtilisateur = "";
@@ -41,7 +44,11 @@ public class LoginController extends GestionnaireGuichet {
         }
     }
 
-    public void creerClient() {
+    public void creerClient() throws IOException {
         System.out.println("allo");
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/creerClient.fxml"));
+        Scene first = menuAdmin.getScene();
+        ((Stage)first.getWindow()).setTitle("Creation d'un client");
+        first.setRoot(root);
     }
 }
