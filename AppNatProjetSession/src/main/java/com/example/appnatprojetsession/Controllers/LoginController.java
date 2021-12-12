@@ -1,6 +1,7 @@
 package com.example.appnatprojetsession.Controllers;
 
 import com.example.appnatprojetsession.Models.GestionnaireGuichet;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -47,6 +48,16 @@ public class LoginController extends GestionnaireGuichet {
     TextField courrielClient;
     @FXML
     TextField nipClient;
+
+    /**
+     * Login avec enter
+     * @param ae
+     * @throws IOException
+     */
+    @FXML
+    public void onEnter(ActionEvent ae) throws IOException {
+        Login();
+    }
 
     public void Login() throws IOException {
 

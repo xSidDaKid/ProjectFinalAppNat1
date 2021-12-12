@@ -16,7 +16,7 @@
       <Label layoutX="172.0" layoutY="168.0" text="NIP:" />
       <Label layoutX="168.0" layoutY="128.0" text="Code:" />
       <TextField fx:id="code" layoutX="226.0" layoutY="124.0" />
-      <TextField fx:id="nip" layoutX="226.0" layoutY="164.0" />
+      <TextField fx:id="nip" layoutX="226.0" layoutY="164.0" onAction="#onEnter" />
       <Label layoutX="234.0" layoutY="71.0" text="Login">
          <font>
             <Font name="System Bold" size="15.0" />
