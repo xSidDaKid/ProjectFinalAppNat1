@@ -2,6 +2,7 @@ package com.example.appnatprojetsession.Controllers;
 
 
 import com.example.appnatprojetsession.Models.GestionnaireGuichet;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -59,7 +60,7 @@ public class AdminController extends GestionnaireGuichet {
     Label ajouterArgentGuichet;
     @FXML
     Label prelevementHypo;
-    
+
     /**
      * MENU OPTION 1 - Redirection vers le menu Creer Client
      *
@@ -192,7 +193,7 @@ public class AdminController extends GestionnaireGuichet {
      * @throws IOException
      */
     public void fermerGuichet() throws IOException {
-        //TODO
+        Platform.exit();
     }
 
 //----------------------------------------------------------------------------------------------------------------------
