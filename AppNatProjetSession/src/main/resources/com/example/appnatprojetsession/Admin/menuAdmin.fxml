@@ -29,11 +29,11 @@
       <Button mnemonicParsing="false" onAction="#creerCompteClient" prefHeight="25.0" prefWidth="156.0" text="Créer Compte" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
       <Button mnemonicParsing="false" onAction="#bloquerDebloquer" prefWidth="156.0" text="Bloquer/Débloquer Client" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
       <Button mnemonicParsing="false" onAction="#listeTransaction" prefHeight="25.0" prefWidth="157.0" text="Transactions compte" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" text="Payer intérêt" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#payerInteret" prefHeight="25.0" prefWidth="156.0" text="Payer intérêt" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
       <Button mnemonicParsing="false" onAction="#ajoutArgent" prefHeight="25.0" prefWidth="156.0" text="Ajouter Argent Guichet" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
       <Button mnemonicParsing="false" onAction="#prelevement" text="Prélèvement d'un montant" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-      <Button mnemonicParsing="false" text="Augmenter de 5% le solde" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" text="Fermet le guichet" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#augmenterSolde" text="Augmenter de 5% le solde" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#fermerGuichet" prefHeight="25.0" prefWidth="139.0" text="Fermet le guichet" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
       <Button mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
    </children>
 </GridPane>
