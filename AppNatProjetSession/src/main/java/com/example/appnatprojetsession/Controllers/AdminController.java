@@ -52,11 +52,20 @@ public class AdminController extends GestionnaireGuichet {
     TextField courrielClient;
     @FXML
     TextField nipClient;
-    //Deconnexion
+    //Back-Deconnexion
     @FXML
     Label creation;
     @FXML
     Label creationCompte;
+    @FXML
+    Label statutCompteClient;
+    @FXML
+    Label afficherTransaction;
+    @FXML
+    Label ajouterArgentGuichet;
+    @FXML
+    Label prelevementHypo;
+
 
     /**
      * Login avec enter
@@ -165,6 +174,35 @@ public class AdminController extends GestionnaireGuichet {
         gg.creerCheque();
     }
 
+    public void bloquerDebloquer() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/bloquerCompte.fxml"));
+        Scene first = menuAdmin.getScene();
+        ((Stage) first.getWindow()).setTitle("Bloquer/Debloquer un compte client");
+        first.setRoot(root);
+    }
+
+    public void listeTransaction() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/afficherTransactions.fxml"));
+        Scene first = menuAdmin.getScene();
+        ((Stage) first.getWindow()).setTitle("Listes des transaction d'un compte client");
+        first.setRoot(root);
+    }
+
+    public void ajoutArgent() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/ajoutArgentGuichet.fxml"));
+        Scene first = menuAdmin.getScene();
+        ((Stage) first.getWindow()).setTitle("Ajout d'argent");
+        first.setRoot(root);
+    }
+
+    public void prelevement() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/prelevementHypothecaire.fxml"));
+        Scene first = menuAdmin.getScene();
+        ((Stage) first.getWindow()).setTitle("Prelevement d'un montant");
+        first.setRoot(root);
+    }
+
+
     public void back() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/menuAdmin.fxml"));
         Scene first = null;
@@ -175,6 +213,14 @@ public class AdminController extends GestionnaireGuichet {
             first = creation.getScene();
         }else if (creationCompte != null) {
             first = creationCompte.getScene();
+        }else if (statutCompteClient != null) {
+            first = statutCompteClient.getScene();
+        }else if (afficherTransaction != null) {
+            first = afficherTransaction.getScene();
+        }else if (ajouterArgentGuichet != null) {
+            first = ajouterArgentGuichet.getScene();
+        }else if (prelevementHypo != null) {
+            first = prelevementHypo.getScene();
         }
 
         ((Stage) first.getWindow()).setTitle("Login");
@@ -191,6 +237,14 @@ public class AdminController extends GestionnaireGuichet {
             first = creation.getScene();
         }else if (creationCompte != null) {
             first = creationCompte.getScene();
+        }else if (statutCompteClient != null) {
+            first = statutCompteClient.getScene();
+        }else if (afficherTransaction != null) {
+            first = afficherTransaction.getScene();
+        }else if (ajouterArgentGuichet != null) {
+            first = ajouterArgentGuichet.getScene();
+        } else if (prelevementHypo != null) {
+            first = prelevementHypo.getScene();
         }
 
         ((Stage) first.getWindow()).setTitle("Login");
