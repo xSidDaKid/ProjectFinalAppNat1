@@ -6,25 +6,26 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="332.0" prefWidth="298.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.appnatprojetsession.Controllers.LoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="416.0" prefWidth="298.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.appnatprojetsession.Controllers.AdminController">
    <children>
-      <Label layoutX="27.0" layoutY="57.0" text="Nom:" />
-      <Label layoutX="27.0" layoutY="217.0" text="NIP:" />
-      <Label layoutX="27.0" layoutY="97.0" text="Prénom:" />
-      <Label layoutX="27.0" layoutY="137.0" text="Téléphone:" />
-      <Label layoutX="27.0" layoutY="177.0" text="Courriel:" />
-      <TextField fx:id="nomClient" layoutX="97.0" layoutY="57.0" />
-      <TextField fx:id="prenomClient" layoutX="97.0" layoutY="97.0" />
-      <TextField fx:id="telephoneClient" layoutX="97.0" layoutY="137.0" />
-      <TextField fx:id="courrielClient" layoutX="97.0" layoutY="177.0" />
-      <TextField fx:id="nipClient" layoutX="97.0" layoutY="217.0" />
-      <Button layoutX="194.0" layoutY="14.0" mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion" />
-      <Button layoutX="223.0" layoutY="283.0" mnemonicParsing="false" onAction="#infoClient" text="Créer" />
-      <Label layoutX="51.0" layoutY="250.0" prefHeight="80.0" prefWidth="189.0" text="Lorsque le client sera créer, &#10;un compte sera &#10;automatiquement &#10;créer pour lui.&#10;" />
-      <Label fx:id="creation" layoutX="31.0" layoutY="18.0" text="Admin - Créer Client">
+      <Label layoutX="24.0" layoutY="95.0" text="Nom:" />
+      <Label layoutX="24.0" layoutY="255.0" text="NIP:" />
+      <Label layoutX="24.0" layoutY="135.0" text="Prénom:" />
+      <Label layoutX="24.0" layoutY="175.0" text="Téléphone:" />
+      <Label layoutX="24.0" layoutY="215.0" text="Courriel:" />
+      <TextField fx:id="nomClient" layoutX="94.0" layoutY="95.0" />
+      <TextField fx:id="prenomClient" layoutX="94.0" layoutY="135.0" />
+      <TextField fx:id="telephoneClient" layoutX="94.0" layoutY="175.0" />
+      <TextField fx:id="courrielClient" layoutX="94.0" layoutY="215.0" />
+      <TextField fx:id="nipClient" layoutX="94.0" layoutY="255.0" />
+      <Button layoutX="192.0" layoutY="52.0" mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion" />
+      <Button layoutX="220.0" layoutY="321.0" mnemonicParsing="false" onAction="#infoClient" text="Créer" />
+      <Label layoutX="48.0" layoutY="288.0" prefHeight="80.0" prefWidth="189.0" text="Lorsque le client sera créer, &#10;un compte sera &#10;automatiquement &#10;créer pour lui.&#10;" />
+      <Label fx:id="creation" layoutX="77.0" layoutY="14.0" text="Admin - Créer Client">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
+      <Button layoutX="21.0" layoutY="52.0" mnemonicParsing="false" onAction="#back" text="Back" />
    </children>
 </Pane>

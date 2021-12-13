@@ -8,33 +8,33 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="366.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.appnatprojetsession.Controllers.AdminController">
    <children>
-      <Label layoutX="46.0" layoutY="150.0" text="Choisissez un compte" />
-      <RadioButton layoutX="205.0" layoutY="150.0" mnemonicParsing="false" selected="true" text="Épargne">
+      <Label layoutX="44.0" layoutY="183.0" text="Choisissez un compte" />
+      <RadioButton layoutX="203.0" layoutY="183.0" mnemonicParsing="false" selected="true" text="Épargne">
          <toggleGroup>
             <ToggleGroup fx:id="grCompte" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="205.0" layoutY="180.0" mnemonicParsing="false" text="Hypothécaire">
+      <RadioButton layoutX="203.0" layoutY="213.0" mnemonicParsing="false" text="Hypothécaire">
          <toggleGroup>
             <ToggleGroup fx:id="grCompte" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="205.0" layoutY="210.0" mnemonicParsing="false" text="Marge de crédit">
+      <RadioButton layoutX="203.0" layoutY="243.0" mnemonicParsing="false" text="Marge de crédit">
          <toggleGroup>
             <ToggleGroup fx:id="grCompte" />
          </toggleGroup>
       </RadioButton>
-      <Label layoutX="46.0" layoutY="94.0" text="Code du client:" />
-      <TextField layoutX="205.0" layoutY="90.0" promptText="Entrer le code du client" />
-      <Button layoutX="267.0" layoutY="26.0" mnemonicParsing="false" onAction="#btnDeconnexion" text="Déconnexion" />
-      <Button layoutX="151.0" layoutY="295.0" mnemonicParsing="false" onAction="#btnCreer" prefHeight="25.0" prefWidth="65.0" text="Afficher" />
-      <Label layoutX="23.0" layoutY="28.0" text="Admin - Afficher Transaction">
+      <Label layoutX="44.0" layoutY="127.0" text="Code du client:" />
+      <TextField layoutX="203.0" layoutY="123.0" promptText="Entrer le code du client" />
+      <Button layoutX="265.0" layoutY="70.0" mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion" />
+      <Button layoutX="151.0" layoutY="295.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Afficher" />
+      <Label fx:id="afficherTransaction" layoutX="81.0" layoutY="25.0" text="Admin - Afficher Transaction">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
+      <Button layoutX="44.0" layoutY="70.0" mnemonicParsing="false" onAction="#back" text="Back" />
    </children>
 </Pane>
