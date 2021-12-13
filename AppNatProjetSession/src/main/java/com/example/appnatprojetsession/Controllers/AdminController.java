@@ -77,6 +77,7 @@ public class AdminController extends GestionnaireGuichet {
      * Methodes qui sert a prendre les informations sur le client
      */
     public void infoClient() {
+        GestionnaireGuichet gg = new GestionnaireGuichet();
         nomC = nomClient.getText();
         prenomC = prenomClient.getText();
         telephoneC = telephoneClient.getText();
@@ -100,12 +101,10 @@ public class AdminController extends GestionnaireGuichet {
             return;
         }
 
-
-        System.out.println("Nom: " + nomC + "\nPrenom: " + prenomC + "\nTelephone: " + telephoneC + "\nCourriel: " + courrielC + "\nNIP: " + nip);
-
-        gg.creerClient(nomC, prenomC, telephoneC, courrielC, nip);
-        GestionnaireGuichet gg = new GestionnaireGuichet();
-        System.out.println(gg.getClients());
+        this.gg.creerClient(nomC, prenomC, telephoneC, courrielC, nip);
+        System.out.println(this.gg.getClients());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Le client " + nomClient.getText() +" "+ prenomClient.getText() + "a ete creer");
+        alert.showAndWait();
     }
 
     /**
@@ -198,6 +197,14 @@ public class AdminController extends GestionnaireGuichet {
 
 //----------------------------------------------------------------------------------------------------------------------
 
+    /**
+     * Methode qui sert a afficher la liste des clients
+     */
+    public void afficherClients () {
+        GestionnaireGuichet gg = new GestionnaireGuichet();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Voici la liste des clients:\n" + this.gg.getClients());
+        alert.showAndWait();
+    }
     /**
      * Methode qui sert a retourner au menu admin
      *

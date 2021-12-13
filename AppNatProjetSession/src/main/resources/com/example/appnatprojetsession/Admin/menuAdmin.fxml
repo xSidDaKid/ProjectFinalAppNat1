@@ -35,5 +35,6 @@
       <Button mnemonicParsing="false" onAction="#augmenterSolde" text="Augmenter de 5% le solde" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
       <Button mnemonicParsing="false" onAction="#fermerGuichet" prefHeight="25.0" prefWidth="139.0" text="Fermet le guichet" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
       <Button mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#afficherClients" text="Listes des clients" GridPane.halignment="CENTER" />
    </children>
 </GridPane>
