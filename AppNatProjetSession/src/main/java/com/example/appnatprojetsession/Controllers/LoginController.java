@@ -94,7 +94,6 @@ public class LoginController extends GestionnaireGuichet {
 //            System.out.println(codeCli);
 //            System.out.println(nip);
             Client client = new Client(codeCli, nip);
-            GestionnaireGuichet gg = new GestionnaireGuichet();
             ArrayList<Client> clients = gg.getClients();
             System.out.println("HERE 1");
             //System.out.println(clients);
