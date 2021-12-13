@@ -1,9 +1,7 @@
 package com.example.appnatprojetsession.Controllers;
 
 
-import com.example.appnatprojetsession.Models.Client;
 import com.example.appnatprojetsession.Models.GestionnaireGuichet;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,7 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * @Cours: Applications natives 1
@@ -36,11 +33,7 @@ public class AdminController extends GestionnaireGuichet {
     //Menu Admin pour pouvoir changer de fenetre
     @FXML
     Label menuAdmin;
-    //Login
-    @FXML
-    TextField code;
-    @FXML
-    TextField nip;
+
     //Creation d'un client
     @FXML
     TextField nomClient;
@@ -52,6 +45,7 @@ public class AdminController extends GestionnaireGuichet {
     TextField courrielClient;
     @FXML
     TextField nipClient;
+
     //Back-Deconnexion
     @FXML
     Label creation;
@@ -65,68 +59,12 @@ public class AdminController extends GestionnaireGuichet {
     Label ajouterArgentGuichet;
     @FXML
     Label prelevementHypo;
-
-
+    
     /**
-     * Login avec enter
+     * MENU OPTION 1 - Redirection vers le menu Creer Client
      *
-     * @param ae
      * @throws IOException
      */
-    @FXML
-    public void onEnter(ActionEvent ae) throws IOException {
-        Login();
-    }
-
-    public void Login() throws IOException {
-
-        codeUtilisateur = code.getText();
-        nipUtilisateur = nip.getText();
-        System.out.println(codeUtilisateur + " " + nipUtilisateur);
-
-        if (codeUtilisateur.trim().equalsIgnoreCase("") || nipUtilisateur.equalsIgnoreCase("")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Remplir tous les champs");
-            alert.showAndWait();
-        } else if (codeUtilisateur.equalsIgnoreCase("admin") && nipUtilisateur.equalsIgnoreCase("0000")) {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/menuAdmin.fxml"));
-            Scene first = code.getScene();
-            ((Stage) first.getWindow()).setTitle("Admin");
-            first.setRoot(root);
-        } else {
-            int codeCli = 0, nip = 0;
-            try {
-                codeCli = Integer.parseInt(codeUtilisateur);
-                nip = Integer.parseInt(nipUtilisateur);
-            } catch (Exception e) {
-                System.out.println(e);
-                Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Entrez des numeros");
-                alert.showAndWait();
-                return;
-            }
-//            System.out.println(codeCli);
-//            System.out.println(nip);
-            Client client = new Client(codeCli, nip);
-            GestionnaireGuichet gg = new GestionnaireGuichet();
-            ArrayList<Client> clients = gg.getClients();
-            System.out.println("HERE 1");
-            //System.out.println(clients);
-            for (Client c : clients) {
-                //System.out.println("HERE 2");
-                if (client.getCodeClient() == c.getCodeClient()) {
-                    if (c.getNumeroNIP() == client.getNumeroNIP()) {
-                        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/User/menuUser.fxml"));
-                        Scene first = code.getScene();
-                        ((Stage) first.getWindow()).setTitle("Admin");
-                        first.setRoot(root);
-                    } else {
-                        Alert alert = new Alert(Alert.AlertType.WARNING, "Client non trouvable");
-                        alert.showAndWait();
-                    }
-                }
-            }
-        }
-    }
-
     public void creerClient() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/creerClient.fxml"));
         Scene first = menuAdmin.getScene();
@@ -134,6 +72,9 @@ public class AdminController extends GestionnaireGuichet {
         first.setRoot(root);
     }
 
+    /**
+     * Methodes qui sert a prendre les informations sur le client
+     */
     public void infoClient() {
         nomC = nomClient.getText();
         prenomC = prenomClient.getText();
@@ -166,6 +107,11 @@ public class AdminController extends GestionnaireGuichet {
         System.out.println(gg.getClients());
     }
 
+    /**
+     * MENU OPTION 2 - Redirection vers le menu Creer Compte
+     *
+     * @throws IOException
+     */
     public void creerCompteClient() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/creerCompte.fxml"));
         Scene first = menuAdmin.getScene();
@@ -174,13 +120,11 @@ public class AdminController extends GestionnaireGuichet {
         gg.creerCheque();
     }
 
-    public void bloquerDebloquer() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/bloquerCompte.fxml"));
-        Scene first = menuAdmin.getScene();
-        ((Stage) first.getWindow()).setTitle("Bloquer/Debloquer un compte client");
-        first.setRoot(root);
-    }
-
+    /**
+     * MENU OPTION 3 - Redirection vers le menu Transaction compte
+     *
+     * @throws IOException
+     */
     public void listeTransaction() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/afficherTransactions.fxml"));
         Scene first = menuAdmin.getScene();
@@ -188,6 +132,23 @@ public class AdminController extends GestionnaireGuichet {
         first.setRoot(root);
     }
 
+    /**
+     * MENU OPTION 4 - Redirection vers le menu Bloquer/Debloquer Client
+     *
+     * @throws IOException
+     */
+    public void bloquerDebloquer() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/bloquerCompte.fxml"));
+        Scene first = menuAdmin.getScene();
+        ((Stage) first.getWindow()).setTitle("Bloquer/Debloquer un compte client");
+        first.setRoot(root);
+    }
+
+    /**
+     * MENU OPTION 5 - Redirection vers le menu Ajouter Argent Guichet
+     *
+     * @throws IOException
+     */
     public void ajoutArgent() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/ajoutArgentGuichet.fxml"));
         Scene first = menuAdmin.getScene();
@@ -195,6 +156,20 @@ public class AdminController extends GestionnaireGuichet {
         first.setRoot(root);
     }
 
+    /**
+     * MENU OPTION 6 - Payer de l'interet
+     *
+     * @throws IOException
+     */
+    public void payerInteret() throws IOException {
+        //TODO
+    }
+
+    /**
+     * MENU OPTION 7 - Redirection vers le menu Prélèvement d'un montant
+     *
+     * @throws IOException
+     */
     public void prelevement() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/prelevementHypothecaire.fxml"));
         Scene first = menuAdmin.getScene();
@@ -202,7 +177,31 @@ public class AdminController extends GestionnaireGuichet {
         first.setRoot(root);
     }
 
+    /**
+     * MENU OPTION 8 - Augmenter le solde de 5%
+     *
+     * @throws IOException
+     */
+    public void augmenterSolde() throws IOException {
+        //TODO
+    }
 
+    /**
+     * MENU OPTION 9 - Fermer le guichet
+     *
+     * @throws IOException
+     */
+    public void fermerGuichet() throws IOException {
+        //TODO
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * Methode qui sert a retourner au menu admin
+     *
+     * @throws IOException
+     */
     public void back() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/menuAdmin.fxml"));
         Scene first = null;
@@ -211,15 +210,15 @@ public class AdminController extends GestionnaireGuichet {
             first = menuAdmin.getScene();
         } else if (creation != null) {
             first = creation.getScene();
-        }else if (creationCompte != null) {
+        } else if (creationCompte != null) {
             first = creationCompte.getScene();
-        }else if (statutCompteClient != null) {
+        } else if (statutCompteClient != null) {
             first = statutCompteClient.getScene();
-        }else if (afficherTransaction != null) {
+        } else if (afficherTransaction != null) {
             first = afficherTransaction.getScene();
-        }else if (ajouterArgentGuichet != null) {
+        } else if (ajouterArgentGuichet != null) {
             first = ajouterArgentGuichet.getScene();
-        }else if (prelevementHypo != null) {
+        } else if (prelevementHypo != null) {
             first = prelevementHypo.getScene();
         }
 
@@ -227,6 +226,11 @@ public class AdminController extends GestionnaireGuichet {
         first.setRoot(root);
     }
 
+    /**
+     * Methode qui permet la deconnexion
+     *
+     * @throws IOException
+     */
     public void deconnexion() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/LoginMenu.fxml"));
         Scene first = null;
@@ -235,13 +239,13 @@ public class AdminController extends GestionnaireGuichet {
             first = menuAdmin.getScene();
         } else if (creation != null) {
             first = creation.getScene();
-        }else if (creationCompte != null) {
+        } else if (creationCompte != null) {
             first = creationCompte.getScene();
-        }else if (statutCompteClient != null) {
+        } else if (statutCompteClient != null) {
             first = statutCompteClient.getScene();
-        }else if (afficherTransaction != null) {
+        } else if (afficherTransaction != null) {
             first = afficherTransaction.getScene();
-        }else if (ajouterArgentGuichet != null) {
+        } else if (ajouterArgentGuichet != null) {
             first = ajouterArgentGuichet.getScene();
         } else if (prelevementHypo != null) {
             first = prelevementHypo.getScene();
