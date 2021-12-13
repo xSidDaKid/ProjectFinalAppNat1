@@ -1,17 +1,18 @@
 package com.example.appnatprojetsession.Controllers;
 
 
+import com.example.appnatprojetsession.Models.Client;
 import com.example.appnatprojetsession.Models.GestionnaireGuichet;
 import javafx.event.ActionEvent;
-import com.example.appnatprojetsession.Models.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -51,11 +52,15 @@ public class LoginController extends GestionnaireGuichet {
     TextField courrielClient;
     @FXML
     TextField nipClient;
+    //Deconnexion
     @FXML
     Label creation;
+    @FXML
+    Label creationCompte;
 
     /**
      * Login avec enter
+     *
      * @param ae
      * @throws IOException
      */
@@ -70,22 +75,20 @@ public class LoginController extends GestionnaireGuichet {
         nipUtilisateur = nip.getText();
         System.out.println(codeUtilisateur + " " + nipUtilisateur);
 
-        if(codeUtilisateur.trim().equalsIgnoreCase("") || nipUtilisateur.equalsIgnoreCase("")){
+        if (codeUtilisateur.trim().equalsIgnoreCase("") || nipUtilisateur.equalsIgnoreCase("")) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Remplir tous les champs");
             alert.showAndWait();
-        }
-        else if (codeUtilisateur.equalsIgnoreCase("admin") && nipUtilisateur.equalsIgnoreCase("0000")){
+        } else if (codeUtilisateur.equalsIgnoreCase("admin") && nipUtilisateur.equalsIgnoreCase("0000")) {
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/menuAdmin.fxml"));
             Scene first = code.getScene();
-            ((Stage)first.getWindow()).setTitle("Admin");
+            ((Stage) first.getWindow()).setTitle("Admin");
             first.setRoot(root);
-        }
-        else {
+        } else {
             int codeCli = 0, nip = 0;
-            try{
+            try {
                 codeCli = Integer.parseInt(codeUtilisateur);
                 nip = Integer.parseInt(nipUtilisateur);
-            }catch(Exception e){
+            } catch (Exception e) {
                 System.out.println(e);
                 Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Entrez des numeros");
                 alert.showAndWait();
@@ -98,16 +101,15 @@ public class LoginController extends GestionnaireGuichet {
             ArrayList<Client> clients = gg.getClients();
             System.out.println("HERE 1");
             //System.out.println(clients);
-            for (Client c: clients) {
+            for (Client c : clients) {
                 //System.out.println("HERE 2");
-                if(client.getCodeClient() ==  c.getCodeClient()){
-                    if(c.getNumeroNIP() == client.getNumeroNIP()){
+                if (client.getCodeClient() == c.getCodeClient()) {
+                    if (c.getNumeroNIP() == client.getNumeroNIP()) {
                         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/User/menuUser.fxml"));
                         Scene first = code.getScene();
-                        ((Stage)first.getWindow()).setTitle("Admin");
+                        ((Stage) first.getWindow()).setTitle("Admin");
                         first.setRoot(root);
-                    }
-                    else{
+                    } else {
                         Alert alert = new Alert(Alert.AlertType.WARNING, "Client non trouvable");
                         alert.showAndWait();
                     }
@@ -129,18 +131,18 @@ public class LoginController extends GestionnaireGuichet {
         telephoneC = telephoneClient.getText();
         courrielC = courrielClient.getText();
         nipC = nipClient.getText();
-        if(nomC.trim().equalsIgnoreCase("")|| prenomC.trim().equalsIgnoreCase("") || telephoneC.trim().equalsIgnoreCase("")
-        || courrielC.trim().equalsIgnoreCase("") || nipC.trim().equalsIgnoreCase("")){
+        if (nomC.trim().equalsIgnoreCase("") || prenomC.trim().equalsIgnoreCase("") || telephoneC.trim().equalsIgnoreCase("")
+                || courrielC.trim().equalsIgnoreCase("") || nipC.trim().equalsIgnoreCase("")) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "S.V.P. remplir tous les champs");
             alert.showAndWait();
             return;
         }
 
         int nip;
-        try{
+        try {
 
             nip = Integer.parseInt(nipC);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
             Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Entrez des numeros valides pour le NIP et le code");
             alert.showAndWait();
@@ -155,16 +157,41 @@ public class LoginController extends GestionnaireGuichet {
         System.out.println(gg.getClients());
     }
 
+    public void creerCompteClient() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/creerCompte.fxml"));
+        Scene first = menuAdmin.getScene();
+        ((Stage) first.getWindow()).setTitle("Creation d'un compte pour le client");
+        first.setRoot(root);
+        gg.creerCheque();
+    }
+
+    public void back() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/menuAdmin.fxml"));
+        Scene first = null;
+
+        if ((menuAdmin) != null) {
+            first = menuAdmin.getScene();
+        } else if (creation != null) {
+            first = creation.getScene();
+        }else if (creationCompte != null) {
+            first = creationCompte.getScene();
+        }
+
+        ((Stage) first.getWindow()).setTitle("Login");
+        first.setRoot(root);
+    }
+
     public void deconnexion() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/LoginMenu.fxml"));
         Scene first = null;
 
         if ((menuAdmin) != null) {
             first = menuAdmin.getScene();
-        }else if (creation.getScene() != null) {
+        } else if (creation != null) {
             first = creation.getScene();
+        }else if (creationCompte != null) {
+            first = creationCompte.getScene();
         }
-
 
         ((Stage) first.getWindow()).setTitle("Login");
         first.setRoot(root);

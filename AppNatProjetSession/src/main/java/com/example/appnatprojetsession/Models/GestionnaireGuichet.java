@@ -1,5 +1,6 @@
 package com.example.appnatprojetsession.Models;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 public class GestionnaireGuichet {
     private Compte banque;
     private static ArrayList<Client> clients = new ArrayList<>();
-    private static ArrayList<Cheque> comptesCheque;
+    private static ArrayList<Cheque> comptesCheque = new ArrayList<>();
     private static ArrayList<Epargne> comptesEpargne;
     private static ArrayList<Marge> comptesMarge;
     private static ArrayList<Hypothécaire> comptesHypothecaire;
@@ -117,7 +118,9 @@ public class GestionnaireGuichet {
 
     public void creerCompte() {}
 
-    public void creerCheque(int numeroNIP/*, double soldeCompte, int retraitMaximum, int montantTransfertMaximum*/){
+    public void creerCheque(){
+        Cheque c1 = new Cheque(this.clients.get(this.numeroCompte).getCodeClient(), this.clients.get(this.numeroCompte).getNumeroNIP());
+        comptesCheque.add(c1);
         this.incrementNumeroCompte();
    /*     int numerCompte = this.numerCompte;
         Compte c1 = new Cheque(numeroNIP, numeroCompte*//*, soldeCompte, retraitMaximum, montantTransfertMaximum*//* );
