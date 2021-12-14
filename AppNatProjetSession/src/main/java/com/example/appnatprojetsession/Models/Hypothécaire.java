@@ -10,8 +10,8 @@ import com.example.appnatprojetsession.Models.Compte;
  */
 public class Hypothécaire extends Compte {
 
-    public Hypothécaire(int numeroNIP, int numeroCompte){
-        super(numeroNIP, numeroCompte);
+    public Hypothécaire(int numeroNIP, int codeClient){
+        super(numeroNIP,codeClient);
     }
 
     public void preleverMontantHypotheque() {

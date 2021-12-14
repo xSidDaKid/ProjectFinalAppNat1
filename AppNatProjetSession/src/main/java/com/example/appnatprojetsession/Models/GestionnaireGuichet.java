@@ -40,24 +40,48 @@ public class GestionnaireGuichet {
         return clients;
     }
 
+    public static void setClients(ArrayList<Client> clients) {
+        GestionnaireGuichet.clients = clients;
+    }
+
     public static ArrayList<Cheque> getComptesCheque() {
         return comptesCheque;
+    }
+
+    public static void setComptesCheque(ArrayList<Cheque> comptesCheque) {
+        GestionnaireGuichet.comptesCheque = comptesCheque;
     }
 
     public static ArrayList<Epargne> getComptesEpargne() {
         return comptesEpargne;
     }
 
+    public static void setComptesEpargne(ArrayList<Epargne> comptesEpargne) {
+        GestionnaireGuichet.comptesEpargne = comptesEpargne;
+    }
+
     public static ArrayList<Marge> getComptesMarge() {
         return comptesMarge;
+    }
+
+    public static void setComptesMarge(ArrayList<Marge> comptesMarge) {
+        GestionnaireGuichet.comptesMarge = comptesMarge;
     }
 
     public static ArrayList<Hypothécaire> getComptesHypothecaire() {
         return comptesHypothecaire;
     }
 
+    public static void setComptesHypothecaire(ArrayList<Hypothécaire> comptesHypothecaire) {
+        GestionnaireGuichet.comptesHypothecaire = comptesHypothecaire;
+    }
+
     public static ArrayList<Transaction> getTransactions() {
         return transactions;
+    }
+
+    public static void setTransactions(ArrayList<Transaction> transactions) {
+        GestionnaireGuichet.transactions = transactions;
     }
 
     public double getSoldeCompteCourant() {
@@ -68,6 +92,21 @@ public class GestionnaireGuichet {
         this.soldeCompteCourant = soldeCompteCourant;
     }
 
+    public static int getCodeClient() {
+        return codeClient;
+    }
+
+    public static void setCodeClient(int codeClient) {
+        GestionnaireGuichet.codeClient = codeClient;
+    }
+
+    public static int getNumeroCompte() {
+        return numeroCompte;
+    }
+
+    public static void setNumeroCompte(int numeroCompte) {
+        GestionnaireGuichet.numeroCompte = numeroCompte;
+    }
 
     public Compte ValiderUtilisateur(String nom, int nip) {
         Compte c1 = null;
@@ -119,7 +158,22 @@ public class GestionnaireGuichet {
         //this.creerCheque(numeroNIP);
     }
 
-    public void creerCompte() {}
+    public void creerCompte(String typeCompte, int numeroNIP, int codeClient) {
+        switch(typeCompte){
+            case "Épargne":
+                Epargne epargne = new Epargne( numeroNIP, codeClient);
+                break;
+            case "Marge de crédit":
+                Marge marge = new Marge(numeroNIP, codeClient);
+                break;
+            case "Hypothécaire":
+                Hypothécaire hypothécaire = new Hypothécaire(numeroNIP, codeClient);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + typeCompte);
+        }
+
+    }
 
     public void creerCheque(){
         Cheque c1 = new Cheque(this.clients.get(this.numeroCompte).getCodeClient(), this.clients.get(this.numeroCompte).getNumeroNIP());

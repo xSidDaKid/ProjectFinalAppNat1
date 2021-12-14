@@ -23,6 +23,54 @@ public class Transaction {
         this.compteTransfert = compteTransfert;
     }
 
+    public int getNumeroTransaction() {
+        return numeroTransaction;
+    }
+
+    public void setNumeroTransaction(int numeroTransaction) {
+        this.numeroTransaction = numeroTransaction;
+    }
+
+    public double getMontant() {
+        return montant;
+    }
+
+    public void setMontant(double montant) {
+        this.montant = montant;
+    }
+
+    public Compte getCompte() {
+        return compte;
+    }
+
+    public void setCompte(Compte compte) {
+        this.compte = compte;
+    }
+
+    public Compte getCompteTransfert() {
+        return compteTransfert;
+    }
+
+    public void setCompteTransfert(Compte compteTransfert) {
+        this.compteTransfert = compteTransfert;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public static int getNumeroTransactionCompteur() {
+        return numeroTransactionCompteur;
+    }
+
+    public static void setNumeroTransactionCompteur(int numeroTransactionCompteur) {
+        Transaction.numeroTransactionCompteur = numeroTransactionCompteur;
+    }
+
     @Override
     public String toString() {
         return "Transaction{" +

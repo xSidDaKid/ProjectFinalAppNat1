@@ -8,37 +8,36 @@ package com.example.appnatprojetsession.Models;
  */
 public class Compte {
     private  int numeroCompte;
+    private int codeClient;
     private int numeroNIP;
     private double soldeCompte;
     private int retraitMaximum;
     private int montantTransfertMaximum;
 
+    private static int compteur=0;
+
     public Compte() {
     }
 
-    public Compte(int numeroNIP, int numeroCompte) {
+    public Compte(int numeroNIP, int codeClient) {
+        this.incrementCompteur();
+        this.numeroCompte = compteur;
         this.numeroNIP = numeroNIP;
-        this.numeroCompte = numeroCompte;
+        this.codeClient = codeClient;
         this.soldeCompte=0;
         //A changer les valeurs selon les notes
         this.retraitMaximum = 1000;
         //this.montantTransfertMaximum 500;
     }
 
-    public Compte(int numeroNIP, int numeroCompte, double soldeCompte, int retraitMaximum, int montantTransfertMaximum) {
+    public Compte(int numeroNIP, int codeClient,  double soldeCompte, int retraitMaximum, int montantTransfertMaximum) {
+        this.incrementCompteur();
+        this.numeroCompte = compteur;
         this.numeroNIP = numeroNIP;
-        this.numeroCompte = numeroCompte;
+        this.codeClient = codeClient;
         this.soldeCompte = soldeCompte;
         this.retraitMaximum = retraitMaximum;
         this.montantTransfertMaximum = montantTransfertMaximum;
-    }
-
-    public int getNumeroNIP() {
-        return numeroNIP;
-    }
-
-    public void setNumeroNIP(int numeroNIP) {
-        this.numeroNIP = numeroNIP;
     }
 
     public int getNumeroCompte() {
@@ -49,6 +48,22 @@ public class Compte {
         this.numeroCompte = numeroCompte;
     }
 
+    public int getCodeClient() {
+        return codeClient;
+    }
+
+    public void setCodeClient(int codeClient) {
+        this.codeClient = codeClient;
+    }
+
+    public int getNumeroNIP() {
+        return numeroNIP;
+    }
+
+    public void setNumeroNIP(int numeroNIP) {
+        this.numeroNIP = numeroNIP;
+    }
+
     public double getSoldeCompte() {
         return soldeCompte;
     }
@@ -57,19 +72,43 @@ public class Compte {
         this.soldeCompte = soldeCompte;
     }
 
-    public void retrait (double montant){
+    public int getRetraitMaximum() {
+        return retraitMaximum;
+    }
 
+    public void setRetraitMaximum(int retraitMaximum) {
+        this.retraitMaximum = retraitMaximum;
+    }
+
+    public int getMontantTransfertMaximum() {
+        return montantTransfertMaximum;
+    }
+
+    public void setMontantTransfertMaximum(int montantTransfertMaximum) {
+        this.montantTransfertMaximum = montantTransfertMaximum;
+    }
+
+    public static int getCompteur() {
+        return compteur;
+    }
+
+    public static void setCompteur(int compteur) {
+        Compte.compteur = compteur;
     }
 
     public void depot (double montant){
 
     }
+    public void incrementCompteur(){
+        this.compteur+=1;
+    }
 
     @Override
     public String toString() {
         return "Compte{" +
-                "numeroNIP=" + numeroNIP +
-                ", numeroCompte=" + numeroCompte +
+                "numeroCompte=" + numeroCompte +
+                ", codeClient=" + codeClient +
+                ", numeroNIP=" + numeroNIP +
                 ", soldeCompte=" + soldeCompte +
                 ", retraitMaximum=" + retraitMaximum +
                 ", montantTransfertMaximum=" + montantTransfertMaximum +

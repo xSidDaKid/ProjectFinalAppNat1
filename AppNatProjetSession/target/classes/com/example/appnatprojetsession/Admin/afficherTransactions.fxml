@@ -8,33 +8,33 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="366.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.appnatprojetsession.Controllers.AdminController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.appnatprojetsession.Controllers.AdminController">
    <children>
-      <Label layoutX="44.0" layoutY="183.0" text="Choisissez un compte" />
-      <RadioButton layoutX="203.0" layoutY="183.0" mnemonicParsing="false" selected="true" text="Épargne">
-         <toggleGroup>
-            <ToggleGroup fx:id="grCompte" />
-         </toggleGroup>
-      </RadioButton>
-      <RadioButton layoutX="203.0" layoutY="213.0" mnemonicParsing="false" text="Hypothécaire">
-         <toggleGroup>
-            <ToggleGroup fx:id="grCompte" />
-         </toggleGroup>
-      </RadioButton>
-      <RadioButton layoutX="203.0" layoutY="243.0" mnemonicParsing="false" text="Marge de crédit">
-         <toggleGroup>
-            <ToggleGroup fx:id="grCompte" />
-         </toggleGroup>
-      </RadioButton>
-      <Label layoutX="44.0" layoutY="127.0" text="Code du client:" />
-      <TextField layoutX="203.0" layoutY="123.0" promptText="Entrer le code du client" />
-      <Button layoutX="265.0" layoutY="70.0" mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion" />
-      <Button layoutX="151.0" layoutY="295.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Afficher" />
       <Label fx:id="afficherTransaction" layoutX="81.0" layoutY="25.0" text="Admin - Afficher Transaction">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
       <Button layoutX="44.0" layoutY="70.0" mnemonicParsing="false" onAction="#back" text="Back" />
+      <Button layoutX="265.0" layoutY="70.0" mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion" />
+      <Label layoutX="44.0" layoutY="127.0" text="Code du client:" />
+      <TextField layoutX="203.0" layoutY="123.0" promptText="Entrer le code du client" />
+      <Label layoutX="44.0" layoutY="183.0" text="Choisissez un compte" />
+      <RadioButton fx:id="radioEpargne" layoutX="203.0" layoutY="183.0" mnemonicParsing="false" selected="true" text="Épargne">
+         <toggleGroup>
+            <ToggleGroup fx:id="grCompte" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="radioHypothecaire" layoutX="203.0" layoutY="213.0" mnemonicParsing="false" text="Hypothécaire">
+         <toggleGroup>
+            <ToggleGroup fx:id="grCompte" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="radioMargeDeCredit" layoutX="203.0" layoutY="243.0" mnemonicParsing="false" text="Marge de crédit">
+         <toggleGroup>
+            <ToggleGroup fx:id="grCompte" />
+         </toggleGroup>
+      </RadioButton>
+      <Button layoutX="151.0" layoutY="295.0" mnemonicParsing="false" onAction="#afficherTransaction" prefHeight="25.0" prefWidth="65.0" text="Afficher" />
    </children>
 </Pane>
