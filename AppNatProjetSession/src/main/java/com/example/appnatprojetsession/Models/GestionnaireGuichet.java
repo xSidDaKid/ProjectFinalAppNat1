@@ -15,10 +15,10 @@ public class GestionnaireGuichet {
     private Compte banque;
     private static ArrayList<Client> clients = new ArrayList<>();
     private static ArrayList<Cheque> comptesCheque = new ArrayList<>();
-    private static ArrayList<Epargne> comptesEpargne;
-    private static ArrayList<Marge> comptesMarge;
-    private static ArrayList<Hypothécaire> comptesHypothecaire;
-    private static ArrayList<Transaction> transactions;
+    private static ArrayList<Epargne> comptesEpargne=new ArrayList<>();
+    private static ArrayList<Marge> comptesMarge = new ArrayList<>();
+    private static ArrayList<Hypothécaire> comptesHypothecaire = new ArrayList<>();
+    private static ArrayList<Transaction> transactions = new ArrayList<>();
     private double soldeCompteCourant;
 
     @FXML

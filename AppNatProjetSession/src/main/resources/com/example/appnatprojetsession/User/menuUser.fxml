@@ -28,9 +28,7 @@
          </font>
       </Label>
       <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#depotAction" prefHeight="25.0" prefWidth="84.0" text="Dépot" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-      <Button mnemonicParsing="false" onAction="#retraitAction" prefHeight="25.0" prefWidth="82.0" text="Retrait" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
       <Button mnemonicParsing="false" onAction="#transfertAction" prefHeight="25.0" prefWidth="80.0" text="Transfert" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-      <Button mnemonicParsing="false" onAction="#paiementAction" prefHeight="25.0" prefWidth="80.0" text="Paiement" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
       <Button mnemonicParsing="false" onAction="#deconnexion" prefHeight="25.0" prefWidth="91.0" text="Déconnexion" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets />

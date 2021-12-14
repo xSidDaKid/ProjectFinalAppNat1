@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="315.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.appnatprojetsession.Controllers.UserController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="329.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.appnatprojetsession.Controllers.UserController">
    <children>
       <Label fx:id="depotRetrait" layoutX="99.0" layoutY="14.0" text="Dépôt/Retrait">
          <font>
@@ -16,17 +16,18 @@
          </font>
       </Label>
       <Label layoutX="38.0" layoutY="75.0" text="Comptes:" />
-      <ComboBox layoutX="128.0" layoutY="71.0" prefWidth="150.0" promptText="Listes des comptes" />
+      <ComboBox fx:id="listeComptes" layoutX="128.0" layoutY="71.0" onAction="#selectionChanged" prefWidth="150.0" promptText="Listes des comptes" />
       <Label layoutX="40.0" layoutY="139.0" text="Transaction:" />
       <RadioButton layoutX="134.0" layoutY="139.0" mnemonicParsing="false" text="Retrait" />
       <RadioButton layoutX="221.0" layoutY="139.0" mnemonicParsing="false" text="Dépot" />
       <Label layoutX="38.0" layoutY="198.0" text="Transaction:" />
       <TextField alignment="CENTER_RIGHT" layoutX="129.0" layoutY="194.0" text="\$" />
-      <Button layoutX="123.0" layoutY="269.0" mnemonicParsing="false" text="Confirmer" />
+      <Button layoutX="123.0" layoutY="269.0" mnemonicParsing="false" onAction="#depotCompte" text="Confirmer" />
       <Pane prefHeight="63.0" prefWidth="85.0">
          <children>
             <Button layoutX="22.0" layoutY="19.0" mnemonicParsing="false" onAction="#back" text="Back" />
          </children>
       </Pane>
+      <Button layoutX="232.0" layoutY="19.0" mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion" />
    </children>
 </Pane>
