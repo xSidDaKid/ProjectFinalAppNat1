@@ -16,11 +16,12 @@ public class Transaction {
     public String type;
     private static int numeroTransactionCompteur=0;
 
-    public Transaction(double montant, Compte compte, Compte compteTransfert){
-        //int num = this.numeroTransactionCompteur+=1;
+    public Transaction(double montant, Compte compte, Compte compteTransfert, String type){
+        this.incrementCompteur();
         this.numeroTransaction = numeroTransaction;
         this.compte = compte;
         this.compteTransfert = compteTransfert;
+        this.type = type;
     }
 
     public int getNumeroTransaction() {
@@ -63,12 +64,8 @@ public class Transaction {
         this.type = type;
     }
 
-    public static int getNumeroTransactionCompteur() {
-        return numeroTransactionCompteur;
-    }
-
-    public static void setNumeroTransactionCompteur(int numeroTransactionCompteur) {
-        Transaction.numeroTransactionCompteur = numeroTransactionCompteur;
+    public static void incrementCompteur(){
+        numeroTransactionCompteur=+1;
     }
 
     @Override

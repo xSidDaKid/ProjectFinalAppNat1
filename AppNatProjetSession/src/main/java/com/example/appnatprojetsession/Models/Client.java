@@ -63,6 +63,22 @@ public class Client {
         this.numeroNIP = numeroNIP;
     }
 
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getCourriel() {
+        return courriel;
+    }
+
+    public void setCourriel(String courriel) {
+        this.courriel = courriel;
+    }
+
     @Override
     public String toString() {
         return "Client{" +
