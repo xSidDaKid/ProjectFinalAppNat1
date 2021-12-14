@@ -264,11 +264,11 @@ public class AdminController extends GestionnaireGuichet {
             for (Client c : clients) {
                 if(c.getCodeClient() == codeClient){
                     for(Transaction t: transactions){
-//                        if(t.getCompte().getCodeClient() == c.getCodeClient() && t.getCompte() instanceof typeCompte.getClass()){
-//                            transactionsClient.add(t);
-//                        }
+                        if(t.getCompte().getCodeClient() == c.getCodeClient()){
+                            transactionsClient.add(t);
+                        }
                     }
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Le compte " + typeCompte +" pour le client "+ codeClient + " a ete creer");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Voici la liste des clients:\n" + transactions);
                     alert.showAndWait();
                     return;
                 }
@@ -286,6 +286,8 @@ public class AdminController extends GestionnaireGuichet {
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Voici la liste des clients:\n" + this.gg.getClients());
         alert.showAndWait();
     }
+
+
     /**
      * Methode qui sert a retourner au menu admin
      *
