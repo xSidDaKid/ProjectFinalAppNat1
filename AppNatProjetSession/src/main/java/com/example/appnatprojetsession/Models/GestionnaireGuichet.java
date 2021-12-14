@@ -19,6 +19,7 @@ public class GestionnaireGuichet {
     private static ArrayList<Marge> comptesMarge = new ArrayList<>();
     private static ArrayList<Hypothécaire> comptesHypothecaire = new ArrayList<>();
     private static ArrayList<Transaction> transactions = new ArrayList<>();
+    private static ArrayList<Client> clientBloque = new ArrayList<>();
     private double soldeCompteCourant;
 
     @FXML
@@ -88,6 +89,14 @@ public class GestionnaireGuichet {
         GestionnaireGuichet.transactions = transactions;
     }
 
+    public static ArrayList<Client> getClientBloque() {
+        return clientBloque;
+    }
+
+    public static void setClientBloque(ArrayList<Client> clientBloque) {
+        GestionnaireGuichet.clientBloque = clientBloque;
+    }
+
     public double getSoldeCompteCourant() {
         return soldeCompteCourant;
     }
@@ -110,6 +119,14 @@ public class GestionnaireGuichet {
 
     public static void setNumeroCompte(int numeroCompte) {
         GestionnaireGuichet.numeroCompte = numeroCompte;
+    }
+
+    public static Client getClient() {
+        return client;
+    }
+
+    public static void setClient(Client client) {
+        GestionnaireGuichet.client = client;
     }
 
     public Compte ValiderUtilisateur(String nom, int nip) {
@@ -158,34 +175,43 @@ public class GestionnaireGuichet {
         for (Client c:clients) {
             System.out.println(c);
         }
-        //creer une methode dans cheque ou l'on a pas besoin de specifier le soldeCompte =0, retraitMaximum=?, montantTransfertMaximum=?
-        //this.creerCheque(numeroNIP);
+        creerCheque(client.getNumeroNIP(), client.getCodeClient());
     }
 
     public void creerCompte(String typeCompte, int numeroNIP, int codeClient) {
         switch(typeCompte){
             case "Épargne":
                 Epargne epargne = new Epargne( numeroNIP, codeClient);
+                comptesEpargne.add(epargne);
                 break;
             case "Marge de crédit":
                 Marge marge = new Marge(numeroNIP, codeClient);
+                comptesMarge.add(marge);
                 break;
             case "Hypothécaire":
                 Hypothécaire hypothécaire = new Hypothécaire(numeroNIP, codeClient);
+                comptesHypothecaire.add(hypothécaire);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + typeCompte);
         }
-
     }
 
-    public void creerCheque(){
-        Cheque c1 = new Cheque(this.clients.get(this.numeroCompte).getCodeClient(), this.clients.get(this.numeroCompte).getNumeroNIP());
+    public void creerCheque(int numeroNIP, int codeClient){
+        Cheque c1 = new Cheque(numeroNIP, codeClient);
         comptesCheque.add(c1);
         this.incrementNumeroCompte();
    /*     int numerCompte = this.numerCompte;
         Compte c1 = new Cheque(numeroNIP, numeroCompte*//*, soldeCompte, retraitMaximum, montantTransfertMaximum*//* );
         this.comptesCheque.add(c1);*/
+    }
+
+    public void bloquerClient(Client client){
+        this.clientBloque.add(client);
+    }
+
+    public void debloquerClient(Client client){
+        this.clientBloque.remove(client);
     }
 
     public void incrementCodeClient(){
