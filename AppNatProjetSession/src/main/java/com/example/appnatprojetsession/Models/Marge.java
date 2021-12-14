@@ -12,12 +12,12 @@ public class Marge extends Compte {
 
     private double tauxInteret = 1.01;
 
-    public Marge(int numeroNIP, int numeroCompte){
-        super(numeroNIP, numeroCompte);
+    public Marge(int numeroNIP, int codeClient){
+        super( numeroNIP, codeClient);
     }
 
-    public Marge(int numeroNIP, int numeroCompte, double tauxInteret){
-        super(numeroNIP, numeroCompte);
+    public Marge( int numeroNIP, int codeClient, double tauxInteret){
+        super(numeroNIP, codeClient);
         this.tauxInteret = tauxInteret;
     }
 

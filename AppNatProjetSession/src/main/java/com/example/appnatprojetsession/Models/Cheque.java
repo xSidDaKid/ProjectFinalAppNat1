@@ -11,18 +11,8 @@ public class Cheque extends Compte{
     private double fraisPaiementFacture = 0;
     private double montantFactureMaximum = 0;
 
-    public Cheque(int numeroNIP, int numeroCompte,
-                  double soldeCompte, int retraitMaximum,
-                  int montantTransfertMaximum, double fraisPaiementFacture,
-                  double montantFactureMaximum) {
-        super(numeroNIP, numeroCompte, soldeCompte, retraitMaximum, montantTransfertMaximum);
-        this.fraisPaiementFacture = fraisPaiementFacture;
-        this.montantFactureMaximum = montantFactureMaximum;
-    }
-
-
-    public Cheque(int numeroCompte, int numeroNIP) {
-        super(numeroCompte, numeroNIP);
+    public Cheque(int numeroNIP, int codeClient) {
+        super(numeroNIP, codeClient);
     }
 
     public double getFraisPaiementFacture() {

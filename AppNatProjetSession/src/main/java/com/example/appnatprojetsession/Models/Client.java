@@ -15,6 +15,8 @@ public class Client {
     private String courriel;
     private int numeroNIP;
 
+    public Client(){}
+
     public Client(int codeClient, String nom, String prenom, String telephone, String courriel, int numeroNIP) {
         this.codeClient = codeClient;
         this.nom = nom;

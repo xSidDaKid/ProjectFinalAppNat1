@@ -9,12 +9,19 @@ package com.example.appnatprojetsession.Models;
 public class Epargne extends Compte{
     private double tauxInteret = 1.01;
 
-    public Epargne (int numeroNIP, int numeroCompte){
-        super(numeroNIP, numeroCompte);
+    public Epargne (int numeroNIP, int codeClient){
+        super(numeroNIP, codeClient);
     }
 
+    public double getTauxInteret() {
+        return tauxInteret;
+    }
 
-/*    public void paiementInteret(int numeroNIP, int numeroCompte){
+    public void setTauxInteret(double tauxInteret) {
+        this.tauxInteret = tauxInteret;
+    }
+
+    /*    public void paiementInteret(int numeroNIP, int numeroCompte){
         super(numeroNIP, numeroCompte);
         this.tauxInteret = 1.01;
     }

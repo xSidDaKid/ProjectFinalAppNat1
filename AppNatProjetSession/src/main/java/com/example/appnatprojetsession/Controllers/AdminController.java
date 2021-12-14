@@ -3,6 +3,7 @@ package com.example.appnatprojetsession.Controllers;
 
 import com.example.appnatprojetsession.Models.Client;
 import com.example.appnatprojetsession.Models.GestionnaireGuichet;
+import com.example.appnatprojetsession.Models.Transaction;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -68,7 +69,7 @@ public class AdminController extends GestionnaireGuichet {
     @FXML
     private Label prelevementHypo;
 
-    // Creer-Compte
+    // Creer_Compte & Afficher_Transaction
     @FXML
     private TextField saissiCodeClient;
     @FXML
@@ -98,82 +99,6 @@ public class AdminController extends GestionnaireGuichet {
         first.setRoot(root);
         gg.creerCheque();
     }
-
-    /**
-     * Methodes qui sert a prendre les informations sur le client
-     */
-    public void infoClient() {
-        GestionnaireGuichet gg = new GestionnaireGuichet();
-        nomC = nomClient.getText();
-        prenomC = prenomClient.getText();
-        telephoneC = telephoneClient.getText();
-        courrielC = courrielClient.getText();
-        nipC = nipClient.getText();
-        if (nomC.trim().equalsIgnoreCase("") || prenomC.trim().equalsIgnoreCase("") || telephoneC.trim().equalsIgnoreCase("")
-                || courrielC.trim().equalsIgnoreCase("") || nipC.trim().equalsIgnoreCase("")) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "S.V.P. remplir tous les champs");
-            alert.showAndWait();
-            return;
-        }
-
-        int nip;
-        try {
-
-            nip = Integer.parseInt(nipC);
-        } catch (Exception e) {
-            System.out.println(e);
-            Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Entrez des numeros valides pour le NIP et le code");
-            alert.showAndWait();
-            return;
-        }
-
-        this.gg.creerClient(nomC, prenomC, telephoneC, courrielC, nip);
-        System.out.println(this.gg.getClients());
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Le client " + nomClient.getText() +" "+ prenomClient.getText() + "a ete creer");
-        alert.showAndWait();
-    }
-
-    public void creerCompte(ActionEvent actionEvent){
-        codeCli = saissiCodeClient.getText();
-        if(radioEpargne.isSelected()){
-            typeCompte = radioEpargne.getText();
-        }else if(radioMargeDeCredit.isSelected()){
-            typeCompte = radioMargeDeCredit.getText();
-        }else if(radioHypothecaire.isSelected()){
-            typeCompte = radioHypothecaire.getText();
-        }
-
-        if(codeCli.equalsIgnoreCase("") || typeCompte.equalsIgnoreCase("")){
-            Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Remplir tous les champs");
-            alert.showAndWait();
-            return;
-        }else{
-            try{
-                codeClient = Integer.parseInt(codeCli);
-                System.out.println("codeClient:"+ codeClient+" type Compte:"+ typeCompte);
-            }catch(Exception e){
-                System.out.println(e);
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Le code du client doit etre des numeros");
-                alert.showAndWait();
-                return;
-            }
-            ArrayList<Client> clients = gg.getClients();
-            for (Client c : clients) {
-                if(c.getCodeClient() == codeClient){
-                    switch(typeCompte){
-                        case "Épargne":
-                            break;
-                        case "Marge de crédit":
-                            break;
-                        case "Hypothécaire":
-                            break;
-                    }
-                }
-            }
-        }
-
-    }
-
     /**
      * MENU OPTION 3 - Redirection vers le menu Transaction compte
      *
@@ -185,7 +110,6 @@ public class AdminController extends GestionnaireGuichet {
         ((Stage) first.getWindow()).setTitle("Listes des transaction d'un compte client");
         first.setRoot(root);
     }
-
     /**
      * MENU OPTION 4 - Redirection vers le menu Bloquer/Debloquer Client
      *
@@ -251,6 +175,107 @@ public class AdminController extends GestionnaireGuichet {
 
 //----------------------------------------------------------------------------------------------------------------------
 
+
+    /**
+     * Methodes qui sert a prendre les informations sur le client
+     */
+    public void infoClient() {
+        GestionnaireGuichet gg = new GestionnaireGuichet();
+        nomC = nomClient.getText();
+        prenomC = prenomClient.getText();
+        telephoneC = telephoneClient.getText();
+        courrielC = courrielClient.getText();
+        nipC = nipClient.getText();
+        if (nomC.trim().equalsIgnoreCase("") || prenomC.trim().equalsIgnoreCase("") || telephoneC.trim().equalsIgnoreCase("")
+                || courrielC.trim().equalsIgnoreCase("") || nipC.trim().equalsIgnoreCase("")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "S.V.P. remplir tous les champs");
+            alert.showAndWait();
+            return;
+        }
+
+        int nip;
+        try {
+
+            nip = Integer.parseInt(nipC);
+        } catch (Exception e) {
+            System.out.println(e);
+            Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Entrez des numeros valides pour le NIP et le code");
+            alert.showAndWait();
+            return;
+        }
+
+        this.gg.creerClient(nomC, prenomC, telephoneC, courrielC, nip);
+        System.out.println(this.gg.getClients());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Le client " + nomClient.getText() +" "+ prenomClient.getText() + "a ete creer");
+        alert.showAndWait();
+    }
+
+    public void creerCompte(ActionEvent actionEvent){
+        this.setSelectedButtons();
+
+        if(codeCli.equalsIgnoreCase("") || typeCompte.equalsIgnoreCase("")){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Remplir tous les champs");
+            alert.showAndWait();
+            return;
+        }else{
+            try{
+                codeClient = Integer.parseInt(codeCli);
+                //System.out.println("codeClient:"+ codeClient+" type Compte:"+ typeCompte);
+            }catch(Exception e){
+                //System.out.println(e);
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Le code du client doit etre des numeros");
+                alert.showAndWait();
+                return;
+            }
+            ArrayList<Client> clients = gg.getClients();
+            for (Client c : clients) {
+                if(c.getCodeClient() == codeClient){
+                    gg.creerCompte( typeCompte,c.getNumeroNIP(),c.getCodeClient());
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Le compte " + typeCompte +" pour le client "+ codeClient + " a ete creer");
+                    alert.showAndWait();
+                    return;
+                }
+            }
+            Alert alert = new Alert(Alert.AlertType.ERROR, "le client "+ codeClient + " n'existe pas");
+            alert.showAndWait();
+        }
+    }
+
+    public void afficherTransaction(ActionEvent actionEvent) {
+        this.setSelectedButtons();
+
+        if(codeCli.equalsIgnoreCase("") || typeCompte.equalsIgnoreCase("")){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Remplir tous les champs");
+            alert.showAndWait();
+            return;
+        }else{
+            try{
+                codeClient = Integer.parseInt(codeCli);
+                //System.out.println("codeClient:"+ codeClient+" type Compte:"+ typeCompte);
+            }catch(Exception e){
+                //System.out.println(e);
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Le code du client doit etre des numeros");
+                alert.showAndWait();
+                return;
+            }
+            ArrayList<Client> clients = gg.getClients();
+            ArrayList<Transaction> transactions = gg.getTransactions();
+            ArrayList<Transaction> transactionsClient = new ArrayList<Transaction>();
+            for (Client c : clients) {
+                if(c.getCodeClient() == codeClient){
+                    for(Transaction t: transactions){
+                        //if(t.getCompte() == c.getCodeClient()){}
+                    }
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Le compte " + typeCompte +" pour le client "+ codeClient + " a ete creer");
+                    alert.showAndWait();
+                    return;
+                }
+            }
+            Alert alert = new Alert(Alert.AlertType.ERROR, "le client "+ codeClient + " n'existe pas");
+            alert.showAndWait();
+        }
+    }
+
     /**
      * Methode qui sert a afficher la liste des clients
      */
@@ -288,6 +313,17 @@ public class AdminController extends GestionnaireGuichet {
         first.setRoot(root);
     }
 
+    public void setSelectedButtons(){
+        codeCli = saissiCodeClient.getText();
+        if(radioEpargne.isSelected()){
+            typeCompte = radioEpargne.getText();
+        }else if(radioMargeDeCredit.isSelected()){
+            typeCompte = radioMargeDeCredit.getText();
+        }else if(radioHypothecaire.isSelected()){
+            typeCompte = radioHypothecaire.getText();
+        }
+    }
+
     /**
      * Methode qui permet la deconnexion
      *
@@ -316,4 +352,5 @@ public class AdminController extends GestionnaireGuichet {
         ((Stage) first.getWindow()).setTitle("Login");
         first.setRoot(root);
     }
+
 }
