@@ -1,18 +1,22 @@
 package com.example.appnatprojetsession.Controllers;
 
 
+import com.example.appnatprojetsession.Models.Client;
 import com.example.appnatprojetsession.Models.GestionnaireGuichet;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * @Cours: Applications natives 1
@@ -21,45 +25,54 @@ import java.io.IOException;
  * @author: A. Alperen, B. Shajaan et I. Gafran
  */
 public class AdminController extends GestionnaireGuichet {
+    //creerClient variables
+    private static String nomC = "";
+    private static String prenomC = "";
+    private static String telephoneC = "";
+    private static String courrielC = "";
+    private static String nipC = "";
 
-    public static String codeUtilisateur = "";
-    public static String nipUtilisateur = "";
-    public static String nomC = "";
-    public static String prenomC = "";
-    public static String telephoneC = "";
-    public static String courrielC = "";
-    public static String nipC = "";
+    //creerCompte variables
+    private static int codeClient;
+    private static String codeCli="";
+    private static String typeCompte = "";
 
     GestionnaireGuichet gg = new GestionnaireGuichet();
     //Menu Admin pour pouvoir changer de fenetre
     @FXML
-    Label menuAdmin;
+    private Label menuAdmin;
 
     //Creation d'un client
     @FXML
-    TextField nomClient;
+    private TextField nomClient;
     @FXML
-    TextField prenomClient;
+    private TextField prenomClient;
     @FXML
-    TextField telephoneClient;
+    private TextField telephoneClient;
     @FXML
-    TextField courrielClient;
+    private TextField courrielClient;
     @FXML
-    TextField nipClient;
+    private TextField nipClient;
 
     //Back-Deconnexion
     @FXML
-    Label creation;
+    private Label creation;
     @FXML
-    Label creationCompte;
+    private Label creationCompte;
     @FXML
-    Label statutCompteClient;
+    private Label statutCompteClient;
     @FXML
-    Label afficherTransaction;
+    private Label afficherTransaction;
     @FXML
-    Label ajouterArgentGuichet;
+    private Label ajouterArgentGuichet;
     @FXML
-    Label prelevementHypo;
+    private Label prelevementHypo;
+
+    // Creer-Compte
+    @FXML
+    private TextField saissiCodeClient;
+    @FXML
+    private RadioButton radioEpargne, radioMargeDeCredit, radioHypothecaire;
 
     /**
      * MENU OPTION 1 - Redirection vers le menu Creer Client
@@ -71,6 +84,19 @@ public class AdminController extends GestionnaireGuichet {
         Scene first = menuAdmin.getScene();
         ((Stage) first.getWindow()).setTitle("Creation d'un client");
         first.setRoot(root);
+    }
+
+    /**
+     * MENU OPTION 2 - Redirection vers le menu Creer Compte
+     *
+     * @throws IOException
+     */
+    public void creerCompteClient() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/creerCompte.fxml"));
+        Scene first = menuAdmin.getScene();
+        ((Stage) first.getWindow()).setTitle("Creation d'un compte pour le client");
+        first.setRoot(root);
+        gg.creerCheque();
     }
 
     /**
@@ -107,17 +133,45 @@ public class AdminController extends GestionnaireGuichet {
         alert.showAndWait();
     }
 
-    /**
-     * MENU OPTION 2 - Redirection vers le menu Creer Compte
-     *
-     * @throws IOException
-     */
-    public void creerCompteClient() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/creerCompte.fxml"));
-        Scene first = menuAdmin.getScene();
-        ((Stage) first.getWindow()).setTitle("Creation d'un compte pour le client");
-        first.setRoot(root);
-        gg.creerCheque();
+    public void creerCompte(ActionEvent actionEvent){
+        codeCli = saissiCodeClient.getText();
+        if(radioEpargne.isSelected()){
+            typeCompte = radioEpargne.getText();
+        }else if(radioMargeDeCredit.isSelected()){
+            typeCompte = radioMargeDeCredit.getText();
+        }else if(radioHypothecaire.isSelected()){
+            typeCompte = radioHypothecaire.getText();
+        }
+
+        if(codeCli.equalsIgnoreCase("") || typeCompte.equalsIgnoreCase("")){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Remplir tous les champs");
+            alert.showAndWait();
+            return;
+        }else{
+            try{
+                codeClient = Integer.parseInt(codeCli);
+                System.out.println("codeClient:"+ codeClient+" type Compte:"+ typeCompte);
+            }catch(Exception e){
+                System.out.println(e);
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Le code du client doit etre des numeros");
+                alert.showAndWait();
+                return;
+            }
+            ArrayList<Client> clients = gg.getClients();
+            for (Client c : clients) {
+                if(c.getCodeClient() == codeClient){
+                    switch(typeCompte){
+                        case "Épargne":
+                            break;
+                        case "Marge de crédit":
+                            break;
+                        case "Hypothécaire":
+                            break;
+                    }
+                }
+            }
+        }
+
     }
 
     /**

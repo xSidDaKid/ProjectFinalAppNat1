@@ -1,5 +1,7 @@
 package com.example.appnatprojetsession.Models;
 
+import javafx.fxml.FXML;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -19,6 +21,7 @@ public class GestionnaireGuichet {
     private static ArrayList<Transaction> transactions;
     private double soldeCompteCourant;
 
+    @FXML
     private static int codeClient = 1000;
     private static int numeroCompte = 0;
 

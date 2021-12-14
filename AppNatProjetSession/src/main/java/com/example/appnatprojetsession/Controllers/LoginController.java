@@ -30,6 +30,8 @@ public class LoginController {
     @FXML
     TextField nip;
 
+    GestionnaireGuichet gg = new GestionnaireGuichet();
+
     /**
      * Login avec enter
      *
