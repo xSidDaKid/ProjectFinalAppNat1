@@ -24,8 +24,12 @@ public class GestionnaireGuichet {
     @FXML
     private static int codeClient = 1000;
     private static int numeroCompte = 0;
+    private static Client client = new Client (codeClient, 0);
 
     public GestionnaireGuichet(){
+        if(!clients.contains(client)){
+            clients.add(client);
+        }
     }
 
     public Compte getBanque() {
@@ -191,4 +195,5 @@ public class GestionnaireGuichet {
     public void incrementNumeroCompte(){
         this.numeroCompte+=1;
     }
+
 }
