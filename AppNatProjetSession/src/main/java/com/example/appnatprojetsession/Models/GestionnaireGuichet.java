@@ -22,7 +22,7 @@ public class GestionnaireGuichet {
     private static ArrayList<Client> clientBloque = new ArrayList<>();
     private double soldeCompteCourant;
 
-    @FXML
+
     private static int codeClient = 1000;
     private static int numeroCompte = 0;
     private static Client client = new Client (codeClient, 0);
@@ -30,7 +30,12 @@ public class GestionnaireGuichet {
     public GestionnaireGuichet(){
         if(!clients.contains(client)){
             clients.add(client);
+            if(comptesCheque.isEmpty()) {
+                creerCheque(client.getNumeroNIP(), client.getCodeClient());
+                //Crée 2 fois
+            }
         }
+
     }
 
     public Compte getBanque() {
@@ -201,9 +206,7 @@ public class GestionnaireGuichet {
         Cheque c1 = new Cheque(numeroNIP, codeClient);
         comptesCheque.add(c1);
         this.incrementNumeroCompte();
-   /*     int numerCompte = this.numerCompte;
-        Compte c1 = new Cheque(numeroNIP, numeroCompte*//*, soldeCompte, retraitMaximum, montantTransfertMaximum*//* );
-        this.comptesCheque.add(c1);*/
+
     }
 
     public void bloquerClient(Client client){

@@ -12,8 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -46,6 +45,18 @@ public class UserController implements Initializable {
     @FXML
      ComboBox<Compte> listeComptes=new ComboBox<>();
 
+    @FXML
+    private RadioButton radioRetrait;
+
+    @FXML
+    private ToggleGroup grDepot;
+
+    @FXML
+    private RadioButton radioDepot;
+
+    @FXML
+    private TextField inputMontant;
+
 
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<String> testString= FXCollections.observableArrayList();
@@ -73,9 +84,7 @@ public class UserController implements Initializable {
 
             }
         }
-        System.out.println(comptes);
-        System.out.println(comptes.get(0).getCodeClient());
-        System.out.println(idUser);
+       System.out.println(comptes);
 
             this.listeComptes.setItems(comptesClient);
 
@@ -90,8 +99,32 @@ public class UserController implements Initializable {
     }
 
 
+
+    public void depotRetrait(){
+        if(radioDepot.isSelected()){
+            depotCompte();
+        }else if(radioDepot.isSelected()){
+            retraitCompte();
+        }
+    }
+
+
     public void depotCompte(){
 
+    Compte compte=(Compte)listeComptes.getSelectionModel().getSelectedItem();
+    String compteString=compte.toString();
+
+        String type= compteString.substring(compteString.indexOf("[") + 1, compteString.indexOf("{"));
+        System.out.println(type);
+        int montant=Integer.parseInt(inputMontant.getText());
+
+
+
+
+    }
+
+    public void retraitCompte(){
+    Compte compte=(Compte)listeComptes.getSelectionModel().getSelectedItem();
 
 
 
