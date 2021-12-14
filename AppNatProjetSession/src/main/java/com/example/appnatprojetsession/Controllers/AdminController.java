@@ -264,7 +264,9 @@ public class AdminController extends GestionnaireGuichet {
             for (Client c : clients) {
                 if(c.getCodeClient() == codeClient){
                     for(Transaction t: transactions){
-                        //if(t.getCompte() == c.getCodeClient()){}
+//                        if(t.getCompte().getCodeClient() == c.getCodeClient() && t.getCompte() instanceof typeCompte.getClass()){
+//                            transactionsClient.add(t);
+//                        }
                     }
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Le compte " + typeCompte +" pour le client "+ codeClient + " a ete creer");
                     alert.showAndWait();
