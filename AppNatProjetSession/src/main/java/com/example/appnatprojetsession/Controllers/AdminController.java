@@ -157,6 +157,13 @@ public class AdminController extends GestionnaireGuichet {
             double solde = epargne.paiementInteret(gg.getComptesEpargne().get(i).getSoldeCompte());
             gg.getComptesEpargne().get(i).setSoldeCompte(solde);
         }
+        Alert alert;
+        if (gg.getComptesEpargne().size() == 0) {
+            alert = new Alert(Alert.AlertType.ERROR, "Il existe aucun compte epargne");
+        } else {
+            alert = new Alert(Alert.AlertType.INFORMATION, "Un interet de 1% a ete attribue a tous les comptes epargnes");
+        }
+        alert.showAndWait();
 
     }
 
