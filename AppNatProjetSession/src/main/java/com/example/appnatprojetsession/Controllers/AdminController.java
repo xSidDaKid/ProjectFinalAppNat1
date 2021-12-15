@@ -35,12 +35,12 @@ public class AdminController extends GestionnaireGuichet {
 
     //creerCompte variables
     private static int codeClient;
-    private static String codeCli="";
+    private static String codeCli = "";
     private static String typeCompte = "";
 
     //bloquerCompte variables
 
-    private static String statusClient="";
+    private static String statusClient = "";
     private static int codeClientSaisi;
 
     GestionnaireGuichet gg = new GestionnaireGuichet();
@@ -103,6 +103,7 @@ public class AdminController extends GestionnaireGuichet {
         ((Stage) first.getWindow()).setTitle("Creation d'un compte pour le client");
         first.setRoot(root);
     }
+
     /**
      * MENU OPTION 3 - Redirection vers le menu Transaction compte
      *
@@ -114,6 +115,7 @@ public class AdminController extends GestionnaireGuichet {
         ((Stage) first.getWindow()).setTitle("Listes des transaction d'un compte client");
         first.setRoot(root);
     }
+
     /**
      * MENU OPTION 4 - Redirection vers le menu Bloquer/Debloquer Client
      *
@@ -210,22 +212,22 @@ public class AdminController extends GestionnaireGuichet {
 
         this.gg.creerClient(nomC, prenomC, telephoneC, courrielC, nip);
         System.out.println(this.gg.getClients());
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Le client " + nomClient.getText() +" "+ prenomClient.getText() + "a ete creer");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Le client " + nomClient.getText() + " " + prenomClient.getText() + "a ete creer");
         alert.showAndWait();
     }
 
-    public void creerCompte(ActionEvent actionEvent){
+    public void creerCompte(ActionEvent actionEvent) {
         this.setSelectedButtons();
 
-        if(codeCli.equalsIgnoreCase("") || typeCompte.equalsIgnoreCase("")){
+        if (codeCli.equalsIgnoreCase("") || typeCompte.equalsIgnoreCase("")) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Remplir tous les champs");
             alert.showAndWait();
             return;
-        }else{
-            try{
+        } else {
+            try {
                 codeClient = Integer.parseInt(codeCli);
                 //System.out.println("codeClient:"+ codeClient+" type Compte:"+ typeCompte);
-            }catch(Exception e){
+            } catch (Exception e) {
                 //System.out.println(e);
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Le code du client doit etre des numeros");
                 alert.showAndWait();
@@ -233,14 +235,14 @@ public class AdminController extends GestionnaireGuichet {
             }
             ArrayList<Client> clients = gg.getClients();
             for (Client c : clients) {
-                if(c.getCodeClient() == codeClient){
-                    gg.creerCompte( typeCompte,c.getNumeroNIP(),c.getCodeClient());
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Le compte " + typeCompte +" pour le client "+ codeClient + " a ete creer");
+                if (c.getCodeClient() == codeClient) {
+                    gg.creerCompte(typeCompte, c.getNumeroNIP(), c.getCodeClient());
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Le compte " + typeCompte + " pour le client " + codeClient + " a ete creer");
                     alert.showAndWait();
                     return;
                 }
             }
-            Alert alert = new Alert(Alert.AlertType.ERROR, "le client "+ codeClient + " n'existe pas");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "le client " + codeClient + " n'existe pas");
             alert.showAndWait();
         }
     }
@@ -248,16 +250,14 @@ public class AdminController extends GestionnaireGuichet {
     public void afficherTransaction(ActionEvent actionEvent) {
         this.setSelectedButtons();
 
-        if(codeCli.equalsIgnoreCase("") || typeCompte.equalsIgnoreCase("")){
+        if (codeCli.equalsIgnoreCase("") || typeCompte.equalsIgnoreCase("")) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Remplir tous les champs");
             alert.showAndWait();
             return;
-        }else{
-            try{
+        } else {
+            try {
                 codeClient = Integer.parseInt(codeCli);
-                //System.out.println("codeClient:"+ codeClient+" type Compte:"+ typeCompte);
-            }catch(Exception e){
-                //System.out.println(e);
+            } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Le code du client doit etre des numeros");
                 alert.showAndWait();
                 return;
@@ -266,14 +266,14 @@ public class AdminController extends GestionnaireGuichet {
             ArrayList<Transaction> transactions = gg.getTransactions();
             ArrayList<Transaction> transactionsClient = new ArrayList<Transaction>();
             for (Client c : clients) {
-                if(c.getCodeClient() == codeClient){
-                    for(Transaction t: transactions){
-                        if(t.getCompte().getCodeClient() == c.getCodeClient()){
-                            if(t.getType() == "Épargne"){
+                if (c.getCodeClient() == codeClient) {
+                    for (Transaction t : transactions) {
+                        if (t.getCompte().getCodeClient() == c.getCodeClient()) {
+                            if (t.getType() == "Épargne") {
                                 transactions.add(t);
-                            }else if(t.getType() == "Hypothécaire"){
+                            } else if (t.getType() == "Hypothécaire") {
                                 transactions.add(t);
-                            }else if(t.getType() == "Marge de crédit"){
+                            } else if (t.getType() == "Marge de crédit") {
                                 transactions.add(t);
                             }
                         }
@@ -283,82 +283,68 @@ public class AdminController extends GestionnaireGuichet {
                     return;
                 }
             }
-            Alert alert = new Alert(Alert.AlertType.ERROR, "le client "+ codeClient + " n'existe pas");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "le client " + codeClient + " n'existe pas");
             alert.showAndWait();
         }
     }
 
     public void blockClient(ActionEvent actionEvent) {
         codeCli = saisiCodeClient.getText();
-        if(radioBloquer.isSelected()){
+        if (radioBloquer.isSelected()) {
             statusClient = radioBloquer.getText();
-        }else if(radioDebloquer.isSelected()){
+        } else if (radioDebloquer.isSelected()) {
             statusClient = radioDebloquer.getText();
         }
 
-        if(codeCli.equalsIgnoreCase("") || statusClient.equalsIgnoreCase("")){
+        if (codeCli.equalsIgnoreCase("") || statusClient.equalsIgnoreCase("")) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Remplir tous les champs");
             alert.showAndWait();
             return;
-        }else{
-            try{
+        } else {
+            try {
                 codeClientSaisi = Integer.parseInt(codeCli);
-                //System.out.println("codeClient:"+ codeClient+" type Compte:"+ typeCompte);
-            }catch(Exception e){
-                //System.out.println(e);
+            } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Le code du client doit etre des numeros");
                 alert.showAndWait();
                 return;
             }
             ArrayList<Client> clients = gg.getClients();
-            ArrayList<Client> listClientBloques = gg.getClientBloque();
-            for(Client c : listClientBloques){
-                System.out.println(c.toString());
+            ArrayList<Integer> listClientBloques = gg.getClientBloque();
+            for (Integer i : listClientBloques) {
+                System.out.println(i.toString());
             }
-            Client client = new Client();
             for (Client c : clients) {
                 System.out.println("test 1");
-                if(c.getCodeClient() == codeClientSaisi){
-                    System.out.println("test 2");
-                    System.out.println(statusClient);
-                    client.setCodeClient(c.getCodeClient());
-                    client.setNumeroNIP(c.getNumeroNIP());
-                    client.setNom(c.getNom());
-                    client.setPrenom(c.getPrenom());
-                    client.setCourriel(c.getCourriel());
-                    client.setTelephone(c.getTelephone());
-                    if(statusClient.equalsIgnoreCase("Bloquer")){
-                        System.out.println("test 3");
-                        if(listClientBloques.contains(client)){
-                            System.out.println("test 4");
-                            Alert alert = new Alert(Alert.AlertType.ERROR, "Le Client "+ codeClientSaisi+" est deja bloquee ");
-                            alert.showAndWait();
-                            return;
-                        }else if (!listClientBloques.contains(client)){
-                            System.out.println("test 5");
-                            gg.bloquerClient(client);
-                            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Le Client " + codeClientSaisi + " a ete bloque");
-                            alert.showAndWait();
-                            return;
+
+                if (c.getCodeClient() == codeClientSaisi) {
+                    if (statusClient.equalsIgnoreCase("Bloquer")) {
+                        for (Integer cli : listClientBloques) {
+                            if (cli == c.getCodeClient()) {
+                                Alert alert = new Alert(Alert.AlertType.ERROR, "Le Client " + codeClientSaisi + " est deja bloquee ");
+                                alert.showAndWait();
+                                return;
+                            }
                         }
-                    }else if(statusClient.equalsIgnoreCase("Débloquer")){
-                        System.out.println("test 6");
-                        if(listClientBloques.contains(client)){
-                            System.out.println("test 7");
-                            gg.debloquerClient(client);
-                            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Le Client " + codeClientSaisi + " a ete debloque");
-                            alert.showAndWait();
-                            return;
-                        }else if(!listClientBloques.contains(client)){
-                            System.out.println("test 8");
-                            Alert alert = new Alert(Alert.AlertType.ERROR, "Le Client "+ codeClientSaisi+" est deja debloque ");
-                            alert.showAndWait();
-                            return;
+                        gg.bloquerClient(codeClientSaisi);
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Le Client " + codeClientSaisi + " a ete bloque");
+                        alert.showAndWait();
+                        return;
+                    } else if (statusClient.equalsIgnoreCase("Débloquer")) {
+                        for (Integer cli : listClientBloques) {
+                            if (cli == c.getCodeClient()) {
+                                gg.debloquerClient(cli);
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Le Client " + codeClientSaisi + " a ete debloque");
+                                alert.showAndWait();
+                                return;
+                            }
                         }
+                        Alert alert = new Alert(Alert.AlertType.ERROR, "Le Client " + codeClientSaisi + " est deja debloque ");
+                        alert.showAndWait();
+                        return;
                     }
                 }
             }
-            Alert alert = new Alert(Alert.AlertType.ERROR, "le client "+ codeClientSaisi + " n'existe pas");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "le client " + codeClientSaisi + " n'existe pas");
             alert.showAndWait();
         }
 
@@ -367,7 +353,7 @@ public class AdminController extends GestionnaireGuichet {
     /**
      * Methode qui sert a afficher la liste des clients
      */
-    public void afficherClients () {
+    public void afficherClients() {
         GestionnaireGuichet gg = new GestionnaireGuichet();
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Voici la liste des clients:\n" + this.gg.getClients());
         alert.showAndWait();
@@ -403,13 +389,13 @@ public class AdminController extends GestionnaireGuichet {
         first.setRoot(root);
     }
 
-    public void setSelectedButtons(){
+    public void setSelectedButtons() {
         codeCli = saisiCodeClient.getText();
-        if(radioEpargne.isSelected()){
+        if (radioEpargne.isSelected()) {
             typeCompte = radioEpargne.getText();
-        }else if(radioMargeDeCredit.isSelected()){
+        } else if (radioMargeDeCredit.isSelected()) {
             typeCompte = radioMargeDeCredit.getText();
-        }else if(radioHypothecaire.isSelected()){
+        } else if (radioHypothecaire.isSelected()) {
             typeCompte = radioHypothecaire.getText();
         }
     }

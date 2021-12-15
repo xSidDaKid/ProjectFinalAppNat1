@@ -19,7 +19,7 @@ public class GestionnaireGuichet {
     private static ArrayList<Marge> comptesMarge;
     private static ArrayList<Hypothécaire> comptesHypothecaire;
     private static ArrayList<Transaction> transactions;
-    private static ArrayList<Client> clientBloque = new ArrayList<>();
+    private static ArrayList<Integer> clientBloque = new ArrayList<>();
     private double soldeCompteCourant;
 
     @FXML
@@ -89,11 +89,11 @@ public class GestionnaireGuichet {
         GestionnaireGuichet.transactions = transactions;
     }
 
-    public static ArrayList<Client> getClientBloque() {
+    public static ArrayList<Integer> getClientBloque() {
         return clientBloque;
     }
 
-    public static void setClientBloque(ArrayList<Client> clientBloque) {
+    public static void setClientBloque(ArrayList<Integer> clientBloque) {
         GestionnaireGuichet.clientBloque = clientBloque;
     }
 
@@ -206,12 +206,18 @@ public class GestionnaireGuichet {
         this.comptesCheque.add(c1);*/
     }
 
-    public void bloquerClient(Client client){
-        this.clientBloque.add(client);
+    public void bloquerClient(int codeClient){
+        this.clientBloque.add(codeClient);
     }
 
-    public void debloquerClient(Client client){
-        this.clientBloque.remove(client);
+    public void debloquerClient(int codeClient){
+        for(int i=0;i< this.clientBloque.size(); i++){
+            int value = clientBloque.get(i);
+            if(value == codeClient){
+                clientBloque.remove(i);
+                break;
+            }
+        }
     }
 
     public void incrementCodeClient(){
