@@ -40,9 +40,10 @@ public class Epargne extends Compte {
         this.tauxInteret = tauxInteret;
     }*/
 
-    public void paiementInteret() {
-        double solde = this.getSoldeCompte() * this.tauxInteret;
+    public double paiementInteret(double solde) {
+        solde = solde * this.tauxInteret;
         this.setSoldeCompte(solde);
+        return solde;
     }
 
     @Override

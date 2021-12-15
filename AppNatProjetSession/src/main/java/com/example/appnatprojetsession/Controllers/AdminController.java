@@ -153,9 +153,11 @@ public class AdminController extends GestionnaireGuichet {
      */
     public void payerInteret() throws IOException {
         Epargne epargne = new Epargne();
-        for (Epargne e : gg.getComptesEpargne()) {
-            epargne.paiementInteret();
+        for (int i = 0; i < gg.getComptesEpargne().size(); i++) {
+            double solde = epargne.paiementInteret(gg.getComptesEpargne().get(i).getSoldeCompte());
+            gg.getComptesEpargne().get(i).setSoldeCompte(solde);
         }
+
     }
 
     /**

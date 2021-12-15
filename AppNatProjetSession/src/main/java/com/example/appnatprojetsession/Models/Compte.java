@@ -24,7 +24,7 @@ public class Compte {
         this.numeroCompte = compteur;
         this.numeroNIP = numeroNIP;
         this.codeClient = codeClient;
-        this.soldeCompte=0;
+        this.soldeCompte=soldeCompte;
         //A changer les valeurs selon les notes
         this.retraitMaximum = 1000;
         //this.montantTransfertMaximum 500;
