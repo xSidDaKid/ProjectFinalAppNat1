@@ -39,9 +39,12 @@ public class AdminController extends GestionnaireGuichet {
     private static String typeCompte = "";
 
     //bloquerCompte variables
-
     private static String statusClient = "";
     private static int codeClientSaisi;
+
+    //ajouterArgentGuichet variables
+    private static String montantAjouter="";
+    private static int montantAjouterAGuichet;
 
     GestionnaireGuichet gg = new GestionnaireGuichet();
     //Menu Admin pour pouvoir changer de fenetre
@@ -79,6 +82,10 @@ public class AdminController extends GestionnaireGuichet {
     private TextField saisiCodeClient;
     @FXML
     private RadioButton radioEpargne, radioMargeDeCredit, radioHypothecaire, radioBloquer, radioDebloquer;
+
+    //Ajouter_Argent_Guichet
+    @FXML
+    private TextField montantAjouterGuichet;
 
     /**
      * MENU OPTION 1 - Redirection vers le menu Creer Client
@@ -346,6 +353,36 @@ public class AdminController extends GestionnaireGuichet {
             }
             Alert alert = new Alert(Alert.AlertType.ERROR, "le client " + codeClientSaisi + " n'existe pas");
             alert.showAndWait();
+        }
+
+    }
+
+
+    public void AjouterArgentGuichet(ActionEvent actionEvent) {
+        montantAjouter = montantAjouterGuichet.getText();
+        if(montantAjouter.equalsIgnoreCase("")){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Remplir tous les champs");
+            alert.showAndWait();
+            return;
+        }else{
+            try {
+                montantAjouterAGuichet = Integer.parseInt(montantAjouter);
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Il faut saisir un montant en chiffre a ajouter dans le guichet");
+                alert.showAndWait();
+                return;
+            }
+        }
+
+        int modulo = montantAjouterAGuichet % 10;
+        if(modulo != 0 ){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Il faut ajouter un montant qui est un  multiple de 10 dans le guichet");
+            alert.showAndWait();
+            return;
+        }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Un montant de "+ montantAjouterAGuichet+" dans le guichet");
+            alert.showAndWait();
+            return;
         }
 
     }

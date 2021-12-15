@@ -27,6 +27,7 @@ public class GestionnaireGuichet {
     private static int numeroCompte = 0;
     private static Client client = new Client (codeClient, 0);
 
+
     public GestionnaireGuichet(){
         if(!clients.contains(client)){
             clients.add(client);
