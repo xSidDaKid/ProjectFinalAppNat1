@@ -20,8 +20,12 @@ public class Banque extends Compte{
         this.montantRemplissage = montantRemplissage;
     }
 
-    public void RemplirGuichet(){
+    public void remplirGuichet(){
+        super.setSoldeCompte(super.getSoldeCompte()+this.montantRemplissage);
+    }
 
+    public void retraitGuichet(int montantRetrait){
+        super.setSoldeCompte(super.getSoldeCompte()- montantRetrait);
     }
 
     @Override

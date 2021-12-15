@@ -354,7 +354,6 @@ public class AdminController extends GestionnaireGuichet {
             Alert alert = new Alert(Alert.AlertType.ERROR, "le client " + codeClientSaisi + " n'existe pas");
             alert.showAndWait();
         }
-
     }
 
 

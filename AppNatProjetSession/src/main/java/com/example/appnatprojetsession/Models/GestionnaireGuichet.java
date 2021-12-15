@@ -25,12 +25,12 @@ public class GestionnaireGuichet {
     private static int numeroCompte = 0;
     private static Client client = new Client (codeClient, 0);
 
-
     public GestionnaireGuichet(){
         if(!clients.contains(client)){
             clients.add(client);
             if(comptesCheque.isEmpty()) {
                 creerCheque(client.getNumeroNIP(), client.getCodeClient());
+                banque = new Banque(client.getNumeroNIP(), getCodeClient());
                 //Crée 2 fois
             }
         }

@@ -88,14 +88,6 @@ public class Compte {
         this.montantTransfertMaximum = montantTransfertMaximum;
     }
 
-    public static int getCompteur() {
-        return compteur;
-    }
-
-    public static void setCompteur(int compteur) {
-        Compte.compteur = compteur;
-    }
-
     public void depot (double montant){
 
     }
