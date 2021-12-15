@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author: A. Alperen, B. Shajaan et I. Gafran
  */
 public class GestionnaireGuichet {
-    private Banque banque;
+    private static Banque banque = new Banque();
     private static ArrayList<Client> clients = new ArrayList<>();
     private static ArrayList<Cheque> comptesCheque = new ArrayList<>();
     private static ArrayList<Epargne> comptesEpargne=new ArrayList<>();
@@ -30,7 +30,7 @@ public class GestionnaireGuichet {
             clients.add(client);
             if(comptesCheque.isEmpty()) {
                 creerCheque(client.getNumeroNIP(), client.getCodeClient());
-                banque = new Banque(client.getNumeroNIP(), getCodeClient());
+                creerBanque(client.getNumeroNIP(), client.getCodeClient());
                 //Crée 2 fois
             }
         }
@@ -205,7 +205,15 @@ public class GestionnaireGuichet {
         Cheque c1 = new Cheque(numeroNIP, codeClient);
         comptesCheque.add(c1);
         this.incrementNumeroCompte();
+    }
 
+    public void creerBanque(int numeroNIP, int codeClient){
+        int soldeCompte = 10000;
+        this.banque.setNumeroCompte(this.numeroCompte);
+        this.banque.setNumeroNIP(numeroNIP);
+        this.banque.setCodeClient(codeClient);
+        this.banque.setSoldeCompte(soldeCompte);
+        this.incrementNumeroCompte();
     }
 
     public void bloquerClient(int codeClient){

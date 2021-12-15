@@ -10,6 +10,8 @@ public class Banque extends Compte{
     private double montantMaximum = 0;
     private double montantRemplissage = 0;
 
+    public Banque(){}
+
     public Banque(int numeroNIP, int numeroCompte){
         super(numeroNIP, numeroCompte);
     }
@@ -20,8 +22,20 @@ public class Banque extends Compte{
         this.montantRemplissage = montantRemplissage;
     }
 
-    public void remplirGuichet(){
-        super.setSoldeCompte(super.getSoldeCompte()+this.montantRemplissage);
+    public Banque(int numeroNIP, int numeroCompte, double montantMaximum){
+        super(numeroNIP, numeroCompte);
+        this.montantMaximum = montantMaximum;
+        this.montantRemplissage = 0;
+    }
+
+    public Banque(int numeroNIP, int numeroCompte,double soldeCompte, int retraitMaximum, int montantTransfertMaximum, double montantMaximum, double montantRemplissage){
+        super(numeroNIP, numeroCompte, soldeCompte, retraitMaximum, montantTransfertMaximum);
+        this.montantMaximum = montantMaximum;
+        this.montantRemplissage = montantRemplissage;
+    }
+
+    public void remplirGuichet(double montantAAjouter){
+        super.setSoldeCompte(super.getSoldeCompte()+ montantAAjouter);
     }
 
     public void retraitGuichet(double montantRetrait){
