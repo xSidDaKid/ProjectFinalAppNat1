@@ -25,9 +25,10 @@ public class Marge extends Compte {
     public Marge() {
     }
 
-    public void augmenterSoldeMarge(){
-        double solde = this.getSoldeCompte() * this.tauxInteret;
+    public double augmenterSoldeMarge(double solde){
+        solde = 100 * this.tauxInteret;
         this.setSoldeCompte(solde);
+        return solde;
     }
 
     @Override

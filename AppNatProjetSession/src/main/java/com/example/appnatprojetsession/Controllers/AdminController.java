@@ -164,7 +164,6 @@ public class AdminController extends GestionnaireGuichet {
             alert = new Alert(Alert.AlertType.INFORMATION, "Un interet de 1% a ete attribue a tous les comptes epargnes");
         }
         alert.showAndWait();
-
     }
 
     /**
@@ -185,10 +184,22 @@ public class AdminController extends GestionnaireGuichet {
      * @throws IOException
      */
     public void augmenterSolde() throws IOException {
+
         Marge marge = new Marge();
-        for (Marge m : gg.getComptesMarge()) {
-            marge.augmenterSoldeMarge();
+        for (int i = 0; i < gg.getComptesMarge().size(); i++) {
+            double solde = marge.augmenterSoldeMarge(gg.getComptesMarge().get(i).getSoldeCompte());
+            gg.getComptesMarge().get(i).setSoldeCompte(solde);
+            System.out.println(gg.getComptesMarge().get(i).getSoldeCompte());
         }
+
+        Alert alert;
+        if (gg.getComptesMarge().size() == 0) {
+            alert = new Alert(Alert.AlertType.ERROR, "Il existe aucun compte marge");
+        } else {
+            alert = new Alert(Alert.AlertType.INFORMATION, "Une augmentation de 5% a ete attribue a tous les comptes marges");
+        }
+        alert.showAndWait();
+
     }
 
     /**
