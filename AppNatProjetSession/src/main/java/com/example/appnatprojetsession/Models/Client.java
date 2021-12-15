@@ -15,7 +15,8 @@ public class Client {
     private String courriel;
     private int numeroNIP;
 
-    public Client(){}
+    public Client() {
+    }
 
     public Client(int codeClient, String nom, String prenom, String telephone, String courriel, int numeroNIP) {
         this.codeClient = codeClient;
@@ -26,7 +27,7 @@ public class Client {
         this.numeroNIP = numeroNIP;
     }
 
-    public Client(int codeClient, int numeroNIP){
+    public Client(int codeClient, int numeroNIP) {
         this.codeClient = codeClient;
         this.numeroNIP = numeroNIP;
     }

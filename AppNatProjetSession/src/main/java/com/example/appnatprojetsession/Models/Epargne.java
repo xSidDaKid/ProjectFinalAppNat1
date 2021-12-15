@@ -20,8 +20,7 @@ public class Epargne extends Compte {
         super(numeroNIP, codeClient, soldeCompte, retraitMaximum, montantTransfertMaximum);
         this.tauxInteret = tauxInteret;
     }
-
-
+    
     public double getTauxInteret() {
         return tauxInteret;
     }
@@ -29,16 +28,6 @@ public class Epargne extends Compte {
     public void setTauxInteret(double tauxInteret) {
         this.tauxInteret = tauxInteret;
     }
-
-    /*    public void paiementInteret(int numeroNIP, int numeroCompte){
-        super(numeroNIP, numeroCompte);
-        this.tauxInteret = 1.01;
-    }
-
-    public void paiementInteret(int numeroNIP, int numeroCompte, double tauxInteret){
-        super(numeroNIP, numeroCompte);
-        this.tauxInteret = tauxInteret;
-    }*/
 
     public double paiementInteret(double solde) {
         solde = solde * this.tauxInteret;

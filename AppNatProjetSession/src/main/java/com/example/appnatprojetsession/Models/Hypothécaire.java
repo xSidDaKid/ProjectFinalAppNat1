@@ -1,7 +1,5 @@
 package com.example.appnatprojetsession.Models;
 
-import com.example.appnatprojetsession.Models.Compte;
-
 /**
  * @Cours: Applications natives 1
  * @Remis_à: Toufik Bellal
@@ -10,8 +8,8 @@ import com.example.appnatprojetsession.Models.Compte;
  */
 public class Hypothécaire extends Compte {
 
-    public Hypothécaire(int numeroNIP, int codeClient){
-        super(numeroNIP,codeClient);
+    public Hypothécaire(int numeroNIP, int codeClient) {
+        super(numeroNIP, codeClient);
     }
 
     public void preleverMontantHypotheque() {

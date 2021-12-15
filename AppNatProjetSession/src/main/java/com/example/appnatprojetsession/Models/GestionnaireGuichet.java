@@ -1,8 +1,5 @@
 package com.example.appnatprojetsession.Models;
 
-import javafx.fxml.FXML;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -15,34 +12,26 @@ public class GestionnaireGuichet {
     private static Banque banque = new Banque();
     private static ArrayList<Client> clients = new ArrayList<>();
     private static ArrayList<Cheque> comptesCheque = new ArrayList<>();
-    private static ArrayList<Epargne> comptesEpargne=new ArrayList<>();
+    private static ArrayList<Epargne> comptesEpargne = new ArrayList<>();
     private static ArrayList<Marge> comptesMarge = new ArrayList<>();
     private static ArrayList<Hypothécaire> comptesHypothecaire = new ArrayList<>();
     private static ArrayList<Transaction> transactions = new ArrayList<>();
     private static ArrayList<Integer> clientBloque = new ArrayList<>();
-    private double soldeCompteCourant;
     private static int codeClient = 1000;
     private static int numeroCompte = 0;
-    private static Client client = new Client (codeClient, 0);
+    private static Client client = new Client(codeClient, 0);
+    private double soldeCompteCourant;
 
-    public GestionnaireGuichet(){
-        if(!clients.contains(client)){
+    public GestionnaireGuichet() {
+        if (!clients.contains(client)) {
             clients.add(client);
-            if(comptesCheque.isEmpty()) {
+            if (comptesCheque.isEmpty()) {
                 creerCheque(client.getNumeroNIP(), client.getCodeClient());
                 creerBanque(client.getNumeroNIP(), client.getCodeClient());
                 //Crée 2 fois
             }
         }
 
-    }
-
-    public Banque getBanque() {
-        return banque;
-    }
-
-    public void setBanque(Banque banque) {
-        this.banque = banque;
     }
 
     public static ArrayList<Client> getClients() {
@@ -101,14 +90,6 @@ public class GestionnaireGuichet {
         GestionnaireGuichet.clientBloque = clientBloque;
     }
 
-    public double getSoldeCompteCourant() {
-        return soldeCompteCourant;
-    }
-
-    public void setSoldeCompteCourant(double soldeCompteCourant) {
-        this.soldeCompteCourant = soldeCompteCourant;
-    }
-
     public static int getCodeClient() {
         return codeClient;
     }
@@ -131,6 +112,22 @@ public class GestionnaireGuichet {
 
     public static void setClient(Client client) {
         GestionnaireGuichet.client = client;
+    }
+
+    public Banque getBanque() {
+        return banque;
+    }
+
+    public void setBanque(Banque banque) {
+        this.banque = banque;
+    }
+
+    public double getSoldeCompteCourant() {
+        return soldeCompteCourant;
+    }
+
+    public void setSoldeCompteCourant(double soldeCompteCourant) {
+        this.soldeCompteCourant = soldeCompteCourant;
     }
 
     public Compte ValiderUtilisateur(String nom, int nip) {
@@ -171,21 +168,21 @@ public class GestionnaireGuichet {
         return this.soldeCompteCourant;
     }
 
-    public void creerClient( String nom, String prenom, String telephone, String courriel, int numeroNIP) {
+    public void creerClient(String nom, String prenom, String telephone, String courriel, int numeroNIP) {
         this.incrementCodeClient();
         //int numeroNIP = this.numeroClient;
         Client client = new Client(codeClient, nom, prenom, telephone, courriel, numeroNIP);
         this.clients.add(client);
-        for (Client c:clients) {
+        for (Client c : clients) {
             System.out.println(c);
         }
         creerCheque(client.getNumeroNIP(), client.getCodeClient());
     }
 
     public void creerCompte(String typeCompte, int numeroNIP, int codeClient) {
-        switch(typeCompte){
+        switch (typeCompte) {
             case "Épargne":
-                Epargne epargne = new Epargne( numeroNIP, codeClient);
+                Epargne epargne = new Epargne(numeroNIP, codeClient);
                 comptesEpargne.add(epargne);
                 break;
             case "Marge de crédit":
@@ -201,13 +198,13 @@ public class GestionnaireGuichet {
         }
     }
 
-    public void creerCheque(int numeroNIP, int codeClient){
+    public void creerCheque(int numeroNIP, int codeClient) {
         Cheque c1 = new Cheque(numeroNIP, codeClient);
         comptesCheque.add(c1);
         this.incrementNumeroCompte();
     }
 
-    public void creerBanque(int numeroNIP, int codeClient){
+    public void creerBanque(int numeroNIP, int codeClient) {
         int soldeCompte = 10000;
         this.banque.setNumeroCompte(this.numeroCompte);
         this.banque.setNumeroNIP(numeroNIP);
@@ -216,26 +213,26 @@ public class GestionnaireGuichet {
         this.incrementNumeroCompte();
     }
 
-    public void bloquerClient(int codeClient){
+    public void bloquerClient(int codeClient) {
         this.clientBloque.add(codeClient);
     }
 
-    public void debloquerClient(int codeClient){
-        for(int i=0;i< this.clientBloque.size(); i++){
+    public void debloquerClient(int codeClient) {
+        for (int i = 0; i < this.clientBloque.size(); i++) {
             int value = clientBloque.get(i);
-            if(value == codeClient){
+            if (value == codeClient) {
                 clientBloque.remove(i);
                 break;
             }
         }
     }
 
-    public void incrementCodeClient(){
-        this.codeClient+=1;
+    public void incrementCodeClient() {
+        this.codeClient += 1;
     }
 
-    public void incrementNumeroCompte(){
-        this.numeroCompte+=1;
+    public void incrementNumeroCompte() {
+        this.numeroCompte += 1;
     }
 
 }

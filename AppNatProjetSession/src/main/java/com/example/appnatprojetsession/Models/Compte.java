@@ -7,14 +7,13 @@ package com.example.appnatprojetsession.Models;
  * @author: A. Alperen, B. Shajaan et I. Gafran
  */
 public class Compte {
-    private  int numeroCompte;
+    private static int compteur = 0;
+    private int numeroCompte;
     private int codeClient;
     private int numeroNIP;
     private double soldeCompte;
     private int retraitMaximum;
     private int montantTransfertMaximum;
-
-    private static int compteur=0;
 
     public Compte() {
     }
@@ -24,13 +23,13 @@ public class Compte {
         this.numeroCompte = compteur;
         this.numeroNIP = numeroNIP;
         this.codeClient = codeClient;
-        this.soldeCompte=soldeCompte;
+        this.soldeCompte = soldeCompte;
         //A changer les valeurs selon les notes
         this.retraitMaximum = 1000;
         //this.montantTransfertMaximum 500;
     }
 
-    public Compte(int numeroNIP, int codeClient,  double soldeCompte, int retraitMaximum, int montantTransfertMaximum) {
+    public Compte(int numeroNIP, int codeClient, double soldeCompte, int retraitMaximum, int montantTransfertMaximum) {
         this.incrementCompteur();
         this.numeroCompte = compteur;
         this.numeroNIP = numeroNIP;
@@ -88,11 +87,12 @@ public class Compte {
         this.montantTransfertMaximum = montantTransfertMaximum;
     }
 
-    public void depot (double montant){
+    public void depot(double montant) {
 
     }
-    public void incrementCompteur(){
-        this.compteur+=1;
+
+    public void incrementCompteur() {
+        this.compteur += 1;
     }
 
     @Override

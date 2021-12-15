@@ -439,14 +439,14 @@ public class AdminController extends GestionnaireGuichet {
         } else {
             double montantDansGuichet = gg.getBanque().getSoldeCompte();
             System.out.println(montantDansGuichet);
-            double montantTotal = montantDansGuichet+ montantAjouterAGuichet;
-            if(montantTotal > 20000){
+            double montantTotal = montantDansGuichet + montantAjouterAGuichet;
+            if (montantTotal > 20000) {
                 Alert alert = new Alert(Alert.AlertType.WARNING, "Le montant dans le guichet ne peut pas exceder 20,000$");
                 alert.showAndWait();
                 return;
-            }else{
+            } else {
                 gg.getBanque().remplirGuichet(montantAjouterAGuichet);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Un montant de " + montantAjouterAGuichet + "$ dans le guichet.\n Le solde courant du guichet est de "+ montantTotal+" $.");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Un montant de " + montantAjouterAGuichet + "$ dans le guichet.\n Le solde courant du guichet est de " + montantTotal + " $.");
                 alert.showAndWait();
                 return;
             }
