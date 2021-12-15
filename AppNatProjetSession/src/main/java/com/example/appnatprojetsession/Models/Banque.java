@@ -24,7 +24,7 @@ public class Banque extends Compte{
         super.setSoldeCompte(super.getSoldeCompte()+this.montantRemplissage);
     }
 
-    public void retraitGuichet(int montantRetrait){
+    public void retraitGuichet(double montantRetrait){
         super.setSoldeCompte(super.getSoldeCompte()- montantRetrait);
     }
 

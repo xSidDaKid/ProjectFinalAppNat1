@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author: A. Alperen, B. Shajaan et I. Gafran
  */
 public class GestionnaireGuichet {
-    private Compte banque;
+    private Banque banque;
     private static ArrayList<Client> clients = new ArrayList<>();
     private static ArrayList<Cheque> comptesCheque = new ArrayList<>();
     private static ArrayList<Epargne> comptesEpargne=new ArrayList<>();
@@ -37,11 +37,11 @@ public class GestionnaireGuichet {
 
     }
 
-    public Compte getBanque() {
+    public Banque getBanque() {
         return banque;
     }
 
-    public void setBanque(Compte banque) {
+    public void setBanque(Banque banque) {
         this.banque = banque;
     }
 
