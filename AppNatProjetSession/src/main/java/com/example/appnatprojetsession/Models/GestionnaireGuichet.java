@@ -15,22 +15,12 @@ public class GestionnaireGuichet {
     private Compte banque;
     private static ArrayList<Client> clients = new ArrayList<>();
     private static ArrayList<Cheque> comptesCheque = new ArrayList<>();
-<<<<<<< HEAD
-    private static ArrayList<Epargne> comptesEpargne;
-    private static ArrayList<Marge> comptesMarge;
-    private static ArrayList<Hypothécaire> comptesHypothecaire;
-    private static ArrayList<Transaction> transactions;
-    private static ArrayList<Integer> clientBloque = new ArrayList<>();
-=======
     private static ArrayList<Epargne> comptesEpargne=new ArrayList<>();
     private static ArrayList<Marge> comptesMarge = new ArrayList<>();
     private static ArrayList<Hypothécaire> comptesHypothecaire = new ArrayList<>();
     private static ArrayList<Transaction> transactions = new ArrayList<>();
-    private static ArrayList<Client> clientBloque = new ArrayList<>();
->>>>>>> 115f5cf2f29d80888a5f9ee59b1218252a9ccfb0
+    private static ArrayList<Integer> clientBloque = new ArrayList<>();
     private double soldeCompteCourant;
-
-
     private static int codeClient = 1000;
     private static int numeroCompte = 0;
     private static Client client = new Client (codeClient, 0);
