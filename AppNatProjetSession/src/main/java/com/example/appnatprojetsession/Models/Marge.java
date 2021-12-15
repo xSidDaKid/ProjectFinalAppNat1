@@ -10,7 +10,10 @@ import com.example.appnatprojetsession.Models.Compte;
  */
 public class Marge extends Compte {
 
-    private double tauxInteret = 1.01;
+    private double tauxInteret = 1.05;
+
+    public Marge() {
+    }
 
     public Marge(int numeroNIP, int codeClient){
         super( numeroNIP, codeClient);
@@ -22,7 +25,8 @@ public class Marge extends Compte {
     }
 
     public void augmenterSoldeMarge(){
-
+        double solde = this.getSoldeCompte() * this.tauxInteret;
+        this.setSoldeCompte(solde);
     }
 
     @Override

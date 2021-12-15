@@ -1,10 +1,7 @@
 package com.example.appnatprojetsession.Controllers;
 
 
-import com.example.appnatprojetsession.Models.Client;
-import com.example.appnatprojetsession.Models.Epargne;
-import com.example.appnatprojetsession.Models.GestionnaireGuichet;
-import com.example.appnatprojetsession.Models.Transaction;
+import com.example.appnatprojetsession.Models.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -156,7 +153,9 @@ public class AdminController extends GestionnaireGuichet {
      */
     public void payerInteret() throws IOException {
         Epargne epargne = new Epargne();
-        epargne.paiementInteret();
+        for (Epargne e : gg.getComptesEpargne()) {
+            epargne.paiementInteret();
+        }
     }
 
     /**
@@ -177,7 +176,10 @@ public class AdminController extends GestionnaireGuichet {
      * @throws IOException
      */
     public void augmenterSolde() throws IOException {
-        //TODO
+        Marge marge = new Marge();
+        for (Marge m : gg.getComptesMarge()) {
+            marge.augmenterSoldeMarge();
+        }
     }
 
     /**
@@ -228,6 +230,7 @@ public class AdminController extends GestionnaireGuichet {
 
     /**
      * Methodes qui sert a creer un compte pour un client
+     *
      * @param actionEvent
      */
     public void creerCompte(ActionEvent actionEvent) {
@@ -277,6 +280,7 @@ public class AdminController extends GestionnaireGuichet {
 
     /**
      * Methodes qui sert a afficher les transactions du clients
+     *
      * @param actionEvent
      */
     public void afficherTransaction(ActionEvent actionEvent) {
@@ -322,6 +326,7 @@ public class AdminController extends GestionnaireGuichet {
 
     /**
      * Methodes qui sert a bloquer ou debloquer un client
+     *
      * @param actionEvent
      */
     public void blockClient(ActionEvent actionEvent) {
@@ -387,6 +392,7 @@ public class AdminController extends GestionnaireGuichet {
 
     /**
      * Methode qui sert ajouter de largent dans le guichet
+     *
      * @param actionEvent
      */
     public void AjouterArgentGuichet(ActionEvent actionEvent) {
