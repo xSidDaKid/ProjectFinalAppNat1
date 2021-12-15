@@ -82,6 +82,9 @@ public class UserController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/User/DepotRetrait.fxml"));
         Scene first = menuUser.getScene();
         ((Stage) first.getWindow()).setTitle("Dépot");
+        ((Stage) first.getWindow()).setWidth(340);
+        ((Stage) first.getWindow()).setHeight(355);
+        ((Stage) first.getWindow()).centerOnScreen();
         first.setRoot(root);
     }
 
@@ -95,6 +98,9 @@ public class UserController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/User/transfertPaiement.fxml"));
         Scene first = menuUser.getScene();
         ((Stage) first.getWindow()).setTitle("Transfert");
+        ((Stage) first.getWindow()).setWidth(415);
+        ((Stage) first.getWindow()).setHeight(382);
+        ((Stage) first.getWindow()).centerOnScreen();
         first.setRoot(root);
     }
 
@@ -108,6 +114,9 @@ public class UserController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/User/consulterSolde.fxml"));
         Scene first = menuUser.getScene();
         ((Stage) first.getWindow()).setTitle("Comptes Disponibles");
+        ((Stage) first.getWindow()).setWidth(500);
+        ((Stage) first.getWindow()).setHeight(279);
+        ((Stage) first.getWindow()).centerOnScreen();
         first.setRoot(root);
     }
 
@@ -584,7 +593,10 @@ public class UserController implements Initializable {
             first = depotRetrait.getScene();
         }
 
-        ((Stage) first.getWindow()).setTitle("Login");
+        ((Stage) first.getWindow()).setWidth(582);
+        ((Stage) first.getWindow()).setHeight(311);
+        ((Stage) first.getWindow()).centerOnScreen();
+        ((Stage) first.getWindow()).setTitle("Menu User");
         first.setRoot(root);
     }
 
@@ -607,6 +619,9 @@ public class UserController implements Initializable {
         }
 
         ((Stage) first.getWindow()).setTitle("Login");
+        ((Stage) first.getWindow()).setWidth(551);
+        ((Stage) first.getWindow()).setHeight(359);
+        ((Stage) first.getWindow()).centerOnScreen();
         first.setRoot(root);
     }
 }

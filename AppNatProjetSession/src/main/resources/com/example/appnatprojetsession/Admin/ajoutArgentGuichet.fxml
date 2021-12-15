@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="351.0" prefWidth="374.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.appnatprojetsession.Controllers.AdminController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="336.0" prefWidth="402.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.appnatprojetsession.Controllers.AdminController">
    <children>
-      <Label fx:id="ajouterArgentGuichet" layoutX="74.0" layoutY="22.0" prefHeight="21.0" prefWidth="226.0" text="Ajout d'argent dans le guichet" textAlignment="CENTER">
+      <Label fx:id="ajouterArgentGuichet" layoutX="96.0" layoutY="14.0" prefHeight="21.0" prefWidth="226.0" text="Ajout d'argent dans le guichet" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -20,6 +21,9 @@
       <Label layoutX="55.0" layoutY="180.0" text="Montant à ajouter :" />
       <TextField fx:id="montantAjouterGuichet" layoutX="209.0" layoutY="176.0" prefHeight="25.0" prefWidth="79.0" promptText="Montant" />
       <Label layoutX="60.0" layoutY="222.0" />
-      <Button layoutX="160.0" layoutY="261.0" mnemonicParsing="false" onAction="#AjouterArgentGuichet" text="Ajouter" />
+      <Button layoutX="162.0" layoutY="255.0" mnemonicParsing="false" onAction="#AjouterArgentGuichet" prefHeight="32.0" prefWidth="79.0" text="Ajouter" />
    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </Pane>

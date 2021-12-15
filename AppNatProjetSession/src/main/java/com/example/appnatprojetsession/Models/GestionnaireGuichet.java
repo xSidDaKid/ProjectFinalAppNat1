@@ -8,6 +8,10 @@ import java.util.ArrayList;
  * @Date_de_remise: 16 decembre 2021
  * @author: A. Alperen, B. Shajaan et I. Gafran
  */
+
+/**
+ * Classe qui sert a gerer les relations entre les controlleur et les models
+ */
 public class GestionnaireGuichet {
     private static Banque banque = new Banque();
     private static ArrayList<Client> clients = new ArrayList<>();
@@ -34,6 +38,7 @@ public class GestionnaireGuichet {
 
     }
 
+    //GETTERS & SETTERS-------------------------------------------------------------------------------------------------
     public static ArrayList<Client> getClients() {
         return clients;
     }
@@ -129,7 +134,9 @@ public class GestionnaireGuichet {
     public void setSoldeCompteCourant(double soldeCompteCourant) {
         this.soldeCompteCourant = soldeCompteCourant;
     }
+    //FIN GETTERS & SETTERS---------------------------------------------------------------------------------------------
 
+    //METHODE SPECIFIQUE
     public Compte ValiderUtilisateur(String nom, int nip) {
         Compte c1 = null;
         return c1;
@@ -168,17 +175,28 @@ public class GestionnaireGuichet {
         return this.soldeCompteCourant;
     }
 
+    /**
+     * Methode qui sert a creer un client
+     * @param nom
+     * @param prenom
+     * @param telephone
+     * @param courriel
+     * @param numeroNIP
+     */
     public void creerClient(String nom, String prenom, String telephone, String courriel, int numeroNIP) {
         this.incrementCodeClient();
         //int numeroNIP = this.numeroClient;
         Client client = new Client(codeClient, nom, prenom, telephone, courriel, numeroNIP);
         this.clients.add(client);
-        for (Client c : clients) {
-            System.out.println(c);
-        }
         creerCheque(client.getNumeroNIP(), client.getCodeClient());
     }
 
+    /**
+     * Methode qui sert a creer un compte
+     * @param typeCompte
+     * @param numeroNIP
+     * @param codeClient
+     */
     public void creerCompte(String typeCompte, int numeroNIP, int codeClient) {
         switch (typeCompte) {
             case "Épargne":
@@ -198,12 +216,22 @@ public class GestionnaireGuichet {
         }
     }
 
+    /**
+     * Methode qui permet de creer un compte cheque
+     * @param numeroNIP
+     * @param codeClient
+     */
     public void creerCheque(int numeroNIP, int codeClient) {
         Cheque c1 = new Cheque(numeroNIP, codeClient);
         comptesCheque.add(c1);
         this.incrementNumeroCompte();
     }
 
+    /**
+     * Methode qui sert a initialiser la Banque
+     * @param numeroNIP
+     * @param codeClient
+     */
     public void creerBanque(int numeroNIP, int codeClient) {
         int soldeCompte = 10000;
         this.banque.setNumeroCompte(this.numeroCompte);
@@ -213,10 +241,18 @@ public class GestionnaireGuichet {
         this.incrementNumeroCompte();
     }
 
+    /**
+     * Methode qui sert a bloquer un client
+     * @param codeClient
+     */
     public void bloquerClient(int codeClient) {
         this.clientBloque.add(codeClient);
     }
 
+    /**
+     * Methode qui sert a debloquer un client
+     * @param codeClient
+     */
     public void debloquerClient(int codeClient) {
         for (int i = 0; i < this.clientBloque.size(); i++) {
             int value = clientBloque.get(i);
@@ -227,10 +263,16 @@ public class GestionnaireGuichet {
         }
     }
 
+    /**
+     * Methode qui sert a incrementer le code du client
+     */
     public void incrementCodeClient() {
         this.codeClient += 1;
     }
 
+    /**
+     * Methode qui sert a incrementer le numero du compte du client
+     */
     public void incrementNumeroCompte() {
         this.numeroCompte += 1;
     }

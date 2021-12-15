@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="333.0" prefWidth="554.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.appnatprojetsession.Controllers.AdminController">
+<GridPane prefHeight="333.0" prefWidth="554.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.appnatprojetsession.Controllers.AdminController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -36,5 +36,10 @@
       <Button mnemonicParsing="false" onAction="#fermerGuichet" prefHeight="25.0" prefWidth="139.0" text="Fermet le guichet" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
       <Button mnemonicParsing="false" onAction="#afficherClients" text="Listes des clients" GridPane.halignment="CENTER" />
       <Button mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <Label prefHeight="15.0" prefWidth="172.0" text="Par: A. Alperen, B.Shajaan et I. Gafran" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
    </children>
 </GridPane>
