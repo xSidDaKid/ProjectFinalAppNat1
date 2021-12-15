@@ -60,6 +60,23 @@ public class UserController implements Initializable {
     @FXML
     private TextField inputMontant;
 
+    // Transfert / Paiement
+
+    @FXML
+    private ComboBox<String> transfertComptes=new ComboBox<>();
+
+    @FXML
+    private RadioButton radioTranfert;
+
+    @FXML
+    private ToggleGroup grTransfert;
+
+    @FXML
+    private RadioButton radioPaiement;
+
+    @FXML
+    private TextField inputPaiement;
+
 
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<String> testString = FXCollections.observableArrayList();
@@ -108,6 +125,24 @@ public class UserController implements Initializable {
 
 
         this.tousComptes.setItems(comptesClientTout);
+
+        ObservableList<Compte> comptesTransfert = FXCollections.observableArrayList();
+        ObservableList<String> comptesClientTranfert = FXCollections.observableArrayList();
+        comptesTransfert.addAll(GestionnaireGuichet.getComptesEpargne());
+        comptesTransfert.addAll(GestionnaireGuichet.getComptesHypothecaire());
+        comptesTransfert.addAll(GestionnaireGuichet.getComptesMarge());
+        for (Compte c : comptesTransfert) {
+            if (c.getCodeClient() == idUser) {
+                String txt = c.getClass().toString();
+                String[] split = txt.split("\\.");
+                txt = "Type: " + split[4] + " :" + (c.getNumeroCompte());
+                comptesClientTranfert.add(txt);
+
+            }
+        }
+
+
+        this.transfertComptes.setItems(comptesClientTranfert);
 
     }
 
@@ -164,6 +199,9 @@ public class UserController implements Initializable {
                         compteCheque.setSoldeCompte(solde);
                         System.out.println(compteCheque.getSoldeCompte());
                         listeCheque.set(i, compteCheque);
+
+                        GestionnaireGuichet.setComptesCheque(listeCheque);
+
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Un solde de " + montant + " a été ajouté");
                         alert.showAndWait();
                     }
@@ -184,6 +222,9 @@ public class UserController implements Initializable {
                         compteCheque.setSoldeCompte(solde);
                         System.out.println(compteCheque.getSoldeCompte());
                         listeCheque.set(i, compteCheque);
+
+                        GestionnaireGuichet.setComptesHypothecaire(listeCheque);
+
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Un solde de " + montant + " a été ajouté");
                         alert.showAndWait();
                     }
@@ -204,6 +245,11 @@ public class UserController implements Initializable {
                         compteCheque.setSoldeCompte(solde);
                         System.out.println(compteCheque.getSoldeCompte());
                         listeCheque.set(i, compteCheque);
+
+
+                        GestionnaireGuichet.setComptesEpargne(listeCheque);
+
+
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Un solde de " + montant + " a été ajouté");
                         alert.showAndWait();
                     }
@@ -266,6 +312,8 @@ public class UserController implements Initializable {
                         System.out.println(compteCheque.getSoldeCompte());
                         listeCheque.set(i, compteCheque);
 
+                        GestionnaireGuichet.setComptesCheque(listeCheque);
+
                        // gg.getBanque().retraitGuichet(montant);
 
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Un solde de " + montant + " a été retiré");
@@ -295,6 +343,9 @@ public class UserController implements Initializable {
                         compteCheque.setSoldeCompte(solde);
                         System.out.println(compteCheque.getSoldeCompte());
                         listeCheque.set(i, compteCheque);
+
+                        GestionnaireGuichet.setComptesEpargne(listeCheque);
+
                         gg.getBanque().retraitGuichet(montant);
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Un solde de " + montant + " a été ajouté");
                         alert.showAndWait();
@@ -350,28 +401,153 @@ public class UserController implements Initializable {
     }
 
     @FXML
-    void paiementAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/User/transfertPaiement.fxml"));
-        Scene first = menuUser.getScene();
-        ((Stage) first.getWindow()).setTitle("Paiement");
-        first.setRoot(root);
-    }
-
-    @FXML
-    void retraitAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/User/DepotRetrait.fxml"));
-        Scene first = menuUser.getScene();
-        ((Stage) first.getWindow()).setTitle("Retrait");
-        first.setRoot(root);
-    }
-
-    @FXML
     void transfertAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/User/transfertPaiement.fxml"));
         Scene first = menuUser.getScene();
         ((Stage) first.getWindow()).setTitle("Transfert");
         first.setRoot(root);
     }
+
+
+    @FXML
+    void transfertPaiement(ActionEvent event) {
+        if (radioTranfert.isSelected()) {
+            transfert();
+        } else if (radioPaiement.isSelected()) {
+            retraitCompte();
+        }
+    }
+
+    public void transfert(){
+
+        if (inputPaiement.getText().equalsIgnoreCase("")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. veuillez remplir les champs");
+            alert.showAndWait();
+            return;
+        }
+        double montantTransfert= Double.parseDouble(inputPaiement.getText());
+        String compte = transfertComptes.getSelectionModel().getSelectedItem();
+
+
+
+        System.out.println(compte);
+        String[] typeList = compte.split(":");
+        String type = typeList[1].trim();
+        System.out.println(type + "test");
+        compte = typeList[2];
+
+        Compte compteCheque;
+        ArrayList<Compte> listeCheque = new ArrayList<>();
+        listeCheque.addAll(GestionnaireGuichet.getComptesEpargne());
+        listeCheque.addAll(GestionnaireGuichet.getComptesHypothecaire());
+        listeCheque.addAll(GestionnaireGuichet.getComptesMarge());
+
+
+        Cheque compteChequeUser;
+        ArrayList<Cheque> listeChequeUser = new ArrayList<>();
+        listeChequeUser=(GestionnaireGuichet.getComptesCheque());
+
+
+        for (int i = 0; i < listeChequeUser.size(); i++) {
+
+            if (listeChequeUser.get(i).getCodeClient() == Integer.parseInt(LoginController.codeUtilisateur)) {
+                compteChequeUser = listeChequeUser.get(i);
+                System.out.println(compteChequeUser.getSoldeCompte());
+                double solde = compteChequeUser.getSoldeCompte();
+
+
+                if (solde < montantTransfert + 1.25) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Votre solde n'est pas suffisant");
+                    alert.showAndWait();
+                    return;
+                }
+
+
+                solde = (solde - montantTransfert);
+                compteChequeUser.setSoldeCompte(solde);
+                System.out.println(compteChequeUser.getSoldeCompte());
+                listeChequeUser.set(i, compteChequeUser);
+
+                GestionnaireGuichet.setComptesCheque(listeChequeUser);
+
+
+
+
+            }
+
+        }
+
+
+
+        for (int i = 0; i < listeCheque.size(); i++) {
+            System.out.println("test boucle");
+            if (listeCheque.get(i).getNumeroCompte() == Integer.parseInt(compte)) {
+
+                compteCheque = listeCheque.get(i);
+                System.out.println(compteCheque.getSoldeCompte());
+                double solde = compteCheque.getSoldeCompte();
+
+
+
+
+
+                solde = (solde + montantTransfert);
+                compteCheque.setSoldeCompte(solde);
+                System.out.println(compteCheque.getSoldeCompte());
+                listeCheque.set(i, compteCheque);
+
+
+                for (int j=0; j<listeCheque.size();j++){
+
+                    System.out.println(compte);
+                    String[] typeListUser = listeCheque.get(j).getClass().toString().split(":");
+                    String typeUser = typeList[1].trim();
+                    System.out.println(type + "test");
+                    compte = typeList[2];
+
+
+                    if (typeUser.equals("Epargne")){
+                    Epargne epargne= (Epargne) listeCheque.get(i);
+                    ArrayList<Epargne> liste = GestionnaireGuichet.getComptesEpargne();
+                    liste.set(i,epargne);
+                    GestionnaireGuichet.setComptesEpargne(liste);
+
+                    }else if(typeUser.equals("Hypothécaire")){
+                        Epargne epargne= (Epargne) listeCheque.get(i);
+                        ArrayList<Epargne> liste = GestionnaireGuichet.getComptesEpargne();
+                        liste.set(i,epargne);
+                        GestionnaireGuichet.setComptesEpargne(liste);
+
+                    }else if(typeUser.equals("Marge")){
+                        Epargne epargne= (Epargne) listeCheque.get(i);
+                        ArrayList<Epargne> liste = GestionnaireGuichet.getComptesEpargne();
+                        liste.set(i,epargne);
+                        GestionnaireGuichet.setComptesEpargne(liste);
+                    }
+
+
+
+                }
+
+
+
+
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Transfert effectué");
+                alert.showAndWait();
+                return;
+
+            }
+
+        }
+
+    }
+
+
+
+
+
+
 
     @FXML
     public void back() throws IOException {

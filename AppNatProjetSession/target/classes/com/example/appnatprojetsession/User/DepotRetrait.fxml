@@ -17,7 +17,7 @@
          </font>
       </Label>
       <Label layoutX="38.0" layoutY="75.0" text="Comptes:" />
-      <ComboBox fx:id="listeComptes" layoutX="128.0" layoutY="71.0" onAction="#selectionChanged" prefWidth="150.0" promptText="Listes des comptes" />
+      <ComboBox fx:id="listeComptes" layoutX="128.0" layoutY="71.0" prefWidth="150.0" promptText="Listes des comptes" />
       <Label layoutX="40.0" layoutY="139.0" text="Transaction:" />
       <RadioButton fx:id="radioRetrait" layoutX="134.0" layoutY="139.0" mnemonicParsing="false" text="Retrait">
          <toggleGroup>
@@ -25,7 +25,7 @@
          </toggleGroup></RadioButton>
       <RadioButton fx:id="radioDepot" layoutX="221.0" layoutY="139.0" mnemonicParsing="false" selected="true" text="Dépot" toggleGroup="$grDepot" />
       <Label layoutX="38.0" layoutY="198.0" text="Transaction:" />
-      <TextField fx:id="inputMontant" alignment="CENTER_RIGHT" layoutX="129.0" layoutY="194.0" text="\$" />
+      <TextField fx:id="inputMontant" alignment="CENTER_RIGHT" layoutX="129.0" layoutY="194.0" />
       <Button layoutX="123.0" layoutY="269.0" mnemonicParsing="false" onAction="#depotRetrait" text="Confirmer" />
       <Pane prefHeight="63.0" prefWidth="85.0">
          <children>
