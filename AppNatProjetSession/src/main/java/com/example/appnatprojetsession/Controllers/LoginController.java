@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -29,6 +30,8 @@ public class LoginController {
     TextField code;
     @FXML
     TextField nip;
+    @FXML
+    private Label nomUser;
 
     GestionnaireGuichet gg = new GestionnaireGuichet();
 
@@ -83,6 +86,9 @@ public class LoginController {
                         Scene first = code.getScene();
                         ((Stage) first.getWindow()).setTitle("Client");
                         first.setRoot(root);
+                        System.out.println(c);
+                        System.out.println(c.getNom());
+                        ((Label)first.lookup("#nomUser")).setText("Bonjour "+c.getNom() + " " + c.getPrenom());
                     } else {
                         Alert alert = new Alert(Alert.AlertType.WARNING, "Client non trouvable");
                         alert.showAndWait();
