@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="358.0" prefWidth="565.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.appnatprojetsession.Controllers.UserController">
    <children>
       <Label fx:id="menuUser" layoutX="240.0" layoutY="16.0" prefHeight="43.0" prefWidth="122.0" text="Menu - Client">
@@ -17,7 +16,7 @@
       <Button contentDisplay="CENTER" layoutX="258.0" layoutY="96.0" mnemonicParsing="false" onAction="#depotAction" prefHeight="25.0" prefWidth="84.0" text="Dépot" />
       <Button layoutX="261.0" layoutY="188.0" mnemonicParsing="false" onAction="#transfertAction" prefHeight="25.0" prefWidth="80.0" text="Transfert" />
       <Button layoutX="235.0" layoutY="290.0" mnemonicParsing="false" onAction="#comptesDisponibles" prefHeight="25.0" prefWidth="130.0" text="Comptes Disponibles" />
-      <Label fx:id="nomUser" layoutX="14.0" layoutY="24.0" prefHeight="27.0" prefWidth="192.0" text="Bonjour ">
+      <Label fx:id="nomUser" layoutX="14.0" layoutY="24.0" prefHeight="27.0" prefWidth="192.0" text="Bonjour  ">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
