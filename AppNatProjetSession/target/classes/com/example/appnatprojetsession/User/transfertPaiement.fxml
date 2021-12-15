@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="349.0" prefWidth="399.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="349.0" prefWidth="399.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.appnatprojetsession.Controllers.UserController">
    <children>
-      <Label layoutX="131.0" layoutY="14.0" text="Transfert/Paiemenrt">
+      <Label fx:id="transfertPaiement" layoutX="131.0" layoutY="14.0" text="Transfert/Paiement">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -26,5 +26,10 @@
       <Label layoutX="51.0" layoutY="221.0" text="Montant:" />
       <TextField layoutX="165.0" layoutY="212.0" prefHeight="25.0" prefWidth="172.0" />
       <Button layoutX="156.0" layoutY="282.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="85.0" text="Transférer" />
+      <Pane layoutX="14.0" layoutY="36.0" prefHeight="63.0" prefWidth="85.0">
+         <children>
+            <Button layoutX="22.0" layoutY="19.0" mnemonicParsing="false" onAction="#back" text="Back" />
+         </children>
+      </Pane>
    </children>
 </Pane>
