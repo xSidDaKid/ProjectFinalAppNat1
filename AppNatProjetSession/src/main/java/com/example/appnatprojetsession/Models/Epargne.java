@@ -9,6 +9,14 @@ package com.example.appnatprojetsession.Models;
 public class Epargne extends Compte{
     private double tauxInteret = 1.01;
 
+    public Epargne() {
+    }
+
+    public Epargne(int numeroNIP, int codeClient, double soldeCompte, int retraitMaximum, int montantTransfertMaximum, double tauxInteret) {
+        super(numeroNIP, codeClient, soldeCompte, retraitMaximum, montantTransfertMaximum);
+        this.tauxInteret = tauxInteret;
+    }
+
     public Epargne (int numeroNIP, int codeClient){
         super(numeroNIP, codeClient);
     }
@@ -30,6 +38,11 @@ public class Epargne extends Compte{
         super(numeroNIP, numeroCompte);
         this.tauxInteret = tauxInteret;
     }*/
+
+    public void paiementInteret(){
+        double solde = this.getSoldeCompte() * this.tauxInteret;
+        this.setSoldeCompte(solde);
+    }
 
     @Override
     public String toString() {
