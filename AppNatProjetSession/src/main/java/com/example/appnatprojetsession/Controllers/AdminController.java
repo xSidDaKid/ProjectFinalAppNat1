@@ -2,6 +2,7 @@ package com.example.appnatprojetsession.Controllers;
 
 
 import com.example.appnatprojetsession.Models.Client;
+import com.example.appnatprojetsession.Models.Epargne;
 import com.example.appnatprojetsession.Models.GestionnaireGuichet;
 import com.example.appnatprojetsession.Models.Transaction;
 import javafx.application.Platform;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
  * @author: A. Alperen, B. Shajaan et I. Gafran
  */
 public class AdminController extends GestionnaireGuichet {
+
     //creerClient variables
     private static String nomC = "";
     private static String prenomC = "";
@@ -43,10 +45,10 @@ public class AdminController extends GestionnaireGuichet {
     private static int codeClientSaisi;
 
     //ajouterArgentGuichet variables
-    private static String montantAjouter="";
+    private static String montantAjouter = "";
     private static int montantAjouterAGuichet;
-
     GestionnaireGuichet gg = new GestionnaireGuichet();
+
     //Menu Admin pour pouvoir changer de fenetre
     @FXML
     private Label menuAdmin;
@@ -153,7 +155,8 @@ public class AdminController extends GestionnaireGuichet {
      * @throws IOException
      */
     public void payerInteret() throws IOException {
-        //TODO
+        Epargne epargne = new Epargne();
+        epargne.paiementInteret();
     }
 
     /**
@@ -223,6 +226,10 @@ public class AdminController extends GestionnaireGuichet {
         alert.showAndWait();
     }
 
+    /**
+     * Methodes qui sert a creer un compte pour un client
+     * @param actionEvent
+     */
     public void creerCompte(ActionEvent actionEvent) {
         this.setSelectedButtons();
 
@@ -254,6 +261,24 @@ public class AdminController extends GestionnaireGuichet {
         }
     }
 
+    /**
+     * Methode qui sert a savoir quelle compte on a choisi de creer
+     */
+    public void setSelectedButtons() {
+        codeCli = saisiCodeClient.getText();
+        if (radioEpargne.isSelected()) {
+            typeCompte = radioEpargne.getText();
+        } else if (radioMargeDeCredit.isSelected()) {
+            typeCompte = radioMargeDeCredit.getText();
+        } else if (radioHypothecaire.isSelected()) {
+            typeCompte = radioHypothecaire.getText();
+        }
+    }
+
+    /**
+     * Methodes qui sert a afficher les transactions du clients
+     * @param actionEvent
+     */
     public void afficherTransaction(ActionEvent actionEvent) {
         this.setSelectedButtons();
 
@@ -295,6 +320,10 @@ public class AdminController extends GestionnaireGuichet {
         }
     }
 
+    /**
+     * Methodes qui sert a bloquer ou debloquer un client
+     * @param actionEvent
+     */
     public void blockClient(ActionEvent actionEvent) {
         codeCli = saisiCodeClient.getText();
         if (radioBloquer.isSelected()) {
@@ -356,14 +385,17 @@ public class AdminController extends GestionnaireGuichet {
         }
     }
 
-
+    /**
+     * Methode qui sert ajouter de largent dans le guichet
+     * @param actionEvent
+     */
     public void AjouterArgentGuichet(ActionEvent actionEvent) {
         montantAjouter = montantAjouterGuichet.getText();
-        if(montantAjouter.equalsIgnoreCase("")){
+        if (montantAjouter.equalsIgnoreCase("")) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Remplir tous les champs");
             alert.showAndWait();
             return;
-        }else{
+        } else {
             try {
                 montantAjouterAGuichet = Integer.parseInt(montantAjouter);
             } catch (Exception e) {
@@ -374,12 +406,12 @@ public class AdminController extends GestionnaireGuichet {
         }
 
         int modulo = montantAjouterAGuichet % 10;
-        if(modulo != 0 ){
+        if (modulo != 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Il faut ajouter un montant qui est un  multiple de 10 dans le guichet");
             alert.showAndWait();
             return;
-        }else{
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Un montant de "+ montantAjouterAGuichet+" dans le guichet");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Un montant de " + montantAjouterAGuichet + " dans le guichet");
             alert.showAndWait();
             return;
         }
@@ -423,17 +455,6 @@ public class AdminController extends GestionnaireGuichet {
 
         ((Stage) first.getWindow()).setTitle("Login");
         first.setRoot(root);
-    }
-
-    public void setSelectedButtons() {
-        codeCli = saisiCodeClient.getText();
-        if (radioEpargne.isSelected()) {
-            typeCompte = radioEpargne.getText();
-        } else if (radioMargeDeCredit.isSelected()) {
-            typeCompte = radioMargeDeCredit.getText();
-        } else if (radioHypothecaire.isSelected()) {
-            typeCompte = radioHypothecaire.getText();
-        }
     }
 
     /**
