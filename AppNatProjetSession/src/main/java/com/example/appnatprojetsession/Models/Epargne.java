@@ -6,8 +6,12 @@ package com.example.appnatprojetsession.Models;
  * @Date_de_remise: 16 decembre 2021
  * @author: A. Alperen, B. Shajaan et I. Gafran
  */
-public class Epargne extends Compte{
+public class Epargne extends Compte {
     private double tauxInteret = 1.01;
+
+    public Epargne(int numeroNIP, int codeClient) {
+        super(numeroNIP, codeClient);
+    }
 
     public Epargne() {
     }
@@ -17,9 +21,6 @@ public class Epargne extends Compte{
         this.tauxInteret = tauxInteret;
     }
 
-    public Epargne (int numeroNIP, int codeClient){
-        super(numeroNIP, codeClient);
-    }
 
     public double getTauxInteret() {
         return tauxInteret;
@@ -39,7 +40,7 @@ public class Epargne extends Compte{
         this.tauxInteret = tauxInteret;
     }*/
 
-    public void paiementInteret(){
+    public void paiementInteret() {
         double solde = this.getSoldeCompte() * this.tauxInteret;
         this.setSoldeCompte(solde);
     }
