@@ -1,14 +1,24 @@
 package com.example.appnatprojetsession.Controllers;
 
+import com.example.appnatprojetsession.Models.Client;
+import com.example.appnatprojetsession.Models.Compte;
+import com.example.appnatprojetsession.Models.GestionnaireGuichet;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 /**
  * @Cours: Applications natives 1
@@ -16,7 +26,11 @@ import java.io.IOException;
  * @Date_de_remise: 16 decembre 2021
  * @author: A. Alperen, B. Shajaan et I. Gafran
  */
-public class UserController {
+public class UserController implements Initializable {
+
+
+    GestionnaireGuichet gg = new GestionnaireGuichet();
+
 
     @FXML
     private Label menuUser;
@@ -27,7 +41,54 @@ public class UserController {
     @FXML
     private Label depotRetrait;
 
+    // depot solde
+    @FXML
+     ComboBox<Compte> listeComptes=new ComboBox<>();
 
+    @FXML
+    private RadioButton radioRetrait;
+
+    @FXML
+    private ToggleGroup grDepot;
+
+    @FXML
+    private RadioButton radioDepot;
+
+    @FXML
+    private TextField inputMontant;
+
+
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<String> testString= FXCollections.observableArrayList();
+        testString.add("test");
+        testString.add("test2");
+
+
+
+        int idUser = Integer.parseInt(LoginController.codeUtilisateur);
+        ObservableList<Compte> comptes= FXCollections.observableArrayList();
+
+        comptes.addAll(GestionnaireGuichet.getComptesCheque());
+
+        comptes.addAll(GestionnaireGuichet.getComptesCheque());
+            comptes.addAll(GestionnaireGuichet.getComptesEpargne());
+            comptes.addAll(GestionnaireGuichet.getComptesHypothecaire());
+
+
+
+        ObservableList<Compte> comptesClient= FXCollections.observableArrayList();
+
+        for (Compte c: comptes){
+            if(c.getCodeClient() == idUser){
+                comptesClient.add(c);
+
+            }
+        }
+       System.out.println(comptes);
+
+            this.listeComptes.setItems(comptesClient);
+
+    }
 
     @FXML
     void comptesDisponibles(ActionEvent event) throws IOException {
@@ -36,6 +97,43 @@ public class UserController {
         ((Stage) first.getWindow()).setTitle("Soldes");
         first.setRoot(root);
     }
+
+
+
+    public void depotRetrait(){
+        if(radioDepot.isSelected()){
+            depotCompte();
+        }else if(radioDepot.isSelected()){
+            retraitCompte();
+        }
+    }
+
+
+    public void depotCompte(){
+
+    Compte compte=(Compte)listeComptes.getSelectionModel().getSelectedItem();
+    String compteString=compte.toString();
+
+        String type= compteString.substring(compteString.indexOf("[") + 1, compteString.indexOf("{"));
+        System.out.println(type);
+        int montant=Integer.parseInt(inputMontant.getText());
+
+
+
+
+    }
+
+    public void retraitCompte(){
+    Compte compte=(Compte)listeComptes.getSelectionModel().getSelectedItem();
+
+
+
+    }
+    @FXML
+    void selectionChanged(ActionEvent event) {
+
+    }
+
 
     @FXML
     void depotAction(ActionEvent event) throws IOException {
