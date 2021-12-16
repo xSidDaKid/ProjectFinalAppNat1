@@ -75,6 +75,15 @@ public class LoginController {
                 return;
             }
 
+            ArrayList<Integer> comptesBloques = gg.getClientBloque();
+            for(Integer i: comptesBloques){
+                if(i == codeCli){
+                    Alert alert = new Alert(Alert.AlertType.WARNING, "Votre compte a ete bloque, S.V.P., contacter votre banque pour plus d'information.");
+                    alert.showAndWait();
+                    return;
+                }
+            }
+
             Client client = new Client(codeCli, nip);
             ArrayList<Client> clients = gg.getClients();
             System.out.println("HERE 1");

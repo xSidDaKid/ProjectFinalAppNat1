@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.appnatprojetsession.Controllers.AdminController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.appnatprojetsession.Controllers.AdminController">
    <children>
       <Label fx:id="prelevementHypo" layoutX="77.0" layoutY="22.0" prefHeight="21.0" prefWidth="261.0" text="Admin - Prélèvement hypothécaire">
          <font>
@@ -16,11 +16,11 @@
          </font>
       </Label>
       <Button layoutX="301.0" layoutY="62.0" mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion" />
-      <Label layoutX="152.0" layoutY="128.0" text="Solde:" />
-      <TextField layoutX="205.0" layoutY="124.0" prefHeight="25.0" prefWidth="139.0" promptText="Montant" />
-      <Label layoutX="68.0" layoutY="186.0" text="Choisissez un compte:" />
-      <ComboBox layoutX="205.0" layoutY="182.0" prefHeight="25.0" prefWidth="139.0" promptText="Liste des comptes" />
-      <Button layoutX="157.0" layoutY="247.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Confirmer" />
+      <Label layoutX="64.0" layoutY="116.0" text="Choisissez un compte:" />
+      <ComboBox fx:id="listComptesHypothecaires" layoutX="205.0" layoutY="112.0" prefHeight="25.0" prefWidth="139.0" promptText="Liste des comptes" />
+      <Label layoutX="150.0" layoutY="178.0" text="Solde:" />
+      <TextField fx:id="montantAPrelever" layoutX="205.0" layoutY="174.0" prefHeight="25.0" prefWidth="139.0" promptText="Montant" />
+      <Button layoutX="160.0" layoutY="251.0" mnemonicParsing="false" onAction="#prelevementHypothecaire" prefHeight="25.0" prefWidth="96.0" text="Confirmer" />
       <Button layoutX="31.0" layoutY="62.0" mnemonicParsing="false" onAction="#back" text="Back" />
    </children>
    <padding>

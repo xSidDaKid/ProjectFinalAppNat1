@@ -3,19 +3,22 @@ package com.example.appnatprojetsession.Controllers;
 
 import com.example.appnatprojetsession.Models.*;
 import javafx.application.Platform;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 /**
  * @Cours: Applications natives 1
@@ -23,7 +26,7 @@ import java.util.ArrayList;
  * @Date_de_remise: 16 decembre 2021
  * @author: A. Alperen, B. Shajaan et I. Gafran
  */
-public class AdminController extends GestionnaireGuichet {
+public class AdminController implements Initializable {
 
     //creerClient variables
     private static String nomC = "";
@@ -45,6 +48,10 @@ public class AdminController extends GestionnaireGuichet {
     private static String montantAjouter = "";
     private static int montantAjouterAGuichet;
     GestionnaireGuichet gg = new GestionnaireGuichet();
+
+    //preleverMontantGuichet
+    private static String montantPreleve = "";
+    private static int montantAPrel;
 
     //Menu Admin pour pouvoir changer de fenetre
     @FXML
@@ -85,6 +92,12 @@ public class AdminController extends GestionnaireGuichet {
     //Ajouter_Argent_Guichet
     @FXML
     private TextField montantAjouterGuichet;
+
+    //Prelevement_Hypothecaire
+    @FXML
+    public ComboBox<String> listComptesHypothecaires = new ComboBox<>();
+    @FXML
+    private TextField montantAPrelever;
 
     /**
      * Login avec enter
@@ -301,6 +314,17 @@ public class AdminController extends GestionnaireGuichet {
             ArrayList<Client> clients = gg.getClients();
             for (Client c : clients) {
                 if (c.getCodeClient() == codeClient) {
+                    if(typeCompte.equalsIgnoreCase("Marge de crédit")){
+                        ArrayList<Marge> margeList = gg.getComptesMarge();
+                        for (Marge m: margeList) {
+                            if(m.getCodeClient() == c.getCodeClient()){
+                                Alert alert = new Alert(Alert.AlertType.ERROR, "le client " + codeClient + " possede deja un compte de marge, un client " +
+                                        "peut seulement avoir un compte de marge de credit");
+                                alert.showAndWait();
+                                return;
+                            }
+                        }
+                    }
                     gg.creerCompte(typeCompte, c.getNumeroNIP(), c.getCodeClient());
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Le compte " + typeCompte + " pour le client " + codeClient + " a ete creer");
                     alert.showAndWait();
@@ -480,6 +504,78 @@ public class AdminController extends GestionnaireGuichet {
             }
         }
 
+    }
+
+    public void prelevementHypothecaire(ActionEvent actionEvent) {
+        montantPreleve = montantAPrelever.getText();
+        String compteChoisi = this.listComptesHypothecaires.getSelectionModel().getSelectedItem();
+        String[] listString = compteChoisi.split("Compte ID:");
+        String[] listString2 = listString[1].split(" ");
+        String idCompte = listString2[1];
+        System.out.println(idCompte);
+
+        if(idCompte.equalsIgnoreCase("") || montantPreleve.equalsIgnoreCase("")){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Remplir tous les champs");
+            alert.showAndWait();
+            return;
+        }else{
+            int idCompteHypothecaire;
+            try {
+                montantAPrel = Integer.parseInt(montantPreleve);
+                idCompteHypothecaire = Integer.parseInt(idCompte);
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Il faut saisir un montant en chiffre a ajouter dans le guichet");
+                alert.showAndWait();
+                return;
+            }
+
+            ArrayList<Hypothécaire> listHypothecaire = gg.getComptesHypothecaire();
+            ArrayList<Marge> listMarge = gg.getComptesMarge();
+            int codeCli;
+            for (Hypothécaire h: listHypothecaire) {
+                if(idCompteHypothecaire == h.getNumeroCompte()){
+                   codeCli = h.getCodeClient();
+                   if(montantAPrel > h.getSoldeCompte()){
+                       for (Marge m: listMarge) {
+                           if(m.getCodeClient() == codeCli){
+                               double debt = montantAPrel - h.getSoldeCompte();
+                               m.setSoldeCompte(m.getSoldeCompte() + debt);
+                               Alert alert = new Alert(Alert.AlertType.INFORMATION, "Le Client du compte Hypothecaire ne possedait pas un solde suffissant," +
+                                       "un montant de"+ debt+ " $ a ete ajoute a son compte de credit." );
+                               alert.showAndWait();
+                               return;
+                           }
+                       }
+                       Alert alert = new Alert(Alert.AlertType.ERROR, "Le montant desire de prelever depasse le solde du compte hypothecaire et le client ne" +
+                               "possede pas de compte marge de credit pour augmenter le credit");
+                       alert.showAndWait();
+                       return;
+                   }else{
+                       h.setSoldeCompte(h.getSoldeCompte() - montantAPrel);
+                       Alert alert = new Alert(Alert.AlertType.INFORMATION, "Le compte du Client Hypothecaire choisi sait fait retire un montant de "+ montantAPrel+
+                               " $ et sa nouvelle balance dans son compte hypothecaire est de "+h.getSoldeCompte() +" $.");
+                       alert.showAndWait();
+                       return;
+                   }
+                }
+            }
+        }
+    }
+
+
+    public void initialize(URL location, ResourceBundle resources) {
+        ArrayList<Hypothécaire> listHypotechaire = gg.getComptesHypothecaire();
+        ObservableList<String> comptesHypotechaires = FXCollections.observableArrayList();
+        System.out.println(listHypotechaire);
+
+        for (Hypothécaire h : listHypotechaire) {
+            String txt = h.getClass().toString();
+            String[] split = txt.split("\\.");
+            txt = split[4] + " , Compte ID: " + (h.getNumeroCompte()) + " Solde: " + (h.getSoldeCompte());
+            comptesHypotechaires.add(txt);
+        }
+        this.listComptesHypothecaires.setItems(comptesHypotechaires);
+        System.out.println(comptesHypotechaires);
     }
 
     /**
