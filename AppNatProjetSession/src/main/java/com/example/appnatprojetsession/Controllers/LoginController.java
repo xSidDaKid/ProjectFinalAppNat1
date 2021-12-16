@@ -30,10 +30,9 @@ public class LoginController {
     TextField code;
     @FXML
     TextField nip;
+    GestionnaireGuichet gg = new GestionnaireGuichet();
     @FXML
     private Label nomUser;
-
-    GestionnaireGuichet gg = new GestionnaireGuichet();
 
     /**
      * Login avec enter
@@ -85,10 +84,11 @@ public class LoginController {
                         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/User/menuUser.fxml"));
                         Scene first = code.getScene();
                         ((Stage) first.getWindow()).setTitle("Client");
+                        ((Stage) first.getWindow()).setWidth(582);
+                        ((Stage) first.getWindow()).setHeight(311);
+                        ((Stage) first.getWindow()).centerOnScreen();
                         first.setRoot(root);
-                        System.out.println(c);
-                        System.out.println(c.getNom());
-                        ((Label)first.lookup("#nomUser")).setText("Bonjour "+c.getNom() + " " + c.getPrenom());
+                        ((Label) first.lookup("#nomUser")).setText("Bonjour " + c.getNom() + " " + c.getPrenom());
                     } else {
                         Alert alert = new Alert(Alert.AlertType.WARNING, "Client non trouvable");
                         alert.showAndWait();

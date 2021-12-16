@@ -7,7 +7,7 @@ package com.example.appnatprojetsession.Models;
  * @author: Shajaan Balasingam
  * @DA: 1723144
  */
-public class Cheque extends Compte{
+public class Cheque extends Compte {
     private double fraisPaiementFacture = 0;
     private double montantFactureMaximum = 0;
 
@@ -31,7 +31,7 @@ public class Cheque extends Compte{
         this.montantFactureMaximum = montantFactureMaximum;
     }
 
-    public void paiementFacture (double montant) {
+    public void paiementFacture(double montant) {
 
     }
 

@@ -1,7 +1,5 @@
 package com.example.appnatprojetsession.Models;
 
-import com.example.appnatprojetsession.Models.Compte;
-
 /**
  * @Cours: Applications natives 1
  * @Remis_à: Toufik Bellal
@@ -9,19 +7,23 @@ import com.example.appnatprojetsession.Models.Compte;
  * @author: A. Alperen, B. Shajaan et I. Gafran
  */
 public class Transaction {
+    private static int numeroTransactionCompteur = 0;
+    public String type;
     private int numeroTransaction;
     private double montant;
     private Compte compte;
     private Compte compteTransfert;
-    public String type;
-    private static int numeroTransactionCompteur=0;
 
-    public Transaction(double montant, Compte compte, Compte compteTransfert, String type){
+    public Transaction(double montant, Compte compte, Compte compteTransfert, String type) {
         this.incrementCompteur();
         this.numeroTransaction = numeroTransaction;
         this.compte = compte;
         this.compteTransfert = compteTransfert;
         this.type = type;
+    }
+
+    public static void incrementCompteur() {
+        numeroTransactionCompteur = +1;
     }
 
     public int getNumeroTransaction() {
@@ -62,10 +64,6 @@ public class Transaction {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public static void incrementCompteur(){
-        numeroTransactionCompteur=+1;
     }
 
     @Override

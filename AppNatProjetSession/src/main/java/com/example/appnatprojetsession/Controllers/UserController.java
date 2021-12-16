@@ -1,7 +1,6 @@
 package com.example.appnatprojetsession.Controllers;
 
 import com.example.appnatprojetsession.Models.*;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,18 +27,14 @@ public class UserController implements Initializable {
 
 
     GestionnaireGuichet gg = new GestionnaireGuichet();
-
-
-    // Afficher comptes
-    @FXML
-    private ComboBox<String> tousComptes=new ComboBox<>();
-
-    @FXML
-    private Label lbSolde;
-
     // depot solde
     @FXML
     ComboBox<String> listeComptes = new ComboBox<>();
+    // Afficher comptes
+    @FXML
+    private ComboBox<String> tousComptes = new ComboBox<>();
+    @FXML
+    private Label lbSolde;
     @FXML
     private Label menuUser;
     @FXML
@@ -63,7 +58,7 @@ public class UserController implements Initializable {
     // Transfert / Paiement
 
     @FXML
-    private ComboBox<String> transfertComptes=new ComboBox<>();
+    private ComboBox<String> transfertComptes = new ComboBox<>();
 
     @FXML
     private RadioButton radioTranfert;
@@ -77,7 +72,61 @@ public class UserController implements Initializable {
     @FXML
     private TextField inputPaiement;
 
+    /**
+     * MENU OPTION 1 - Redirection vers le menu Depot/Retrait
+     * @param event
+     * @throws IOException
+     */
+    @FXML
+    void depotAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/User/DepotRetrait.fxml"));
+        Scene first = menuUser.getScene();
+        ((Stage) first.getWindow()).setTitle("Dépot");
+        ((Stage) first.getWindow()).setWidth(340);
+        ((Stage) first.getWindow()).setHeight(355);
+        ((Stage) first.getWindow()).centerOnScreen();
+        first.setRoot(root);
+    }
 
+    /**
+     * MENU OPTION 2 - Redirection vers le menu Transfert/Paiement
+     * @param event
+     * @throws IOException
+     */
+    @FXML
+    void transfertAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/User/transfertPaiement.fxml"));
+        Scene first = menuUser.getScene();
+        ((Stage) first.getWindow()).setTitle("Transfert");
+        ((Stage) first.getWindow()).setWidth(415);
+        ((Stage) first.getWindow()).setHeight(382);
+        ((Stage) first.getWindow()).centerOnScreen();
+        first.setRoot(root);
+    }
+
+    /**
+     * MENU OPTION 3 - Redirection vers le menu Comptes Disponibles
+     * @param event
+     * @throws IOException
+     */
+    @FXML
+    void comptesDisponibles(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/User/consulterSolde.fxml"));
+        Scene first = menuUser.getScene();
+        ((Stage) first.getWindow()).setTitle("Comptes Disponibles");
+        ((Stage) first.getWindow()).setWidth(500);
+        ((Stage) first.getWindow()).setHeight(279);
+        ((Stage) first.getWindow()).centerOnScreen();
+        first.setRoot(root);
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * Methodes qui sert a initialiser les ComboBox
+     * @param location
+     * @param resources
+     */
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<String> testString = FXCollections.observableArrayList();
         testString.add("test");
@@ -146,15 +195,9 @@ public class UserController implements Initializable {
 
     }
 
-    @FXML
-    void comptesDisponibles(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/User/consulterSolde.fxml"));
-        Scene first = menuUser.getScene();
-        ((Stage) first.getWindow()).setTitle("Comptes Disponibles");
-        first.setRoot(root);
-    }
-
-
+    /**
+     * Methode qui sert a savoir ce que le client a choisi entre le depot et le retrait
+     */
     public void depotRetrait() {
         if (radioDepot.isSelected()) {
             depotCompte();
@@ -163,7 +206,9 @@ public class UserController implements Initializable {
         }
     }
 
-
+    /**
+     * Methode qui sert a faire un depot dans le compte du client
+     */
     public void depotCompte() {
 
         String compte = listeComptes.getSelectionModel().getSelectedItem();
@@ -262,6 +307,9 @@ public class UserController implements Initializable {
 
     }
 
+    /**
+     * Methode qui sert a faire un retrait dans le compte du client
+     */
     public void retraitCompte() {
 
         String compte = listeComptes.getSelectionModel().getSelectedItem();
@@ -314,7 +362,7 @@ public class UserController implements Initializable {
 
                         GestionnaireGuichet.setComptesCheque(listeCheque);
 
-                       // gg.getBanque().retraitGuichet(montant);
+                        // gg.getBanque().retraitGuichet(montant);
 
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Un solde de " + montant + " a été retiré");
                         alert.showAndWait();
@@ -359,6 +407,10 @@ public class UserController implements Initializable {
 
     }
 
+    /**
+     * Methode qui sert a savoir quelle compte le client a choisi
+     * @param event
+     */
     @FXML
     void selectionCompte(ActionEvent event) {
         String compte = tousComptes.getSelectionModel().getSelectedItem();
@@ -388,27 +440,14 @@ public class UserController implements Initializable {
             }
 
         }
-        lbSolde.setText(solde+"$");
+        lbSolde.setText(solde + "$");
     }
 
 
-    @FXML
-    void depotAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/User/DepotRetrait.fxml"));
-        Scene first = menuUser.getScene();
-        ((Stage) first.getWindow()).setTitle("Dépot");
-        first.setRoot(root);
-    }
-
-    @FXML
-    void transfertAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/User/transfertPaiement.fxml"));
-        Scene first = menuUser.getScene();
-        ((Stage) first.getWindow()).setTitle("Transfert");
-        first.setRoot(root);
-    }
-
-
+    /**
+     * Methode qui sert a savoir ce que le client a choisi entre le treansfert et le paiement
+     * @param event
+     */
     @FXML
     void transfertPaiement(ActionEvent event) {
         if (radioTranfert.isSelected()) {
@@ -418,16 +457,18 @@ public class UserController implements Initializable {
         }
     }
 
-    public void transfert(){
+    /**
+     * Methode qui sert a faire un transfert
+     */
+    public void transfert() {
 
         if (inputPaiement.getText().equalsIgnoreCase("")) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. veuillez remplir les champs");
             alert.showAndWait();
             return;
         }
-        double montantTransfert= Double.parseDouble(inputPaiement.getText());
+        double montantTransfert = Double.parseDouble(inputPaiement.getText());
         String compte = transfertComptes.getSelectionModel().getSelectedItem();
-
 
 
         System.out.println(compte);
@@ -445,7 +486,7 @@ public class UserController implements Initializable {
 
         Cheque compteChequeUser;
         ArrayList<Cheque> listeChequeUser = new ArrayList<>();
-        listeChequeUser=(GestionnaireGuichet.getComptesCheque());
+        listeChequeUser = (GestionnaireGuichet.getComptesCheque());
 
 
         for (int i = 0; i < listeChequeUser.size(); i++) {
@@ -471,12 +512,9 @@ public class UserController implements Initializable {
                 GestionnaireGuichet.setComptesCheque(listeChequeUser);
 
 
-
-
             }
 
         }
-
 
 
         for (int i = 0; i < listeCheque.size(); i++) {
@@ -488,16 +526,13 @@ public class UserController implements Initializable {
                 double solde = compteCheque.getSoldeCompte();
 
 
-
-
-
                 solde = (solde + montantTransfert);
                 compteCheque.setSoldeCompte(solde);
                 System.out.println(compteCheque.getSoldeCompte());
                 listeCheque.set(i, compteCheque);
 
 
-                for (int j=0; j<listeCheque.size();j++){
+                for (int j = 0; j < listeCheque.size(); j++) {
 
                     System.out.println(compte);
                     String[] typeListUser = listeCheque.get(j).getClass().toString().split(":");
@@ -506,31 +541,27 @@ public class UserController implements Initializable {
                     compte = typeList[2];
 
 
-                    if (typeUser.equals("Epargne")){
-                    Epargne epargne= (Epargne) listeCheque.get(i);
-                    ArrayList<Epargne> liste = GestionnaireGuichet.getComptesEpargne();
-                    liste.set(i,epargne);
-                    GestionnaireGuichet.setComptesEpargne(liste);
-
-                    }else if(typeUser.equals("Hypothécaire")){
-                        Epargne epargne= (Epargne) listeCheque.get(i);
+                    if (typeUser.equals("Epargne")) {
+                        Epargne epargne = (Epargne) listeCheque.get(i);
                         ArrayList<Epargne> liste = GestionnaireGuichet.getComptesEpargne();
-                        liste.set(i,epargne);
+                        liste.set(i, epargne);
                         GestionnaireGuichet.setComptesEpargne(liste);
 
-                    }else if(typeUser.equals("Marge")){
-                        Epargne epargne= (Epargne) listeCheque.get(i);
+                    } else if (typeUser.equals("Hypothécaire")) {
+                        Epargne epargne = (Epargne) listeCheque.get(i);
                         ArrayList<Epargne> liste = GestionnaireGuichet.getComptesEpargne();
-                        liste.set(i,epargne);
+                        liste.set(i, epargne);
+                        GestionnaireGuichet.setComptesEpargne(liste);
+
+                    } else if (typeUser.equals("Marge")) {
+                        Epargne epargne = (Epargne) listeCheque.get(i);
+                        ArrayList<Epargne> liste = GestionnaireGuichet.getComptesEpargne();
+                        liste.set(i, epargne);
                         GestionnaireGuichet.setComptesEpargne(liste);
                     }
 
 
-
                 }
-
-
-
 
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Transfert effectué");
@@ -543,12 +574,10 @@ public class UserController implements Initializable {
 
     }
 
-
-
-
-
-
-
+    /**
+     * Methode qui sert a retourner au menu User
+     * @throws IOException
+     */
     @FXML
     public void back() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/User/menuUser.fxml"));
@@ -564,10 +593,17 @@ public class UserController implements Initializable {
             first = depotRetrait.getScene();
         }
 
-        ((Stage) first.getWindow()).setTitle("Login");
+        ((Stage) first.getWindow()).setWidth(582);
+        ((Stage) first.getWindow()).setHeight(311);
+        ((Stage) first.getWindow()).centerOnScreen();
+        ((Stage) first.getWindow()).setTitle("Menu User");
         first.setRoot(root);
     }
 
+    /**
+     * Methode qui permet de se deconnecter
+     * @throws IOException
+     */
     public void deconnexion() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/LoginMenu.fxml"));
         Scene first = null;
@@ -583,6 +619,9 @@ public class UserController implements Initializable {
         }
 
         ((Stage) first.getWindow()).setTitle("Login");
+        ((Stage) first.getWindow()).setWidth(551);
+        ((Stage) first.getWindow()).setHeight(359);
+        ((Stage) first.getWindow()).centerOnScreen();
         first.setRoot(root);
     }
 }

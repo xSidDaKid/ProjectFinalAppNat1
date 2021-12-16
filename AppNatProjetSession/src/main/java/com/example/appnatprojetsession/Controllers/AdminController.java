@@ -87,6 +87,17 @@ public class AdminController extends GestionnaireGuichet {
     private TextField montantAjouterGuichet;
 
     /**
+     * Login avec enter
+     *
+     * @param ae
+     * @throws IOException
+     */
+    @FXML
+    public void onEnter(ActionEvent ae) throws IOException {
+        back();
+    }
+
+    /**
      * MENU OPTION 1 - Redirection vers le menu Creer Client
      *
      * @throws IOException
@@ -95,6 +106,9 @@ public class AdminController extends GestionnaireGuichet {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/creerClient.fxml"));
         Scene first = menuAdmin.getScene();
         ((Stage) first.getWindow()).setTitle("Creation d'un client");
+        ((Stage) first.getWindow()).setWidth(298);
+        ((Stage) first.getWindow()).setHeight(416);
+        ((Stage) first.getWindow()).centerOnScreen();
         first.setRoot(root);
     }
 
@@ -107,6 +121,9 @@ public class AdminController extends GestionnaireGuichet {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/creerCompte.fxml"));
         Scene first = menuAdmin.getScene();
         ((Stage) first.getWindow()).setTitle("Creation d'un compte pour le client");
+        ((Stage) first.getWindow()).setWidth(341);
+        ((Stage) first.getWindow()).setHeight(369);
+        ((Stage) first.getWindow()).centerOnScreen();
         first.setRoot(root);
     }
 
@@ -119,6 +136,9 @@ public class AdminController extends GestionnaireGuichet {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/afficherTransactions.fxml"));
         Scene first = menuAdmin.getScene();
         ((Stage) first.getWindow()).setTitle("Listes des transaction d'un compte client");
+        ((Stage) first.getWindow()).setWidth(406);
+        ((Stage) first.getWindow()).setHeight(384);
+        ((Stage) first.getWindow()).centerOnScreen();
         first.setRoot(root);
     }
 
@@ -131,6 +151,9 @@ public class AdminController extends GestionnaireGuichet {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/bloquerCompte.fxml"));
         Scene first = menuAdmin.getScene();
         ((Stage) first.getWindow()).setTitle("Bloquer/Debloquer un compte client");
+        ((Stage) first.getWindow()).setWidth(385);
+        ((Stage) first.getWindow()).setHeight(382);
+        ((Stage) first.getWindow()).centerOnScreen();
         first.setRoot(root);
     }
 
@@ -143,6 +166,9 @@ public class AdminController extends GestionnaireGuichet {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/ajoutArgentGuichet.fxml"));
         Scene first = menuAdmin.getScene();
         ((Stage) first.getWindow()).setTitle("Ajout d'argent");
+        ((Stage) first.getWindow()).setWidth(402);
+        ((Stage) first.getWindow()).setHeight(336);
+        ((Stage) first.getWindow()).centerOnScreen();
         first.setRoot(root);
     }
 
@@ -175,6 +201,9 @@ public class AdminController extends GestionnaireGuichet {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/prelevementHypothecaire.fxml"));
         Scene first = menuAdmin.getScene();
         ((Stage) first.getWindow()).setTitle("Prelevement d'un montant");
+        ((Stage) first.getWindow()).setWidth(414);
+        ((Stage) first.getWindow()).setHeight(330);
+        ((Stage) first.getWindow()).centerOnScreen();
         first.setRoot(root);
     }
 
@@ -212,7 +241,6 @@ public class AdminController extends GestionnaireGuichet {
     }
 
 //----------------------------------------------------------------------------------------------------------------------
-
 
     /**
      * Methodes qui sert a prendre les informations sur le client
@@ -439,14 +467,14 @@ public class AdminController extends GestionnaireGuichet {
         } else {
             double montantDansGuichet = gg.getBanque().getSoldeCompte();
             System.out.println(montantDansGuichet);
-            double montantTotal = montantDansGuichet+ montantAjouterAGuichet;
-            if(montantTotal > 20000){
+            double montantTotal = montantDansGuichet + montantAjouterAGuichet;
+            if (montantTotal > 20000) {
                 Alert alert = new Alert(Alert.AlertType.WARNING, "Le montant dans le guichet ne peut pas exceder 20,000$");
                 alert.showAndWait();
                 return;
-            }else{
+            } else {
                 gg.getBanque().remplirGuichet(montantAjouterAGuichet);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Un montant de " + montantAjouterAGuichet + "$ dans le guichet.\n Le solde courant du guichet est de "+ montantTotal+" $.");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Un montant de " + montantAjouterAGuichet + "$ dans le guichet.\n Le solde courant du guichet est de " + montantTotal + " $.");
                 alert.showAndWait();
                 return;
             }
@@ -490,6 +518,9 @@ public class AdminController extends GestionnaireGuichet {
         }
 
         ((Stage) first.getWindow()).setTitle("Login");
+        ((Stage) first.getWindow()).setWidth(554);
+        ((Stage) first.getWindow()).setHeight(333);
+        ((Stage) first.getWindow()).centerOnScreen();
         first.setRoot(root);
     }
 
@@ -519,6 +550,9 @@ public class AdminController extends GestionnaireGuichet {
         }
 
         ((Stage) first.getWindow()).setTitle("Login");
+        ((Stage) first.getWindow()).setWidth(551);
+        ((Stage) first.getWindow()).setHeight(359);
+        ((Stage) first.getWindow()).centerOnScreen();
         first.setRoot(root);
     }
 }
