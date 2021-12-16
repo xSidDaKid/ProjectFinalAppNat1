@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -29,7 +30,7 @@ public class LoginController {
     @FXML
     TextField code;
     @FXML
-    TextField nip;
+    PasswordField nip;
     GestionnaireGuichet gg = new GestionnaireGuichet();
     @FXML
     private Label nomUser;
