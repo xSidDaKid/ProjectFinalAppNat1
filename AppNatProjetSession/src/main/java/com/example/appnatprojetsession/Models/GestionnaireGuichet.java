@@ -31,7 +31,7 @@ public class GestionnaireGuichet {
             clients.add(client);
             if (comptesCheque.isEmpty()) {
                 creerCheque(client.getNumeroNIP(), client.getCodeClient());
-                creerBanque(client.getNumeroNIP(), client.getCodeClient());
+                creerBanque(client.getNumeroNIP(), client.getCodeClient(), 10000);
                 //Crée 2 fois
             }
         }
@@ -232,8 +232,7 @@ public class GestionnaireGuichet {
      * @param numeroNIP
      * @param codeClient
      */
-    public void creerBanque(int numeroNIP, int codeClient) {
-        int soldeCompte = 10000;
+    public void creerBanque(int numeroNIP, int codeClient, int soldeCompte) {
         this.banque.setNumeroCompte(this.numeroCompte);
         this.banque.setNumeroNIP(numeroNIP);
         this.banque.setCodeClient(codeClient);

@@ -1,5 +1,7 @@
 package com.example.appnatprojetsession.Models;
 
+import javafx.beans.value.ObservableDoubleValue;
+
 /**
  * @Cours: Applications natives 1
  * @Remis_à: Toufik Bellal
@@ -27,6 +29,15 @@ public class Compte {
         //A changer les valeurs selon les notes
         this.retraitMaximum = 1000;
         //this.montantTransfertMaximum 500;
+    }
+    public Compte(int numeroNIP, int codeClient, double soldeCompte) {
+        this.incrementCompteur();
+        this.numeroCompte = compteur;
+        this.numeroNIP = numeroNIP;
+        this.codeClient = codeClient;
+        this.soldeCompte = soldeCompte;
+        this.retraitMaximum = 10000;
+        this.montantTransfertMaximum = 10000;
     }
 
     public Compte(int numeroNIP, int codeClient, double soldeCompte, int retraitMaximum, int montantTransfertMaximum) {

@@ -23,9 +23,9 @@ public class Banque extends Compte {
         this.montantRemplissage = montantRemplissage;
     }
 
-    public Banque(int numeroNIP, int numeroCompte, double montantMaximum) {
-        super(numeroNIP, numeroCompte);
-        this.montantMaximum = montantMaximum;
+    public Banque(int numeroNIP, int numeroCompte, double soldeCompte) {
+        super(numeroNIP, numeroCompte,soldeCompte);
+        this.montantMaximum = 0;
         this.montantRemplissage = 0;
     }
 
@@ -34,6 +34,7 @@ public class Banque extends Compte {
         this.montantMaximum = montantMaximum;
         this.montantRemplissage = montantRemplissage;
     }
+
 
     public void remplirGuichet(double montantAAjouter) {
         super.setSoldeCompte(super.getSoldeCompte() + montantAAjouter);
