@@ -16,9 +16,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -56,6 +58,8 @@ public class AdminController implements Initializable {
     private static String montantPreleve = "";
     private static int montantAPrel;
     private static String montantCourant = "";
+
+    ObservableList<Client> listClient = FXCollections.observableArrayList();
 
     //Menu Admin pour pouvoir changer de fenetre
     @FXML
@@ -104,6 +108,28 @@ public class AdminController implements Initializable {
     public ComboBox<String> listComptesHypothecaires = new ComboBox<>();
     @FXML
     private TextField montantAPrelever;
+
+    //ClientList
+    @FXML
+    private TableView<Client> tableClient = new TableView<>();
+
+    @FXML
+    private TableColumn<Client, Integer> codeClients = new TableColumn<>();
+
+    @FXML
+    private TableColumn<Client, String> nom = new TableColumn<>();
+
+    @FXML
+    private TableColumn<Client, String> prenom = new TableColumn<>();
+
+    @FXML
+    private TableColumn<Client, String> telephone = new TableColumn<>();
+
+    @FXML
+    private TableColumn<Client, String> courriel = new TableColumn<>();
+
+    @FXML
+    private TableColumn<Client, Integer> numeroNIP = new TableColumn<>();
 
     /**
      * Login avec enter
@@ -604,13 +630,43 @@ public class AdminController implements Initializable {
 //        }
 //        SimpleDoubleProperty solde = new SimpleDoubleProperty(gg.getBanque().getSoldeCompte());
 //        this.montantCourantGuichet.textProperty().bind(solde.asString());
+
     }
 
     /**
      * Methode qui sert a afficher la liste des clients
      */
-    public void afficherClients() {
-        GestionnaireGuichet gg = new GestionnaireGuichet();
+    public void afficherClients() throws IOException {
+//        System.out.println("test");
+//        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/clientTable.fxml"));
+//        Scene first = menuAdmin.getScene();
+//
+//
+//        ArrayList<Client> allClient = gg.getClients();
+//        this.listClient.addAll(allClient);
+//
+//        for (Client c:
+//             this.listClient) {
+//            System.out.println(c);
+//        }
+//        ObservableList<Client> testClient = FXCollections.observableArrayList();
+//        Client test = new Client(1, "test", "test", "5143334444", "test@gmail.com", 1111);
+//        testClient.add(test);
+//
+//        codeClients.setCellValueFactory(new PropertyValueFactory<Client, Integer>("codeClient"));
+//        nom.setCellValueFactory(new PropertyValueFactory<Client, String>("nom"));
+//        prenom.setCellValueFactory(new PropertyValueFactory<Client, String>("prenom"));
+//        telephone.setCellValueFactory(new PropertyValueFactory<Client, String>("telephone"));
+//        courriel.setCellValueFactory(new PropertyValueFactory<Client, String>("courriel"));
+//        numeroNIP.setCellValueFactory(new PropertyValueFactory<Client, Integer>("numeroNIP"));
+//
+//        tableClient.setItems( testClient);
+
+//        GestionnaireGuichet gg = new GestionnaireGuichet();
+
+       // FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/appnatprojetsession/Admin/clientTable.fxml"));
+        //Scene first = null;
+//        first.setRoot(root);
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Voici la liste des clients:\n" + this.gg.getClients());
         alert.showAndWait();
     }

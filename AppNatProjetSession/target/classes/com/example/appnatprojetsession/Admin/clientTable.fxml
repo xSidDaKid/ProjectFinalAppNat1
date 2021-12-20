@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="tableClient" layoutX="10.0" layoutY="18.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="836.0">
+         <columns>
+            <TableColumn fx:id="codeClients" prefWidth="75.0" text="Code Client" />
+            <TableColumn fx:id="nom" prefWidth="117.0" text="Nom" />
+            <TableColumn fx:id="prenom" prefWidth="92.0" text="Prenom" />
+            <TableColumn fx:id="telephone" prefWidth="173.0" text="Telephone" />
+            <TableColumn fx:id="courriel" prefWidth="250.0" text="Courriel" />
+            <TableColumn fx:id="numeroNIP" prefWidth="128.0" text="Numero NIP" />
+         </columns>
+      </TableView>
+   </children>
+</Pane>
