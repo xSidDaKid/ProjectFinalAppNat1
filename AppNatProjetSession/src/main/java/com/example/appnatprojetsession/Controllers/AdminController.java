@@ -409,11 +409,13 @@ public class AdminController implements Initializable {
                 if (c.getCodeClient() == codeClient) {
                     for (Transaction t : transactions) {
                         if (t.getCompte().getCodeClient() == c.getCodeClient()) {
-                            if (t.getType() == "Épargne") {
+                            if (t.getCompte().getClass().toString() == "Epargne") {
                                 transactions.add(t);
-                            } else if (t.getType() == "Hypothécaire") {
+                            } else if (t.getCompte().getClass().toString() =="Hypothécaire") {
                                 transactions.add(t);
-                            } else if (t.getType() == "Marge de crédit") {
+                            } else if (t.getCompte().getClass().toString() =="Marge") {
+                                transactions.add(t);
+                            } else if (t.getCompte().getClass().toString() =="Cheque") {
                                 transactions.add(t);
                             }
                         }
@@ -619,6 +621,9 @@ public class AdminController implements Initializable {
         }
         this.listComptesHypothecaires.setItems(comptesHypotechaires);
         System.out.println(comptesHypotechaires);
+
+
+
 
 
 //        ObservableList<Double> soldeCompte = FXCollections.observableArrayList();

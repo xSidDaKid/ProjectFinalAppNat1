@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.appnatprojetsession.Controllers.UserController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.appnatprojetsession.Controllers.UserController">
    <children>
-      <Label fx:id="depotRetrait" layoutX="99.0" layoutY="14.0" text="Dépôt/Retrait">
+      <Label fx:id="menuUser" layoutX="99.0" layoutY="14.0" text="Dépôt/Retrait">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -33,5 +33,6 @@
          </children>
       </Pane>
       <Button layoutX="232.0" layoutY="19.0" mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion" />
+      <Button layoutX="92.0" layoutY="307.0" mnemonicParsing="false" onAction="#comptesDisponibles" prefHeight="25.0" prefWidth="130.0" text="Comptes Disponibles" />
    </children>
 </Pane>

@@ -16,14 +16,23 @@ public class Transaction {
 
     public Transaction(double montant, Compte compte, Compte compteTransfert, String type) {
         this.incrementCompteur();
-        this.numeroTransaction = numeroTransaction;
+        this.numeroTransaction = numeroTransactionCompteur;
         this.compte = compte;
         this.compteTransfert = compteTransfert;
         this.type = type;
+        this.montant=montant;
+    }
+
+    public Transaction(double montant, Compte compte, String type) {
+        this.incrementCompteur();
+        this.numeroTransaction = numeroTransactionCompteur;
+        this.compte = compte;
+        this.type = type;
+        this.montant=montant;
     }
 
     public static void incrementCompteur() {
-        numeroTransactionCompteur = +1;
+        numeroTransactionCompteur += 1;
     }
 
     public int getNumeroTransaction() {

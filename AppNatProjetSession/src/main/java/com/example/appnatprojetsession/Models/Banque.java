@@ -11,6 +11,7 @@ public class Banque extends Compte {
     private double montantRemplissage = 0;
 
     public Banque() {
+        super.setSoldeCompte(10000.0);
     }
 
     public Banque(int numeroNIP, int numeroCompte) {

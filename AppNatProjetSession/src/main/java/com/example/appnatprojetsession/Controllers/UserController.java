@@ -74,6 +74,7 @@ public class UserController implements Initializable {
 
     /**
      * MENU OPTION 1 - Redirection vers le menu Depot/Retrait
+     *
      * @param event
      * @throws IOException
      */
@@ -83,13 +84,14 @@ public class UserController implements Initializable {
         Scene first = menuUser.getScene();
         ((Stage) first.getWindow()).setTitle("Dépot");
         ((Stage) first.getWindow()).setWidth(340);
-        ((Stage) first.getWindow()).setHeight(355);
+        ((Stage) first.getWindow()).setHeight(450);
         ((Stage) first.getWindow()).centerOnScreen();
         first.setRoot(root);
     }
 
     /**
      * MENU OPTION 2 - Redirection vers le menu Transfert/Paiement
+     *
      * @param event
      * @throws IOException
      */
@@ -99,13 +101,14 @@ public class UserController implements Initializable {
         Scene first = menuUser.getScene();
         ((Stage) first.getWindow()).setTitle("Transfert");
         ((Stage) first.getWindow()).setWidth(415);
-        ((Stage) first.getWindow()).setHeight(382);
+        ((Stage) first.getWindow()).setHeight(450);
         ((Stage) first.getWindow()).centerOnScreen();
         first.setRoot(root);
     }
 
     /**
      * MENU OPTION 3 - Redirection vers le menu Comptes Disponibles
+     *
      * @param event
      * @throws IOException
      */
@@ -124,6 +127,7 @@ public class UserController implements Initializable {
 
     /**
      * Methodes qui sert a initialiser les ComboBox
+     *
      * @param location
      * @param resources
      */
@@ -195,6 +199,27 @@ public class UserController implements Initializable {
 
     }
 
+
+    public void creerTransaction(double montant, Compte compte, Compte compteTransfert, String type) {
+
+        Transaction transaction;
+
+        if (compteTransfert == null) {
+
+            transaction = new Transaction(montant, compte, type);
+
+        } else {
+            transaction = new Transaction(montant, compte, compteTransfert, type);
+        }
+
+        ArrayList<Transaction> listeTransaction = new ArrayList<>();
+        listeTransaction = GestionnaireGuichet.getTransactions();
+        listeTransaction.add(transaction);
+        GestionnaireGuichet.setTransactions(listeTransaction);
+
+
+    }
+
     /**
      * Methode qui sert a savoir ce que le client a choisi entre le depot et le retrait
      */
@@ -245,6 +270,8 @@ public class UserController implements Initializable {
                         System.out.println(compteCheque.getSoldeCompte());
                         listeCheque.set(i, compteCheque);
 
+                        creerTransaction(montant, compteCheque, null, "Depot");
+
                         GestionnaireGuichet.setComptesCheque(listeCheque);
 
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Un solde de " + montant + " a été ajouté");
@@ -267,7 +294,7 @@ public class UserController implements Initializable {
                         compteCheque.setSoldeCompte(solde);
                         System.out.println(compteCheque.getSoldeCompte());
                         listeCheque.set(i, compteCheque);
-
+                        creerTransaction(montant, compteCheque, null, "Depot");
                         GestionnaireGuichet.setComptesHypothecaire(listeCheque);
 
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Un solde de " + montant + " a été ajouté");
@@ -291,7 +318,7 @@ public class UserController implements Initializable {
                         System.out.println(compteCheque.getSoldeCompte());
                         listeCheque.set(i, compteCheque);
 
-
+                        creerTransaction(montant, compteCheque, null, "Depot");
                         GestionnaireGuichet.setComptesEpargne(listeCheque);
 
 
@@ -323,7 +350,11 @@ public class UserController implements Initializable {
 
         double montant = Integer.parseInt(inputMontant.getText());
         double modulo = montant % 10;
-
+        if (gg.getBanque().getSoldeCompte() < montant) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Le montant d'argent dans le guichet est insuffisant");
+            alert.showAndWait();
+            return;
+        }
         if (modulo != 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Il faut ajouter un montant qui est un  multiple de 10 dans le guichet");
             alert.showAndWait();
@@ -349,35 +380,34 @@ public class UserController implements Initializable {
                         double solde = compteCheque.getSoldeCompte();
 
                         if (solde < montant + 1.25) {
-                            boolean validation=false;
+                            boolean validation = false;
                             int idUser = Integer.parseInt(LoginController.codeUtilisateur);
                             ArrayList<Marge> listeMarge = GestionnaireGuichet.getComptesMarge();
-                            for (int j = 0; j < listeMarge.size(); j++){
-                                if(listeMarge.get(j).getCodeClient()==idUser){
+                            for (int j = 0; j < listeMarge.size(); j++) {
+                                if (listeMarge.get(j).getCodeClient() == idUser) {
 
-                                    double soldeTemp=montant-solde;
+                                    double soldeTemp = montant - solde;
 
-                                    Marge compteMarge= listeMarge.get(j);
-                                    compteMarge.setSoldeCompte(compteMarge.getSoldeCompte()+soldeTemp+1.25);
-                                    listeMarge.set(j,compteMarge);
+                                    Marge compteMarge = listeMarge.get(j);
+                                    compteMarge.setSoldeCompte(compteMarge.getSoldeCompte() + soldeTemp + 1.25);
+                                    listeMarge.set(j, compteMarge);
 
                                     GestionnaireGuichet.setComptesMarge(listeMarge);
 
-
+                                    creerTransaction(montant, compteCheque, null, "Retrait");
                                     compteCheque.setSoldeCompte(0.0);
                                     System.out.println(compteCheque.getSoldeCompte());
                                     listeCheque.set(i, compteCheque);
 
                                     GestionnaireGuichet.setComptesCheque(listeCheque);
-                                    validation=true;
+                                    validation = true;
 
                                 }
 
 
-
                             }
 
-                            if(validation==false){
+                            if (validation == false) {
                                 Alert alert = new Alert(Alert.AlertType.ERROR, "Solde insuffisant. Vous n'avez pas de compte de marge");
                                 alert.showAndWait();
                             }
@@ -395,8 +425,9 @@ public class UserController implements Initializable {
 
                         GestionnaireGuichet.setComptesCheque(listeCheque);
 
-                        // gg.getBanque().retraitGuichet(montant);
-
+                        gg.getBanque().retraitGuichet(montant);
+                        System.out.println(gg.getBanque().getSoldeCompte());
+                        creerTransaction(montant, compteCheque, null, "Retrait");
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Un solde de " + montant + " a été retiré");
                         alert.showAndWait();
                     }
@@ -415,18 +446,18 @@ public class UserController implements Initializable {
                         double solde = compteCheque.getSoldeCompte();
 
                         if (solde < montant + 1.25) {
-                            boolean validation=false;
+                            boolean validation = false;
 
                             int idUser = Integer.parseInt(LoginController.codeUtilisateur);
                             ArrayList<Marge> listeMarge = GestionnaireGuichet.getComptesMarge();
-                            for (int j = 0; j < listeMarge.size(); j++){
-                                if(listeMarge.get(j).getCodeClient()==idUser){
+                            for (int j = 0; j < listeMarge.size(); j++) {
+                                if (listeMarge.get(j).getCodeClient() == idUser) {
 
-                                    double soldeTemp=montant-solde;
+                                    double soldeTemp = montant - solde;
 
-                                    Marge compteMarge= listeMarge.get(j);
-                                    compteMarge.setSoldeCompte(compteMarge.getSoldeCompte()+soldeTemp+1.25);
-                                    listeMarge.set(j,compteMarge);
+                                    Marge compteMarge = listeMarge.get(j);
+                                    compteMarge.setSoldeCompte(compteMarge.getSoldeCompte() + soldeTemp + 1.25);
+                                    listeMarge.set(j, compteMarge);
 
                                     GestionnaireGuichet.setComptesMarge(listeMarge);
 
@@ -434,15 +465,15 @@ public class UserController implements Initializable {
                                     compteCheque.setSoldeCompte(0.0);
                                     System.out.println(compteCheque.getSoldeCompte());
                                     listeCheque.set(i, compteCheque);
-
+                                    creerTransaction(montant, compteCheque, null, "Retrait");
                                     GestionnaireGuichet.setComptesEpargne(listeCheque);
-                                    validation=true;
+                                    validation = true;
 
                                 }
 
 
                             }
-                            if(validation==false){
+                            if (validation == false) {
                                 Alert alert = new Alert(Alert.AlertType.ERROR, "Solde insuffisant. Vous n'avez pas de compte de marge");
                                 alert.showAndWait();
                             }
@@ -458,7 +489,7 @@ public class UserController implements Initializable {
                         listeCheque.set(i, compteCheque);
 
                         GestionnaireGuichet.setComptesEpargne(listeCheque);
-
+                        creerTransaction(montant, compteCheque, null, "Retrait");
                         gg.getBanque().retraitGuichet(montant);
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Un solde de " + montant + " a été retiré");
                         alert.showAndWait();
@@ -474,6 +505,7 @@ public class UserController implements Initializable {
 
     /**
      * Methode qui sert a savoir quelle compte le client a choisi
+     *
      * @param event
      */
     @FXML
@@ -511,6 +543,7 @@ public class UserController implements Initializable {
 
     /**
      * Methode qui sert a savoir ce que le client a choisi entre le treansfert et le paiement
+     *
      * @param event
      */
     @FXML
@@ -549,7 +582,7 @@ public class UserController implements Initializable {
         listeCheque.addAll(GestionnaireGuichet.getComptesMarge());
 
 
-        Cheque compteChequeUser;
+        Cheque compteChequeUser = null;
         ArrayList<Cheque> listeChequeUser = new ArrayList<>();
         listeChequeUser = (GestionnaireGuichet.getComptesCheque());
 
@@ -611,18 +644,20 @@ public class UserController implements Initializable {
                         ArrayList<Epargne> liste = GestionnaireGuichet.getComptesEpargne();
                         liste.set(i, epargne);
                         GestionnaireGuichet.setComptesEpargne(liste);
+                        creerTransaction(montantTransfert, compteChequeUser, epargne, "Transfert");
 
                     } else if (typeUser.equals("Hypothécaire")) {
-                        Hypothécaire epargne = (Hypothécaire) listeCheque.get(i);
+                        Hypothécaire hypothécaire = (Hypothécaire) listeCheque.get(i);
                         ArrayList<Hypothécaire> liste = GestionnaireGuichet.getComptesHypothecaire();
-                        liste.set(i, epargne);
+                        liste.set(i, hypothécaire);
                         GestionnaireGuichet.setComptesHypothecaire(liste);
-
+                        creerTransaction(montantTransfert, compteChequeUser, hypothécaire, "Transfert");
                     } else if (typeUser.equals("Marge")) {
-                        Marge epargne = (Marge) listeCheque.get(i);
+                        Marge marge = (Marge) listeCheque.get(i);
                         ArrayList<Marge> liste = GestionnaireGuichet.getComptesMarge();
-                        liste.set(i, epargne);
+                        liste.set(i, marge);
                         GestionnaireGuichet.setComptesMarge(liste);
+                        creerTransaction(montantTransfert, compteChequeUser, marge, "Transfert");
                     }
 
 
@@ -639,7 +674,7 @@ public class UserController implements Initializable {
 
     }
 
-    public void paiement(){
+    public void paiement() {
 
         if (inputPaiement.getText().equalsIgnoreCase("")) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. veuillez remplir les champs");
@@ -650,19 +685,17 @@ public class UserController implements Initializable {
         String compte = transfertComptes.getSelectionModel().getSelectedItem();
 
 
-
         System.out.println(compte);
         String[] typeList = compte.split(":");
         String type = typeList[1].trim();
         System.out.println(type + "test");
         compte = typeList[2];
 
-        if (!type.equals("Marge")){
+        if (!type.equals("Marge")) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Vous pouvez payer seuleument votre facture de Marge");
             alert.showAndWait();
             return;
         }
-
 
 
         Compte compteCheque;
@@ -712,9 +745,8 @@ public class UserController implements Initializable {
                 double solde = compteCheque.getSoldeCompte();
 
 
-
-                if(montantTransfert==compteCheque.getSoldeCompte()){
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "Vous avez une facture de "+solde+" a payer. (Veuillez entrer le montant exact)");
+                if (montantTransfert == compteCheque.getSoldeCompte()) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Vous avez une facture de " + solde + " a payer. (Veuillez entrer le montant exact)");
                     alert.showAndWait();
                     return;
 
@@ -741,18 +773,20 @@ public class UserController implements Initializable {
                         ArrayList<Epargne> liste = GestionnaireGuichet.getComptesEpargne();
                         liste.set(i, epargne);
                         GestionnaireGuichet.setComptesEpargne(liste);
+                        creerTransaction(montantTransfert, compteCheque, epargne, "Paiement");
 
                     } else if (typeUser.equals("Hypothécaire")) {
                         Hypothécaire epargne = (Hypothécaire) listeCheque.get(i);
                         ArrayList<Hypothécaire> liste = GestionnaireGuichet.getComptesHypothecaire();
                         liste.set(i, epargne);
                         GestionnaireGuichet.setComptesHypothecaire(liste);
-
+                        creerTransaction(montantTransfert, compteCheque, epargne, "Paiement");
                     } else if (typeUser.equals("Marge")) {
                         Marge epargne = (Marge) listeCheque.get(i);
                         ArrayList<Marge> liste = GestionnaireGuichet.getComptesMarge();
                         liste.set(i, epargne);
                         GestionnaireGuichet.setComptesMarge(liste);
+                        creerTransaction(montantTransfert, compteCheque, epargne, "Paiement");
                     }
 
 
@@ -772,6 +806,7 @@ public class UserController implements Initializable {
 
     /**
      * Methode qui sert a retourner au menu User
+     *
      * @throws IOException
      */
     @FXML
@@ -798,6 +833,7 @@ public class UserController implements Initializable {
 
     /**
      * Methode qui permet de se deconnecter
+     *
      * @throws IOException
      */
     public void deconnexion() throws IOException {
