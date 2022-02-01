@@ -27,5 +27,6 @@
          </font>
       </Label>
       <Button layoutX="21.0" layoutY="52.0" mnemonicParsing="false" onAction="#back" text="Back" />
+
    </children>
 </Pane>

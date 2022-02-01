@@ -70,7 +70,6 @@ public class LoginController {
                 codeCli = Integer.parseInt(codeUtilisateur);
                 nip = Integer.parseInt(nipUtilisateur);
             } catch (Exception e) {
-                System.out.println(e);
                 Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Entrez des numeros");
                 alert.showAndWait();
                 return;
@@ -87,7 +86,6 @@ public class LoginController {
 
             Client client = new Client(codeCli, nip);
             ArrayList<Client> clients = gg.getClients();
-            System.out.println("HERE 1");
             for (Client c : clients) {
                 if (client.getCodeClient() == c.getCodeClient()) {
                     if (c.getNumeroNIP() == client.getNumeroNIP()) {

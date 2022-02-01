@@ -156,7 +156,6 @@ public class UserController implements Initializable {
 
             }
         }
-        System.out.println(comptes);
 
         this.listeComptes.setItems(comptesClient);
 
@@ -238,10 +237,8 @@ public class UserController implements Initializable {
 
         String compte = listeComptes.getSelectionModel().getSelectedItem();
 
-        System.out.println(compte);
         String[] typeList = compte.split(":");
         String type = typeList[1].trim();
-        System.out.println(type + "test");
         compte = typeList[2];
 
 
@@ -263,11 +260,9 @@ public class UserController implements Initializable {
 
                     if (listeCheque.get(i).getNumeroCompte() == Integer.parseInt(compte)) {
                         compteCheque = listeCheque.get(i);
-                        System.out.println(compteCheque.getSoldeCompte());
                         double solde = compteCheque.getSoldeCompte();
                         solde = solde + montant;
                         compteCheque.setSoldeCompte(solde);
-                        System.out.println(compteCheque.getSoldeCompte());
                         listeCheque.set(i, compteCheque);
 
                         creerTransaction(montant, compteCheque, null, "Depot");
@@ -288,11 +283,9 @@ public class UserController implements Initializable {
 
                     if (listeCheque.get(i).getNumeroCompte() == Integer.parseInt(compte)) {
                         compteCheque = listeCheque.get(i);
-                        System.out.println(compteCheque.getSoldeCompte());
                         double solde = compteCheque.getSoldeCompte();
                         solde = solde + montant;
                         compteCheque.setSoldeCompte(solde);
-                        System.out.println(compteCheque.getSoldeCompte());
                         listeCheque.set(i, compteCheque);
                         creerTransaction(montant, compteCheque, null, "Depot");
                         GestionnaireGuichet.setComptesHypothecaire(listeCheque);
@@ -311,11 +304,9 @@ public class UserController implements Initializable {
 
                     if (listeCheque.get(i).getNumeroCompte() == Integer.parseInt(compte)) {
                         compteCheque = listeCheque.get(i);
-                        System.out.println(compteCheque.getSoldeCompte());
                         double solde = compteCheque.getSoldeCompte();
                         solde = solde + montant;
                         compteCheque.setSoldeCompte(solde);
-                        System.out.println(compteCheque.getSoldeCompte());
                         listeCheque.set(i, compteCheque);
 
                         creerTransaction(montant, compteCheque, null, "Depot");
@@ -341,10 +332,8 @@ public class UserController implements Initializable {
 
         String compte = listeComptes.getSelectionModel().getSelectedItem();
 
-        System.out.println(compte);
         String[] typeList = compte.split(":");
         String type = typeList[1].trim();
-        System.out.println(type + "test");
         compte = typeList[2];
 
 
@@ -376,7 +365,6 @@ public class UserController implements Initializable {
 
                     if (listeCheque.get(i).getNumeroCompte() == Integer.parseInt(compte)) {
                         compteCheque = listeCheque.get(i);
-                        System.out.println(compteCheque.getSoldeCompte());
                         double solde = compteCheque.getSoldeCompte();
 
                         if (solde < montant + 1.25) {
@@ -396,7 +384,6 @@ public class UserController implements Initializable {
 
                                     creerTransaction(montant, compteCheque, null, "Retrait");
                                     compteCheque.setSoldeCompte(0.0);
-                                    System.out.println(compteCheque.getSoldeCompte());
                                     listeCheque.set(i, compteCheque);
 
                                     GestionnaireGuichet.setComptesCheque(listeCheque);
@@ -420,13 +407,11 @@ public class UserController implements Initializable {
 
                         solde = (solde - montant) - 1.25;
                         compteCheque.setSoldeCompte(solde);
-                        System.out.println(compteCheque.getSoldeCompte());
                         listeCheque.set(i, compteCheque);
 
                         GestionnaireGuichet.setComptesCheque(listeCheque);
 
                         gg.getBanque().retraitGuichet(montant);
-                        System.out.println(gg.getBanque().getSoldeCompte());
                         creerTransaction(montant, compteCheque, null, "Retrait");
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Un solde de " + montant + " a été retiré");
                         alert.showAndWait();
@@ -442,7 +427,6 @@ public class UserController implements Initializable {
 
                     if (listeCheque.get(i).getNumeroCompte() == Integer.parseInt(compte)) {
                         compteCheque = listeCheque.get(i);
-                        System.out.println(compteCheque.getSoldeCompte());
                         double solde = compteCheque.getSoldeCompte();
 
                         if (solde < montant + 1.25) {
@@ -463,7 +447,6 @@ public class UserController implements Initializable {
 
 
                                     compteCheque.setSoldeCompte(0.0);
-                                    System.out.println(compteCheque.getSoldeCompte());
                                     listeCheque.set(i, compteCheque);
                                     creerTransaction(montant, compteCheque, null, "Retrait");
                                     GestionnaireGuichet.setComptesEpargne(listeCheque);
@@ -485,7 +468,6 @@ public class UserController implements Initializable {
 
                         solde = (solde - montant) - 1.25;
                         compteCheque.setSoldeCompte(solde);
-                        System.out.println(compteCheque.getSoldeCompte());
                         listeCheque.set(i, compteCheque);
 
                         GestionnaireGuichet.setComptesEpargne(listeCheque);
@@ -512,10 +494,8 @@ public class UserController implements Initializable {
     void selectionCompte(ActionEvent event) {
         String compte = tousComptes.getSelectionModel().getSelectedItem();
 
-        System.out.println(compte);
         String[] typeList = compte.split(":");
         String type = typeList[1].trim();
-        System.out.println(type + "test");
         compte = typeList[2];
 
         Compte compteCheque;
@@ -531,7 +511,6 @@ public class UserController implements Initializable {
 
             if (listeCheque.get(i).getNumeroCompte() == Integer.parseInt(compte)) {
                 compteCheque = listeCheque.get(i);
-                System.out.println(compteCheque.getSoldeCompte());
                 solde = compteCheque.getSoldeCompte();
 
             }
@@ -569,10 +548,8 @@ public class UserController implements Initializable {
         String compte = transfertComptes.getSelectionModel().getSelectedItem();
 
 
-        System.out.println(compte);
         String[] typeList = compte.split(":");
         String type = typeList[1].trim();
-        System.out.println(type + "test");
         compte = typeList[2];
 
         Compte compteCheque;
@@ -591,7 +568,6 @@ public class UserController implements Initializable {
 
             if (listeChequeUser.get(i).getCodeClient() == Integer.parseInt(LoginController.codeUtilisateur)) {
                 compteChequeUser = listeChequeUser.get(i);
-                System.out.println(compteChequeUser.getSoldeCompte());
                 double solde = compteChequeUser.getSoldeCompte();
 
 
@@ -604,7 +580,6 @@ public class UserController implements Initializable {
 
                 solde = (solde - montantTransfert);
                 compteChequeUser.setSoldeCompte(solde);
-                System.out.println(compteChequeUser.getSoldeCompte());
                 listeChequeUser.set(i, compteChequeUser);
 
                 GestionnaireGuichet.setComptesCheque(listeChequeUser);
@@ -616,26 +591,21 @@ public class UserController implements Initializable {
 
 
         for (int i = 0; i < listeCheque.size(); i++) {
-            System.out.println("test boucle");
             if (listeCheque.get(i).getNumeroCompte() == Integer.parseInt(compte)) {
 
                 compteCheque = listeCheque.get(i);
-                System.out.println(compteCheque.getSoldeCompte());
                 double solde = compteCheque.getSoldeCompte();
 
 
                 solde = (solde + montantTransfert);
                 compteCheque.setSoldeCompte(solde);
-                System.out.println(compteCheque.getSoldeCompte());
                 listeCheque.set(i, compteCheque);
 
 
                 for (int j = 0; j < listeCheque.size(); j++) {
 
-                    System.out.println(compte);
                     String[] typeListUser = listeCheque.get(j).getClass().toString().split(":");
                     String typeUser = typeList[1].trim();
-                    System.out.println(type + "test");
                     compte = typeList[2];
 
 
@@ -685,10 +655,8 @@ public class UserController implements Initializable {
         String compte = transfertComptes.getSelectionModel().getSelectedItem();
 
 
-        System.out.println(compte);
         String[] typeList = compte.split(":");
         String type = typeList[1].trim();
-        System.out.println(type + "test");
         compte = typeList[2];
 
         if (!type.equals("Marge")) {
@@ -712,7 +680,6 @@ public class UserController implements Initializable {
 
             if (listeChequeUser.get(i).getCodeClient() == Integer.parseInt(LoginController.codeUtilisateur)) {
                 compteChequeUser = listeChequeUser.get(i);
-                System.out.println(compteChequeUser.getSoldeCompte());
                 double solde = compteChequeUser.getSoldeCompte();
 
 
@@ -725,7 +692,6 @@ public class UserController implements Initializable {
 
                 solde = (solde - montantTransfert);
                 compteChequeUser.setSoldeCompte(solde);
-                System.out.println(compteChequeUser.getSoldeCompte());
                 listeChequeUser.set(i, compteChequeUser);
 
                 GestionnaireGuichet.setComptesCheque(listeChequeUser);
@@ -737,11 +703,9 @@ public class UserController implements Initializable {
 
 
         for (int i = 0; i < listeCheque.size(); i++) {
-            System.out.println("test boucle");
             if (listeCheque.get(i).getNumeroCompte() == Integer.parseInt(compte)) {
 
                 compteCheque = listeCheque.get(i);
-                System.out.println(compteCheque.getSoldeCompte());
                 double solde = compteCheque.getSoldeCompte();
 
 
@@ -755,16 +719,13 @@ public class UserController implements Initializable {
 
                 solde = (solde - montantTransfert);
                 compteCheque.setSoldeCompte(solde);
-                System.out.println(compteCheque.getSoldeCompte());
                 listeCheque.set(i, compteCheque);
 
 
                 for (int j = 0; j < listeCheque.size(); j++) {
 
-                    System.out.println(compte);
                     String[] typeListUser = listeCheque.get(j).getClass().toString().split(":");
                     String typeUser = typeList[1].trim();
-                    System.out.println(type + "test");
                     compte = typeList[2];
 
 

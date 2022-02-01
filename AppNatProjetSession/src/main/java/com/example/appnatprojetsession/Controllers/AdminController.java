@@ -263,7 +263,6 @@ public class AdminController implements Initializable {
         for (int i = 0; i < gg.getComptesMarge().size(); i++) {
             double solde = marge.augmenterSoldeMarge(gg.getComptesMarge().get(i).getSoldeCompte());
             gg.getComptesMarge().get(i).setSoldeCompte(solde);
-            System.out.println(gg.getComptesMarge().get(i).getSoldeCompte());
         }
 
         Alert alert;
@@ -309,14 +308,12 @@ public class AdminController implements Initializable {
 
             nip = Integer.parseInt(nipC);
         } catch (Exception e) {
-            System.out.println(e);
             Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Entrez des numeros valides pour le NIP et le code");
             alert.showAndWait();
             return;
         }
 
         this.gg.creerClient(nomC, prenomC, telephoneC, courrielC, nip);
-        System.out.println(this.gg.getClients());
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Le client " + nomClient.getText() + " " + prenomClient.getText() + "a ete creer");
         alert.showAndWait();
     }
@@ -336,9 +333,7 @@ public class AdminController implements Initializable {
         } else {
             try {
                 codeClient = Integer.parseInt(codeCli);
-                //System.out.println("codeClient:"+ codeClient+" type Compte:"+ typeCompte);
             } catch (Exception e) {
-                //System.out.println(e);
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Le code du client doit etre des numeros");
                 alert.showAndWait();
                 return;
@@ -457,11 +452,8 @@ public class AdminController implements Initializable {
             }
             ArrayList<Client> clients = gg.getClients();
             ArrayList<Integer> listClientBloques = gg.getClientBloque();
-            for (Integer i : listClientBloques) {
-                System.out.println(i.toString());
-            }
+
             for (Client c : clients) {
-                System.out.println("test 1");
 
                 if (c.getCodeClient() == codeClientSaisi) {
                     if (statusClient.equalsIgnoreCase("Bloquer")) {
@@ -524,7 +516,6 @@ public class AdminController implements Initializable {
             return;
         } else {
             double montantDansGuichet = gg.getBanque().getSoldeCompte();
-            System.out.println(montantDansGuichet);
             double montantTotal = montantDansGuichet + montantAjouterAGuichet;
             if (montantTotal > 20000) {
                 Alert alert = new Alert(Alert.AlertType.WARNING, "Le montant dans le guichet ne peut pas exceder 20,000$");
@@ -547,7 +538,6 @@ public class AdminController implements Initializable {
         String[] listString = compteChoisi.split("Compte ID:");
         String[] listString2 = listString[1].split(" ");
         String idCompte = listString2[1];
-        System.out.println(idCompte);
 
         if (idCompte.equalsIgnoreCase("") || montantPreleve.equalsIgnoreCase("")) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "S.V.P. Remplir tous les champs");
@@ -598,20 +588,14 @@ public class AdminController implements Initializable {
     }
 
     public void setSolde() {
-//        ObservableList<Double> soldeCompte = FXCollections.observableArrayList();
-//        double solde = gg.getBanque().getSoldeCompte();
-//        this.montantCourantGuichet.setText(String.valueOf(solde));
-//        System.out.println(solde);
-//        System.out.println(montantCourantGuichet);
+
         SimpleDoubleProperty solde = new SimpleDoubleProperty(gg.getBanque().getSoldeCompte());
         this.montantCourantGuichet.textProperty().bind(solde.asString());
-        System.out.println(montantCourantGuichet);
     }
 
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList<Hypothécaire> listHypotechaire = gg.getComptesHypothecaire();
         ObservableList<String> comptesHypotechaires = FXCollections.observableArrayList();
-        System.out.println(listHypotechaire);
 
         for (Hypothécaire h : listHypotechaire) {
             String txt = h.getClass().toString();
@@ -620,21 +604,7 @@ public class AdminController implements Initializable {
             comptesHypotechaires.add(txt);
         }
         this.listComptesHypothecaires.setItems(comptesHypotechaires);
-        System.out.println(comptesHypotechaires);
 
-
-
-
-
-//        ObservableList<Double> soldeCompte = FXCollections.observableArrayList();
-//        double solde = gg.getBanque().getSoldeCompte();
-//        if (solde != null) {
-//            this.montantCourantGuichet.setText(String.valueOf(solde));
-//        } else {
-//            System.out.println("soldeCompte null");
-//        }
-//        SimpleDoubleProperty solde = new SimpleDoubleProperty(gg.getBanque().getSoldeCompte());
-//        this.montantCourantGuichet.textProperty().bind(solde.asString());
 
     }
 
@@ -642,36 +612,6 @@ public class AdminController implements Initializable {
      * Methode qui sert a afficher la liste des clients
      */
     public void afficherClients() throws IOException {
-//        System.out.println("test");
-//        Parent root = FXMLLoader.load(getClass().getResource("/com/example/appnatprojetsession/Admin/clientTable.fxml"));
-//        Scene first = menuAdmin.getScene();
-//
-//
-//        ArrayList<Client> allClient = gg.getClients();
-//        this.listClient.addAll(allClient);
-//
-//        for (Client c:
-//             this.listClient) {
-//            System.out.println(c);
-//        }
-//        ObservableList<Client> testClient = FXCollections.observableArrayList();
-//        Client test = new Client(1, "test", "test", "5143334444", "test@gmail.com", 1111);
-//        testClient.add(test);
-//
-//        codeClients.setCellValueFactory(new PropertyValueFactory<Client, Integer>("codeClient"));
-//        nom.setCellValueFactory(new PropertyValueFactory<Client, String>("nom"));
-//        prenom.setCellValueFactory(new PropertyValueFactory<Client, String>("prenom"));
-//        telephone.setCellValueFactory(new PropertyValueFactory<Client, String>("telephone"));
-//        courriel.setCellValueFactory(new PropertyValueFactory<Client, String>("courriel"));
-//        numeroNIP.setCellValueFactory(new PropertyValueFactory<Client, Integer>("numeroNIP"));
-//
-//        tableClient.setItems( testClient);
-
-//        GestionnaireGuichet gg = new GestionnaireGuichet();
-
-       // FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/appnatprojetsession/Admin/clientTable.fxml"));
-        //Scene first = null;
-//        first.setRoot(root);
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Voici la liste des clients:\n" + this.gg.getClients());
         alert.showAndWait();
     }
