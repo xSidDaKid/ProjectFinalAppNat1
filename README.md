@@ -1,4 +1,5 @@
-Projet Final Applications Natives 1
+# Projet Final Applications Natives 1
+## Guichet Automatique avec JavaFX
 Le projet final avait pour but de créer une application JavaFX. Cette application simule le fonctionnement d'un guichet automatique. Le guichet automatique a deux utilisateurs, l'administrateur et l'utilisateur. Ce projet a été réaliser par 3 élèves en automne 2021.
 
 **Voici l'interface de l'administrateur:**
